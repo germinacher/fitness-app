@@ -1,0 +1,67 @@
+const express = require("express");
+const router = express.Router();
+const { body, validationResult } = require("express-validator");
+const bcrypt = require("bcryptjs");
+const User = require("../models/User");
+
+// POST /api/register
+router.post("/register",
+  // Validaciones con express-validator
+  body("email").isEmail().withMessage("Email inválido"),
+  body("password").isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
+  body("altura").isNumeric().withMessage("La altura debe ser un número"),
+  body("peso").isNumeric().withMessage("El peso debe ser un número"),
+  body("edad").isInt({ min: 13, max: 120 }).withMessage("La edad debe ser entre 13 y 120 años"),
+  body("genero").isIn(["Masculino", "Femenino", "Otro"]).withMessage("Género inválido"),
+  body("objetivo").isIn(["Aumentar masa muscular", "Perder grasa", "Mantener peso"]).withMessage("Objetivo inválido"),
+  body("preferencias").isIn(["Vegano", "Vegetariano", "Pescetariano", "Ninguna"]).withMessage("Preferencia inválida"),
+  body("alergias").isArray({ min: 1 }).withMessage("Las alergias deben ser un array con al menos un elemento"),
+  body("restricciones").isArray({ min: 1 }).withMessage("Las restricciones deben ser un array con al menos un elemento"),
+  body("intolerancias").isArray({ min: 1 }).withMessage("Las intolerancias deben ser un array con al menos un elemento"),
+  async (req, res) => {
+    // 1) validar inputs
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+    try {
+      const { email, password, altura, peso, edad, genero, objetivo, preferencias, alergias, restricciones, intolerancias } = req.body;
+
+      // 2) comprobar si ya existe email
+      const existing = await User.findOne({ "credenciales.email": email });
+      if (existing) return res.status(409).json({ error: "Email ya registrado" });
+
+      // 3) hashear contraseña
+      const salt = await bcrypt.genSalt(10);
+      const hashed = await bcrypt.hash(password, salt);
+
+      // 4) crear usuario con la estructura deseada
+      const newUser = new User({
+        credenciales: { email, password: hashed },
+        infoPersonal: { altura: Number(altura), peso: Number(peso), edad: Number(edad) },
+        genero: genero,
+        objetivo: objetivo,
+        preferencias: preferencias,
+        alergias: alergias,
+        restricciones: restricciones,
+        intolerancias: intolerancias,
+        dieta: [], // vacío por defecto
+        rutina: [] // vacío por defecto
+      });
+
+      await newUser.save();
+
+      // 5) devolver respuesta sin password
+      return res.status(201).json({
+        message: "Usuario creado",
+        userId: newUser._id,
+        email: newUser.credenciales.email,
+      });
+
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error interno del servidor" });
+    }
+  }
+);
+
+module.exports = router;

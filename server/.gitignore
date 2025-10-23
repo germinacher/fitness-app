@@ -1,0 +1,21 @@
+# Node.js
+node_modules/
+.env
+npm-debug.log
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+
+# Build (si usás React o herramientas de frontend)
+dist/
+build/
