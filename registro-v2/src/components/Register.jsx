@@ -88,190 +88,229 @@ const Register = () => {
     <div className="register-container">
       <h2>Registro de Usuario</h2>
       <form onSubmit={handleSubmit} className="register-form">
-        {/* Datos personales */}
-        <div className="form-group">
-          <label>Nombre</label>
-          <input
-            type="text"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        {/* Columna izquierda - Datos personales y físicos */}
+        <div className="form-column">
+          {/* Datos personales */}
+          <div className="form-section">
+            <h3>Datos Personales</h3>
+            <div className="form-group">
+              <label>Nombre</label>
+              <input
+                type="text"
+                name="nombre"
+                value={formData.nombre}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        <div className="form-group">
-          <label>Apellido</label>
-          <input
-            type="text"
-            name="apellido"
-            value={formData.apellido}
-            onChange={handleChange}
-            required
-          />
-        </div>
+            <div className="form-group">
+              <label>Apellido</label>
+              <input
+                type="text"
+                name="apellido"
+                value={formData.apellido}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        <div className="form-group">
-          <label>Contraseña</label>
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
+            <div className="form-group">
+              <label>Contraseña</label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
 
-        {/* Datos físicos */}
-        <div className="form-group">
-          <label>Altura (cm)</label>
-          <input
-            type="number"
-            name="altura"
-            value={formData.altura}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          {/* Datos físicos */}
+          <div className="form-section">
+            <h3>Datos Físicos</h3>
+            <div className="form-group">
+              <label>Altura (cm)</label>
+              <input
+                type="number"
+                name="altura"
+                value={formData.altura}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        <div className="form-group">
-          <label>Peso (kg)</label>
-          <input
-            type="number"
-            name="peso"
-            value={formData.peso}
-            onChange={handleChange}
-            required
-          />
-        </div>
+            <div className="form-group">
+              <label>Peso (kg)</label>
+              <input
+                type="number"
+                name="peso"
+                value={formData.peso}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        <div className="form-group">
-          <label>Edad</label>
-          <input
-            type="number"
-            name="edad"
-            value={formData.edad}
-            onChange={handleChange}
-            required
-          />
-        </div>
+            <div className="form-group">
+              <label>Edad</label>
+              <input
+                type="number"
+                name="edad"
+                value={formData.edad}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-        {/* Género */}
-        <div className="form-group">
-          <label>Género</label>
-          <select
-            name="genero"
-            value={formData.genero}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Seleccionar...</option>
-            <option value="Masculino">Masculino</option>
-            <option value="Femenino">Femenino</option>
-            <option value="Otro">Otro</option>
-          </select>
-        </div>
-
-        {/* Objetivo principal */}
-        <div className="form-group">
-          <label>Objetivo principal</label>
-          <select
-            name="objetivo"
-            value={formData.objetivo}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Seleccionar...</option>
-            <option value="Aumentar masa muscular">
-              Aumentar masa muscular
-            </option>
-            <option value="Perder grasa">Perder grasa</option>
-            <option value="Mantener peso">Mantener peso</option>
-          </select>
-        </div>
-
-        {/* Preferencias */}
-        <div className="form-group">
-          <label>Preferencias Alimentarias</label>
-          <select
-            name="preferencias"
-            value={formData.preferencias}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Seleccionar...</option>
-            <option value="Vegano">Vegano</option>
-            <option value="Vegetariano">Vegetariano</option>
-            <option value="Pescetariano">Pescetariano</option>
-            <option value="Ninguna">Ninguna</option>
-          </select>
-        </div>
-
-        {/* Alergias */}
-        <div className="form-group checkbox-group">
-          <label>Alergias</label>
-          <div className="checkbox-list">
-            {opciones.alergias.map((item) => (
-              <label key={item}>
-                <input
-                  type="checkbox"
-                  checked={formData.alergias.includes(item)}
-                  onChange={() => handleCheckboxChange("alergias", item)}
-                />
-                {item}
-              </label>
-            ))}
+            <div className="form-group">
+              <label>Género</label>
+              <select
+                name="genero"
+                value={formData.genero}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Seleccionar...</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
           </div>
         </div>
 
-        {/* Restricciones */}
-        <div className="form-group checkbox-group">
-          <label>Restricciones Médicas</label>
-          <div className="checkbox-list">
-            {opciones.restricciones.map((item) => (
-              <label key={item}>
-                <input
-                  type="checkbox"
-                  checked={formData.restricciones.includes(item)}
-                  onChange={() => handleCheckboxChange("restricciones", item)}
-                />
-                {item}
-              </label>
-            ))}
+        {/* Columna derecha - Objetivos y preferencias */}
+        <div className="form-column">
+          {/* Objetivo y preferencias */}
+          <div className="form-section">
+            <h3>Objetivos y Preferencias</h3>
+            <div className="form-group">
+              <label>Objetivo principal</label>
+              <select
+                name="objetivo"
+                value={formData.objetivo}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Seleccionar...</option>
+                <option value="Aumentar masa muscular">
+                  Aumentar masa muscular
+                </option>
+                <option value="Perder grasa">Perder grasa</option>
+                <option value="Mantener peso">Mantener peso</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>Preferencias Alimentarias</label>
+              <select
+                name="preferencias"
+                value={formData.preferencias}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Seleccionar...</option>
+                <option value="Vegano">Vegano</option>
+                <option value="Vegetariano">Vegetariano</option>
+                <option value="Pescetariano">Pescetariano</option>
+                <option value="Ninguna">Ninguna</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Alergias */}
+          <div className="form-section">
+            <h3>Alergias</h3>
+            <div className="form-group checkbox-group">
+              <div className="checkbox-list">
+                {opciones.alergias.map((item) => (
+                  <label key={item}>
+                    <input
+                      type="checkbox"
+                      checked={formData.alergias.includes(item)}
+                      onChange={() => handleCheckboxChange("alergias", item)}
+                    />
+                    {item}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Restricciones */}
+          <div className="form-section">
+            <h3>Restricciones Médicas</h3>
+            <div className="form-group checkbox-group">
+              <div className="checkbox-list">
+                {opciones.restricciones.map((item) => (
+                  <label key={item}>
+                    <input
+                      type="checkbox"
+                      checked={formData.restricciones.includes(item)}
+                      onChange={() => handleCheckboxChange("restricciones", item)}
+                    />
+                    {item}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Intolerancias */}
+          <div className="form-section">
+            <h3>Intolerancias</h3>
+            <div className="form-group checkbox-group">
+              <div className="checkbox-list">
+                {opciones.intolerancias.map((item) => (
+                  <label key={item}>
+                    <input
+                      type="checkbox"
+                      checked={formData.intolerancias.includes(item)}
+                      onChange={() => handleCheckboxChange("intolerancias", item)}
+                    />
+                    {item}
+                  </label>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Intolerancias */}
-        <div className="form-group checkbox-group">
-          <label>Intolerancias</label>
-          <div className="checkbox-list">
-            {opciones.intolerancias.map((item) => (
-              <label key={item}>
-                <input
-                  type="checkbox"
-                  checked={formData.intolerancias.includes(item)}
-                  onChange={() => handleCheckboxChange("intolerancias", item)}
-                />
-                {item}
-              </label>
-            ))}
+        {/* Botón de registro - Full width */}
+        <div className="form-full-width">
+          <button type="submit" className="register-button">
+            Registrarse
+          </button>
+
+          {/* Enlace para ir a login */}
+          <div style={{ marginTop: "1rem", textAlign: "center" }}>
+            <p style={{ color: "#2e7d32", fontSize: "0.9rem" }}>
+              ¿Ya tienes cuenta?{" "}
+              <a 
+                href="/login" 
+                style={{ 
+                  color: "#2e7d32", 
+                  textDecoration: "underline",
+                  fontWeight: "600"
+                }}
+              >
+                Inicia sesión aquí
+              </a>
+            </p>
           </div>
         </div>
-
-        <button type="submit" className="register-button">
-          Registrarse
-        </button>
       </form>
     </div>
   );

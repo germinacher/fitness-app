@@ -64,4 +64,44 @@ router.post("/register",
   }
 );
 
+// POST /api/login
+router.post("/login",
+  // Validaciones
+  body("email").isEmail().withMessage("Email inválido"),
+  body("password").isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
+  async (req, res) => {
+    // Validar inputs
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+    try {
+      const { email, password } = req.body;
+
+      // Buscar usuario por email
+      const user = await User.findOne({ "credenciales.email": email });
+      if (!user) {
+        return res.status(401).json({ error: "Credenciales inválidas" });
+      }
+
+      // Verificar contraseña
+      const isValidPassword = await bcrypt.compare(password, user.credenciales.password);
+      if (!isValidPassword) {
+        return res.status(401).json({ error: "Credenciales inválidas" });
+      }
+
+      // Respuesta exitosa (sin contraseña)
+      return res.status(200).json({
+        message: "Inicio de sesión exitoso",
+        userId: user._id,
+        email: user.credenciales.email,
+        token: "user-authenticated", // Token simple para verificar autenticación
+      });
+
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error interno del servidor" });
+    }
+  }
+);
+
 module.exports = router;
