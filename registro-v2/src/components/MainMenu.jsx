@@ -1,12 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/MainMenu.css"; // Usar estilos específicos de MainMenu
 
 const MainMenu = () => {
+  const navigate = useNavigate();
+  
   const handleLogout = () => {
     // Limpiar token del localStorage
     localStorage.removeItem("token");
     // Redirigir al login
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   return (

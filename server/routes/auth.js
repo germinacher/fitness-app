@@ -63,7 +63,6 @@ router.post("/register",
 
       await newUser.save();
 
-      // 5) devolver respuesta sin password
       return res.status(201).json({
         message: "Usuario creado",
         userId: newUser._id,

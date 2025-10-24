@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Register.css"; // Reutilizamos los mismos estilos
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -42,7 +44,7 @@ const Login = () => {
 
       alert("Inicio de sesión exitoso");
       // Redirigir al menú principal usando React Router
-      window.location.href = "/main-menu";
+      navigate("/main-menu");
       
     } catch (err) {
       console.error("Error de conexión:", err);

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../styles/Register.css";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -73,7 +75,8 @@ const Register = () => {
       }
 
       alert("Registro exitoso — id: " + data.userId);
-      // opcional: redirigir a login o dashboard
+      // Redirigir a login después del registro exitoso
+      navigate("/login");
     } catch (err) {
       console.error("Error de conexión:", err);
       alert("No se pudo conectar al servidor");
@@ -300,16 +303,21 @@ const Register = () => {
           <div style={{ marginTop: "1rem", textAlign: "center" }}>
             <p style={{ color: "#2e7d32", fontSize: "0.9rem" }}>
               ¿Ya tienes cuenta?{" "}
-              <a 
-                href="/login" 
+              <button 
+                type="button"
+                onClick={() => navigate("/login")}
                 style={{ 
                   color: "#2e7d32", 
                   textDecoration: "underline",
-                  fontWeight: "600"
+                  fontWeight: "600",
+                  background: "none",
+                  border: "none",
+                  cursor: "pointer",
+                  fontSize: "inherit"
                 }}
               >
                 Inicia sesión aquí
-              </a>
+              </button>
             </p>
           </div>
         </div>
