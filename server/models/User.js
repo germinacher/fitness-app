@@ -7,6 +7,8 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true }, // guardaremos el hash
   },
   infoPersonal: {
+    nombre: { type: String, required: true, trim: true },
+    apellido: { type: String, required: true, trim: true },
     altura: { type: Number, required: true }, // cm
     peso: { type: Number, required: true },   // kg
     edad: { type: Number, required: true },

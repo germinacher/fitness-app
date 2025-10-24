@@ -44,15 +44,17 @@ const Register = () => {
     const payload = {
       email: formData.email,
       password: formData.password,
+      nombre: formData.nombre,
+      apellido: formData.apellido,
       altura: formData.altura ? Number(formData.altura) : null,
       peso: formData.peso ? Number(formData.peso) : null,
       edad: formData.edad ? Number(formData.edad) : null,
       genero: formData.genero,
       objetivo: formData.objetivo,
       preferencias: formData.preferencias,
-      alergias: formData.alergias.length > 0 ? formData.alergias : ["Ninguna"],
-      restricciones: formData.restricciones.length > 0 ? formData.restricciones : ["Ninguna"],
-      intolerancias: formData.intolerancias.length > 0 ? formData.intolerancias : ["Ninguna"],
+      alergias: formData.alergias,
+      restricciones: formData.restricciones,
+      intolerancias: formData.intolerancias,
     };
 
     try {

@@ -41,7 +41,7 @@ const Login = () => {
       }
 
       alert("Inicio de sesión exitoso");
-      // Redirigir al menú principal
+      // Redirigir al menú principal usando React Router
       window.location.href = "/main-menu";
       
     } catch (err) {

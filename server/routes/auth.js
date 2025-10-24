@@ -9,22 +9,24 @@ router.post("/register",
   // Validaciones con express-validator
   body("email").isEmail().withMessage("Email inválido"),
   body("password").isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
+  body("nombre").notEmpty().withMessage("El nombre es requerido"),
+  body("apellido").notEmpty().withMessage("El apellido es requerido"),
   body("altura").isNumeric().withMessage("La altura debe ser un número"),
   body("peso").isNumeric().withMessage("El peso debe ser un número"),
   body("edad").isInt({ min: 13, max: 120 }).withMessage("La edad debe ser entre 13 y 120 años"),
   body("genero").isIn(["Masculino", "Femenino", "Otro"]).withMessage("Género inválido"),
   body("objetivo").isIn(["Aumentar masa muscular", "Perder grasa", "Mantener peso"]).withMessage("Objetivo inválido"),
   body("preferencias").isIn(["Vegano", "Vegetariano", "Pescetariano", "Ninguna"]).withMessage("Preferencia inválida"),
-  body("alergias").isArray({ min: 1 }).withMessage("Las alergias deben ser un array con al menos un elemento"),
-  body("restricciones").isArray({ min: 1 }).withMessage("Las restricciones deben ser un array con al menos un elemento"),
-  body("intolerancias").isArray({ min: 1 }).withMessage("Las intolerancias deben ser un array con al menos un elemento"),
+  body("alergias").isArray().withMessage("Las alergias deben ser un array"),
+  body("restricciones").isArray().withMessage("Las restricciones deben ser un array"),
+  body("intolerancias").isArray().withMessage("Las intolerancias deben ser un array"),
   async (req, res) => {
     // 1) validar inputs
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
     try {
-      const { email, password, altura, peso, edad, genero, objetivo, preferencias, alergias, restricciones, intolerancias } = req.body;
+      const { email, password, nombre, apellido, altura, peso, edad, genero, objetivo, preferencias, alergias, restricciones, intolerancias } = req.body;
 
       // 2) comprobar si ya existe email
       const existing = await User.findOne({ "credenciales.email": email });
@@ -34,16 +36,27 @@ router.post("/register",
       const salt = await bcrypt.genSalt(10);
       const hashed = await bcrypt.hash(password, salt);
 
-      // 4) crear usuario con la estructura deseada
+      // 4) procesar arrays vacíos - si están vacíos, poner "Ninguna"
+      const procesarArray = (arr) => {
+        return Array.isArray(arr) && arr.length > 0 ? arr : ["Ninguna"];
+      };
+
+      // 5) crear usuario con la estructura deseada
       const newUser = new User({
         credenciales: { email, password: hashed },
-        infoPersonal: { altura: Number(altura), peso: Number(peso), edad: Number(edad) },
+        infoPersonal: { 
+          nombre: nombre.trim(), 
+          apellido: apellido.trim(), 
+          altura: Number(altura), 
+          peso: Number(peso), 
+          edad: Number(edad) 
+        },
         genero: genero,
         objetivo: objetivo,
         preferencias: preferencias,
-        alergias: alergias,
-        restricciones: restricciones,
-        intolerancias: intolerancias,
+        alergias: procesarArray(alergias),
+        restricciones: procesarArray(restricciones),
+        intolerancias: procesarArray(intolerancias),
         dieta: [], // vacío por defecto
         rutina: [] // vacío por defecto
       });
