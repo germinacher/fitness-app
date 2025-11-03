@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE } from "../config";
 import "../styles/Register.css"; // Reutilizamos los mismos estilos
 
 const Login = () => {
@@ -23,7 +24,7 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://localhost:4000/api/login", {
+      const res = await fetch(`${API_BASE}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -37,9 +38,12 @@ const Login = () => {
         return;
       }
 
-      // Guardar token en localStorage (si usas JWT)
+      // Guardar token y userId en localStorage
       if (data.token) {
         localStorage.setItem("token", data.token);
+      }
+      if (data.userId) {
+        localStorage.setItem("userId", data.userId);
       }
 
       alert("Inicio de sesión exitoso");

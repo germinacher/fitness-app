@@ -122,6 +122,24 @@ select:focus {
   color: #444;
 }
 
+/* Botón "Volver" en formularios tipo register/profile */
+.back-row {
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #2e7d32;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
 .register-button {
   background-color: #2e7d32;
   color: white;

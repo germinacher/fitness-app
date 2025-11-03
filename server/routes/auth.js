@@ -11,9 +11,9 @@ router.post("/register",
   body("password").isLength({ min: 6 }).withMessage("La contraseña debe tener al menos 6 caracteres"),
   body("nombre").notEmpty().withMessage("El nombre es requerido"),
   body("apellido").notEmpty().withMessage("El apellido es requerido"),
-  body("altura").isNumeric().withMessage("La altura debe ser un número"),
-  body("peso").isNumeric().withMessage("El peso debe ser un número"),
-  body("edad").isInt({ min: 13, max: 120 }).withMessage("La edad debe ser entre 13 y 120 años"),
+  body("altura").isFloat({ min: 100, max: 300 }).withMessage("Altura inválida"),
+  body("peso").isFloat({ min: 35, max: 300 }).withMessage("Peso inválido"),
+  body("edad").isInt({ min: 18, max: 120 }).withMessage("Edad inválida"),
   body("genero").isIn(["Masculino", "Femenino", "Otro"]).withMessage("Género inválido"),
   body("objetivo").isIn(["Aumentar masa muscular", "Perder grasa", "Mantener peso"]).withMessage("Objetivo inválido"),
   body("preferencias").isIn(["Vegano", "Vegetariano", "Pescetariano", "Ninguna"]).withMessage("Preferencia inválida"),
@@ -109,6 +109,104 @@ router.post("/login",
         token: "user-authenticated", // Token simple para verificar autenticación
       });
 
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error interno del servidor" });
+    }
+  }
+);
+
+// GET /api/users/:id - obtener perfil (sin contraseña)
+router.get("/users/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findById(id).lean();
+    if (!user) return res.status(404).json({ error: "Usuario no encontrado" });
+
+    // ocultar hash
+    if (user.credenciales) {
+      delete user.credenciales.password;
+    }
+    return res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+// PUT /api/users/:id - actualizar perfil editable
+router.put(
+  "/users/:id",
+  body("altura").notEmpty().withMessage("La altura es obligatoria").isFloat({ min: 100, max: 300 }).withMessage("Altura inválida"),
+  body("peso").notEmpty().withMessage("El peso es obligatorio").isFloat({ min: 35, max: 300 }).withMessage("Peso inválido"),
+  body("edad").notEmpty().withMessage("La edad es obligatoria").isInt({ min: 18, max: 120 }).withMessage("Edad inválida"),
+  body("objetivo").notEmpty().withMessage("El objetivo es obligatorio").isIn(["Aumentar masa muscular", "Perder grasa", "Mantener peso"]).withMessage("Objetivo inválido"),
+  body("preferencias").notEmpty().withMessage("La preferencia es obligatoria").isIn(["Vegano", "Vegetariano", "Pescetariano", "Ninguna"]).withMessage("Preferencia inválida"),
+  body("alergias").optional().isArray(),
+  body("restricciones").optional().isArray(),
+  body("intolerancias").optional().isArray(),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+    try {
+      const { id } = req.params;
+      const {
+        altura,
+        peso,
+        edad,
+        objetivo,
+        preferencias,
+        alergias,
+        restricciones,
+        intolerancias,
+      } = req.body;
+
+      const procesarArray = (arr) => (Array.isArray(arr) && arr.length > 0 ? arr : ["Ninguna"]);
+
+      const update = {};
+      if (altura !== undefined) update["infoPersonal.altura"] = Number(altura);
+      if (peso !== undefined) update["infoPersonal.peso"] = Number(peso);
+      if (edad !== undefined) update["infoPersonal.edad"] = Number(edad);
+      if (objetivo !== undefined) update.objetivo = objetivo;
+      if (preferencias !== undefined) update.preferencias = preferencias;
+      if (alergias !== undefined) update.alergias = procesarArray(alergias);
+      if (restricciones !== undefined) update.restricciones = procesarArray(restricciones);
+      if (intolerancias !== undefined) update.intolerancias = procesarArray(intolerancias);
+
+      const updated = await User.findByIdAndUpdate(id, update, { new: true }).lean();
+      if (!updated) return res.status(404).json({ error: "Usuario no encontrado" });
+      if (updated.credenciales) delete updated.credenciales.password;
+      return res.status(200).json({ message: "Perfil actualizado", user: updated });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: "Error interno del servidor" });
+    }
+  }
+);
+
+// PUT /api/users/:id/password - cambiar contraseña
+router.put(
+  "/users/:id/password",
+  body("currentPassword").isLength({ min: 6 }),
+  body("newPassword").isLength({ min: 6 }),
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+
+    try {
+      const { id } = req.params;
+      const { currentPassword, newPassword } = req.body;
+      const user = await User.findById(id);
+      if (!user) return res.status(404).json({ error: "Usuario no encontrado" });
+
+      const ok = await bcrypt.compare(currentPassword, user.credenciales.password);
+      if (!ok) return res.status(401).json({ error: "Contraseña actual incorrecta" });
+
+      const salt = await bcrypt.genSalt(10);
+      user.credenciales.password = await bcrypt.hash(newPassword, salt);
+      await user.save();
+      return res.status(200).json({ message: "Contraseña actualizada" });
     } catch (err) {
       console.error(err);
       return res.status(500).json({ error: "Error interno del servidor" });

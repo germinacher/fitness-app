@@ -3,6 +3,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import MainMenu from './components/MainMenu';
 import ProtectedRoute from './components/ProtectedRoute';
+import ProfileEdit from './components/ProfileEdit';
 
 function App() {
   return (
@@ -17,6 +18,14 @@ function App() {
               <MainMenu />
             </ProtectedRoute>
           } 
+        />
+        <Route 
+          path="/profile" 
+          element={
+            <ProtectedRoute>
+              <ProfileEdit />
+            </ProtectedRoute>
+          }
         />
         <Route path="/" element={<Login />} />
       </Routes>

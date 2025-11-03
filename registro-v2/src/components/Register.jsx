@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE } from "../config";
 import "../styles/Register.css";
 
 const Register = () => {
@@ -60,7 +61,7 @@ const Register = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:4000/api/register", {
+      const res = await fetch(`${API_BASE}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -91,6 +92,15 @@ const Register = () => {
 
   return (
     <div className="register-container">
+      <div className="back-row">
+        <button
+          type="button"
+          onClick={() => navigate("/login")}
+          className="back-button"
+        >
+          ← Volver
+        </button>
+      </div>
       <h2>Registro de Usuario</h2>
       <form onSubmit={handleSubmit} className="register-form">
         {/* Columna izquierda - Datos personales y físicos */}
@@ -150,6 +160,8 @@ const Register = () => {
               <label>Altura (cm)</label>
               <input
                 type="number"
+                min="100"
+                max="300"
                 name="altura"
                 value={formData.altura}
                 onChange={handleChange}
@@ -161,6 +173,8 @@ const Register = () => {
               <label>Peso (kg)</label>
               <input
                 type="number"
+                min="35"
+                max="300"
                 name="peso"
                 value={formData.peso}
                 onChange={handleChange}
@@ -172,6 +186,8 @@ const Register = () => {
               <label>Edad</label>
               <input
                 type="number"
+                min="18"
+                max="120"
                 name="edad"
                 value={formData.edad}
                 onChange={handleChange}

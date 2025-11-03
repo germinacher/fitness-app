@@ -1,13 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE } from "../config";
 import "../styles/MainMenu.css"; // Usar estilos específicos de MainMenu
 
 const MainMenu = () => {
   const navigate = useNavigate();
+  const [userName, setUserName] = useState("Usuario");
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const fetchUserName = async () => {
+      const userId = localStorage.getItem("userId");
+      if (!userId) return;
+      
+      try {
+        const res = await fetch(`${API_BASE}/api/users/${userId}`);
+        const data = await res.json();
+        if (res.ok && data.infoPersonal) {
+          const { nombre, apellido } = data.infoPersonal;
+          setUserName(`${nombre} ${apellido}`);
+        }
+      } catch (err) {
+        console.error("Error cargando usuario:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchUserName();
+  }, []);
   
   const handleLogout = () => {
     // Limpiar token del localStorage
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     // Redirigir al login
     navigate("/login");
   };
@@ -17,7 +43,7 @@ const MainMenu = () => {
       <h2>Menú Principal</h2>
       
       <div className="welcome-message">
-        ¡Bienvenido a tu aplicación fitness!
+        {loading ? "Cargando..." : `¡Hola ${userName}!`}
       </div>
 
       <div className="main-menu-form">
@@ -56,7 +82,7 @@ const MainMenu = () => {
 
         <button 
           className="menu-button"
-          onClick={() => alert("Funcionalidad de perfil próximamente")}
+          onClick={() => navigate("/profile")}
         >
           <span className="menu-icon">👤</span>
           Mi Perfil
