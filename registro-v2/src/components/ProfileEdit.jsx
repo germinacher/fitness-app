@@ -24,6 +24,8 @@ const ProfileEdit = () => {
   const [pwdForm, setPwdForm] = useState({ currentPassword: "", newPassword: "" });
 
   useEffect(() => {
+    document.title = "Editar Perfil - Fitness App";
+    
     if (!userId) {
       navigate("/login");
       return;

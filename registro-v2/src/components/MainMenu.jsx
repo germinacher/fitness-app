@@ -9,6 +9,8 @@ const MainMenu = () => {
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
+    document.title = "Menú Principal - Fitness App";
+    
     const fetchUserName = async () => {
       const userId = localStorage.getItem("userId");
       if (!userId) return;

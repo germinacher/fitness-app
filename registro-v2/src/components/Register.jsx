@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import "../styles/Register.css";
@@ -20,6 +20,10 @@ const Register = () => {
     restricciones: [],
     intolerancias: [],
   });
+
+  useEffect(() => {
+    document.title = "Registro - Fitness App";
+  }, []);
 
   const handleChange = (e) => {
     setFormData({

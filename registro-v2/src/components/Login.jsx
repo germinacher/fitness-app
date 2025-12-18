@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import "../styles/Register.css"; // Reutilizamos los mismos estilos
@@ -11,6 +11,10 @@ const Login = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    document.title = "Iniciar Sesión - Fitness App";
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
