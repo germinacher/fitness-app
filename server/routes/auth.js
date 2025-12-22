@@ -214,4 +214,257 @@ router.put(
   }
 );
 
+// POST /api/users/:id/generate-plan - Generar rutina y dieta personalizada
+router.post("/users/:id/generate-plan", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { userInfo, answers } = req.body;
+
+    const user = await User.findById(id);
+    if (!user) return res.status(404).json({ error: "Usuario no encontrado" });
+
+    // Generar rutina basada en la información
+    const rutina = generateRutina(userInfo, answers);
+    const dieta = generateDieta(userInfo, answers);
+
+    // Actualizar usuario con la rutina y dieta generadas
+    user.rutina = rutina.split('\n').filter(line => line.trim());
+    user.dieta = dieta.split('\n').filter(line => line.trim());
+    await user.save();
+
+    return res.status(200).json({
+      message: "Plan generado exitosamente",
+      rutina,
+      dieta
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+// Función para generar rutina personalizada
+function generateRutina(userInfo, answers) {
+  const { objetivo, infoPersonal, genero } = userInfo;
+  const { dias_entrenamiento, duracion_entrenamiento, experiencia, equipamiento, horario_preferido } = answers;
+  
+  let rutina = `📋 RUTINA PERSONALIZADA\n\n`;
+  rutina += `Objetivo: ${objetivo}\n`;
+  rutina += `Días de entrenamiento: ${dias_entrenamiento}\n`;
+  rutina += `Duración por sesión: ${duracion_entrenamiento}\n`;
+  rutina += `Nivel: ${experiencia}\n\n`;
+
+  // Rutina según objetivo
+  if (objetivo === "Aumentar masa muscular") {
+    rutina += `💪 ENTRENAMIENTO DE FUERZA E HIPERTROFIA\n\n`;
+    rutina += `Día 1 - Tren Superior:\n`;
+    rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+    rutina += `- Remo con barra: 4 series x 8-10 repeticiones\n`;
+    rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+    rutina += `- Curl de bíceps: 3 series x 10-12 repeticiones\n`;
+    rutina += `- Tríceps en polea: 3 series x 10-12 repeticiones\n\n`;
+    
+    rutina += `Día 2 - Tren Inferior:\n`;
+    rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+    rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+    rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+    rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
+    rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n\n`;
+    
+    if (dias_entrenamiento.includes("5") || dias_entrenamiento.includes("6")) {
+      rutina += `Día 3 - Tren Superior (Variación):\n`;
+      rutina += `- Press inclinado: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Dominadas o jalones: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+    }
+  } else if (objetivo === "Perder grasa") {
+    rutina += `🔥 ENTRENAMIENTO DE QUEMA DE GRASA\n\n`;
+    rutina += `Día 1 - Full Body + Cardio:\n`;
+    rutina += `- Sentadillas: 3 series x 15-20 repeticiones\n`;
+    rutina += `- Flexiones: 3 series x 12-15 repeticiones\n`;
+    rutina += `- Zancadas: 3 series x 12 por pierna\n`;
+    rutina += `- Plancha: 3 series x 30-60 segundos\n`;
+    rutina += `- Cardio: 20-30 minutos (correr, bici, elíptica)\n\n`;
+    
+    rutina += `Día 2 - Circuito HIIT:\n`;
+    rutina += `- Burpees: 30 segundos\n`;
+    rutina += `- Mountain climbers: 30 segundos\n`;
+    rutina += `- Jumping jacks: 30 segundos\n`;
+    rutina += `- Plancha: 30 segundos\n`;
+    rutina += `- Descanso: 30 segundos\n`;
+    rutina += `- Repetir circuito 4-5 veces\n\n`;
+    
+    rutina += `Día 3 - Cardio + Fuerza:\n`;
+    rutina += `- 10 minutos de calentamiento\n`;
+    rutina += `- Entrenamiento de fuerza (circuito): 20 minutos\n`;
+    rutina += `- 20 minutos de cardio moderado\n`;
+    rutina += `- 5 minutos de estiramiento\n\n`;
+  } else {
+    rutina += `⚖️ ENTRENAMIENTO DE MANTENIMIENTO\n\n`;
+    rutina += `Día 1 - Tren Superior:\n`;
+    rutina += `- Press de banca: 3 series x 10-12 repeticiones\n`;
+    rutina += `- Remo: 3 series x 10-12 repeticiones\n`;
+    rutina += `- Press militar: 3 series x 10-12 repeticiones\n`;
+    rutina += `- Curl bíceps: 2 series x 12-15 repeticiones\n\n`;
+    
+    rutina += `Día 2 - Tren Inferior:\n`;
+    rutina += `- Sentadillas: 3 series x 12-15 repeticiones\n`;
+    rutina += `- Peso muerto: 3 series x 10-12 repeticiones\n`;
+    rutina += `- Zancadas: 2 series x 12 por pierna\n`;
+    rutina += `- Cardio ligero: 15-20 minutos\n\n`;
+    
+    rutina += `Día 3 - Full Body:\n`;
+    rutina += `- Circuito completo: 30-40 minutos\n`;
+    rutina += `- Incluir ejercicios compuestos\n`;
+    rutina += `- Estiramiento final: 10 minutos\n\n`;
+  }
+
+  rutina += `📝 NOTAS:\n`;
+  rutina += `- Calienta 5-10 minutos antes de entrenar\n`;
+  rutina += `- Descansa 60-90 segundos entre series\n`;
+  rutina += `- Hidrátate constantemente\n`;
+  rutina += `- Escucha a tu cuerpo y ajusta la intensidad\n`;
+
+  return rutina;
+}
+
+// Función para generar dieta personalizada
+function generateDieta(userInfo, answers) {
+  const { objetivo, infoPersonal, preferencias, alergias, restricciones, intolerancias } = userInfo;
+  const { peso, altura, edad, genero } = infoPersonal;
+  
+  // Calcular calorías aproximadas (fórmula simplificada)
+  const alturaMetros = altura / 100;
+  let caloriasBase = genero === "Masculino" 
+    ? 10 * peso + 6.25 * altura - 5 * edad + 5
+    : 10 * peso + 6.25 * altura - 5 * edad - 161;
+  
+  let factorActividad = 1.5; // Moderadamente activo
+  let caloriasDiarias = Math.round(caloriasBase * factorActividad);
+  
+  if (objetivo === "Perder grasa") {
+    caloriasDiarias = Math.round(caloriasDiarias * 0.85); // Déficit del 15%
+  } else if (objetivo === "Aumentar masa muscular") {
+    caloriasDiarias = Math.round(caloriasDiarias * 1.15); // Superávit del 15%
+  }
+
+  let dieta = `🍎 DIETA PERSONALIZADA\n\n`;
+  dieta += `Calorías diarias objetivo: ${caloriasDiarias} kcal\n`;
+  dieta += `Objetivo: ${objetivo}\n`;
+  dieta += `Preferencias: ${preferencias}\n\n`;
+
+  // Considerar restricciones
+  const tieneRestricciones = alergias.some(a => a !== "Ninguna") || 
+                            restricciones.some(r => r !== "Ninguna") ||
+                            intolerancias.some(i => i !== "Ninguna");
+  
+  if (tieneRestricciones) {
+    dieta += `⚠️ RESTRICCIONES CONSIDERADAS:\n`;
+    if (alergias.some(a => a !== "Ninguna")) dieta += `Alergias: ${alergias.filter(a => a !== "Ninguna").join(", ")}\n`;
+    if (restricciones.some(r => r !== "Ninguna")) dieta += `Restricciones: ${restricciones.filter(r => r !== "Ninguna").join(", ")}\n`;
+    if (intolerancias.some(i => i !== "Ninguna")) dieta += `Intolerancias: ${intolerancias.filter(i => i !== "Ninguna").join(", ")}\n`;
+    dieta += `\n`;
+  }
+
+  // Distribución de macronutrientes
+  let proteinas, carbohidratos, grasas;
+  
+  if (objetivo === "Aumentar masa muscular") {
+    proteinas = Math.round(caloriasDiarias * 0.30 / 4); // 30% proteínas
+    carbohidratos = Math.round(caloriasDiarias * 0.45 / 4); // 45% carbohidratos
+    grasas = Math.round(caloriasDiarias * 0.25 / 9); // 25% grasas
+  } else if (objetivo === "Perder grasa") {
+    proteinas = Math.round(caloriasDiarias * 0.35 / 4); // 35% proteínas
+    carbohidratos = Math.round(caloriasDiarias * 0.35 / 4); // 35% carbohidratos
+    grasas = Math.round(caloriasDiarias * 0.30 / 9); // 30% grasas
+  } else {
+    proteinas = Math.round(caloriasDiarias * 0.30 / 4); // 30% proteínas
+    carbohidratos = Math.round(caloriasDiarias * 0.40 / 4); // 40% carbohidratos
+    grasas = Math.round(caloriasDiarias * 0.30 / 9); // 30% grasas
+  }
+
+  dieta += `📊 MACRONUTRIENTES DIARIOS:\n`;
+  dieta += `- Proteínas: ${proteinas}g (${Math.round(proteinas * 4)} kcal)\n`;
+  dieta += `- Carbohidratos: ${carbohidratos}g (${Math.round(carbohidratos * 4)} kcal)\n`;
+  dieta += `- Grasas: ${grasas}g (${Math.round(grasas * 9)} kcal)\n\n`;
+
+  // Plan de comidas
+  dieta += `🍽️ PLAN DE COMIDAS:\n\n`;
+  
+  dieta += `DESAYUNO (${Math.round(caloriasDiarias * 0.25)} kcal):\n`;
+  if (preferencias === "Vegano") {
+    dieta += `- Avena con frutas y frutos secos\n`;
+    dieta += `- Batido de proteína vegana\n`;
+    dieta += `- Tostadas integrales con aguacate\n`;
+  } else if (preferencias === "Vegetariano") {
+    dieta += `- Huevos revueltos con verduras\n`;
+    dieta += `- Avena con frutas\n`;
+    dieta += `- Yogur griego con granola\n`;
+  } else {
+    dieta += `- Huevos con pan integral\n`;
+    dieta += `- Avena o cereales integrales\n`;
+    dieta += `- Frutas frescas\n`;
+  }
+  dieta += `\n`;
+
+  dieta += `MEDIA MAÑANA (${Math.round(caloriasDiarias * 0.10)} kcal):\n`;
+  dieta += `- Fruta fresca\n`;
+  dieta += `- Frutos secos (un puñado)\n`;
+  dieta += `- Yogur o batido de proteína\n`;
+  dieta += `\n`;
+
+  dieta += `ALMUERZO (${Math.round(caloriasDiarias * 0.30)} kcal):\n`;
+  if (preferencias === "Vegano") {
+    dieta += `- Ensalada de quinoa con verduras\n`;
+    dieta += `- Legumbres (lentejas, garbanzos, frijoles)\n`;
+    dieta += `- Verduras al vapor o salteadas\n`;
+  } else if (preferencias === "Vegetariano") {
+    dieta += `- Proteína vegetal (tofu, tempeh) o huevos\n`;
+    dieta += `- Arroz integral o quinoa\n`;
+    dieta += `- Ensalada o verduras\n`;
+  } else {
+    dieta += `- Proteína magra (pollo, pescado, pavo)\n`;
+    dieta += `- Carbohidrato complejo (arroz, pasta integral, patata)\n`;
+    dieta += `- Verduras variadas\n`;
+  }
+  dieta += `\n`;
+
+  dieta += `MERIENDA (${Math.round(caloriasDiarias * 0.10)} kcal):\n`;
+  dieta += `- Fruta o batido de proteína\n`;
+  dieta += `- Frutos secos\n`;
+  dieta += `- Barrita de proteína (opcional)\n`;
+  dieta += `\n`;
+
+  dieta += `CENA (${Math.round(caloriasDiarias * 0.25)} kcal):\n`;
+  if (preferencias === "Vegano") {
+    dieta += `- Proteína vegetal (tofu, seitán, legumbres)\n`;
+    dieta += `- Verduras al horno o salteadas\n`;
+    dieta += `- Ensalada variada\n`;
+  } else if (preferencias === "Vegetariano") {
+    dieta += `- Proteína vegetal o huevos\n`;
+    dieta += `- Verduras variadas\n`;
+    dieta += `- Ensalada\n`;
+  } else {
+    dieta += `- Proteína magra (pescado, pollo, pavo)\n`;
+    dieta += `- Verduras al vapor o salteadas\n`;
+    dieta += `- Ensalada ligera\n`;
+  }
+  dieta += `\n`;
+
+  dieta += `💧 HIDRATACIÓN:\n`;
+  dieta += `- 2-3 litros de agua al día\n`;
+  dieta += `- Agua antes, durante y después del entrenamiento\n`;
+  dieta += `- Evitar bebidas azucaradas\n\n`;
+
+  dieta += `📝 RECOMENDACIONES:\n`;
+  dieta += `- Come cada 3-4 horas\n`;
+  dieta += `- Incluye proteína en cada comida\n`;
+  dieta += `- Prioriza alimentos integrales y naturales\n`;
+  dieta += `- Cocina al vapor, horno o plancha\n`;
+  dieta += `- Limita alimentos procesados\n`;
+
+  return dieta;
+}
+
 module.exports = router;

@@ -52,7 +52,7 @@ const MainMenu = () => {
         {/* Botones del menú */}
         <button 
           className="menu-button"
-          onClick={() => alert("Funcionalidad de chatbot próximamente")}
+          onClick={() => navigate("/chatbot")}
         >
           <span className="menu-icon">💪</span>
           Mi entrenador personal
@@ -72,14 +72,6 @@ const MainMenu = () => {
         >
           <span className="menu-icon">🍎</span>
           Mis Dietas
-        </button>
-
-        <button 
-          className="menu-button"
-          onClick={() => alert("Funcionalidad de progreso próximamente")}
-        >
-          <span className="menu-icon">📊</span>
-          Mi Progreso
         </button>
 
         <button 

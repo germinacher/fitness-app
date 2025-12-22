@@ -1,6 +1,6 @@
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #56ab2f, #a8e063);
+  background: linear-gradient(135deg, #28BCEC, #50DEFF);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +26,7 @@ body {
 }
 
 .register-container h2 {
-  color: #2e7d32;
+  color: #009BD8;
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
 }
@@ -60,11 +60,11 @@ body {
   }
 
   .form-section h3 {
-    color: #2e7d32;
+    color: #009BD8;
     font-size: 1.1rem;
     margin-bottom: 1rem;
     text-align: left;
-    border-bottom: 2px solid #2e7d32;
+    border-bottom: 2px solid #009BD8;
     padding-bottom: 0.5rem;
   }
 
@@ -82,7 +82,7 @@ body {
 }
 
 label {
-  color: #2e7d32;
+  color: #009BD8;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
@@ -102,7 +102,7 @@ select {
 
 input:focus,
 select:focus {
-  border-color: #2e7d32;
+  border-color: #009BD8;
   outline: none;
 }
 
@@ -131,7 +131,7 @@ select:focus {
 .back-button {
   background: none;
   border: none;
-  color: #2e7d32;
+  color: #009BD8;
   font-weight: 600;
   cursor: pointer;
 }
@@ -141,7 +141,7 @@ select:focus {
 }
 
 .register-button {
-  background-color: #2e7d32;
+  background-color: #009BD8;
   color: white;
   padding: 12px;
   border: none;
@@ -154,7 +154,7 @@ select:focus {
 }
 
 .register-button:hover {
-  background-color: #43a047;
+  background-color: #14ACE2;
 }
 
 /* Estilos responsivos para móviles */
@@ -193,11 +193,11 @@ select:focus {
   }
 
   .form-section h3 {
-    color: #2e7d32;
+    color: #009BD8;
     font-size: 1rem;
     margin-bottom: 0.5rem;
     text-align: center;
-    border-bottom: 1px solid #2e7d32;
+    border-bottom: 1px solid #009BD8;
     padding-bottom: 0.3rem;
   }
 
@@ -271,11 +271,11 @@ select:focus {
   }
 
   .form-section h3 {
-    color: #2e7d32;
+    color: #009BD8;
     font-size: 0.9rem;
     margin-bottom: 0.3rem;
     text-align: center;
-    border-bottom: 1px solid #2e7d32;
+    border-bottom: 1px solid #009BD8;
     padding-bottom: 0.2rem;
   }
 

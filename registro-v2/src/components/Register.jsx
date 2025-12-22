@@ -321,13 +321,13 @@ const Register = () => {
 
           {/* Enlace para ir a login */}
           <div style={{ marginTop: "1rem", textAlign: "center" }}>
-            <p style={{ color: "#2e7d32", fontSize: "0.9rem" }}>
+            <p style={{ color: "#009BD8", fontSize: "0.9rem" }}>
               ¿Ya tienes cuenta?{" "}
               <button 
                 type="button"
                 onClick={() => navigate("/login")}
                 style={{ 
-                  color: "#2e7d32", 
+                  color: "#009BD8", 
                   textDecoration: "underline",
                   fontWeight: "600",
                   background: "none",

@@ -102,12 +102,12 @@ const Login = () => {
 
         {/* Enlace para ir a registro */}
         <div style={{ marginTop: "1rem", textAlign: "center" }}>
-          <p style={{ color: "#2e7d32", fontSize: "0.9rem" }}>
+          <p style={{ color: "#009BD8", fontSize: "0.9rem" }}>
             ¿No tienes cuenta?{" "}
             <a 
               href="/register" 
               style={{ 
-                color: "#2e7d32", 
+                color: "#009BD8", 
                 textDecoration: "underline",
                 fontWeight: "600"
               }}

@@ -4,6 +4,7 @@ import Register from './components/Register';
 import MainMenu from './components/MainMenu';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProfileEdit from './components/ProfileEdit';
+import Chatbot from './components/Chatbot';
 
 function App() {
   return (
@@ -24,6 +25,14 @@ function App() {
           element={
             <ProtectedRoute>
               <ProfileEdit />
+            </ProtectedRoute>
+          }
+        />
+        <Route 
+          path="/chatbot" 
+          element={
+            <ProtectedRoute>
+              <Chatbot />
             </ProtectedRoute>
           }
         />

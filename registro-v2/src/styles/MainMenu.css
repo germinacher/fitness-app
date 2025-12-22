@@ -1,6 +1,6 @@
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #56ab2f, #a8e063);
+  background: linear-gradient(135deg, #28BCEC, #50DEFF);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +25,7 @@ body {
 }
 
 .main-menu-container h2 {
-  color: #2e7d32;
+  color: #009BD8;
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
 }
@@ -37,7 +37,7 @@ body {
 }
 
 .menu-button {
-  background-color: #2e7d32;
+  background-color: #009BD8;
   color: white;
   padding: 15px;
   border: none;
@@ -54,7 +54,7 @@ body {
 }
 
 .menu-button:hover {
-  background-color: #43a047;
+  background-color: #14ACE2;
   transform: translateY(-2px);
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -73,7 +73,7 @@ body {
 }
 
 .welcome-message {
-  color: #2e7d32;
+  color: #009BD8;
   font-size: 1.1rem;
   margin-bottom: 1rem;
   font-weight: 500;
