@@ -60,7 +60,7 @@ const MainMenu = () => {
         
         <button 
           className="menu-button"
-          onClick={() => alert("Funcionalidad de rutinas próximamente")}
+          onClick={() => navigate("/rutinaviewer")}
         >
           <span className="menu-icon">📋</span>
           Mis Rutinas

@@ -35,12 +35,6 @@ const Chatbot = () => {
       options: ["Principiante", "Intermedio", "Avanzado"]
     },
     {
-      id: "equipamiento",
-      text: "¿Qué equipamiento tienes disponible?",
-      type: "multi",
-      options: ["Casa (sin equipamiento)", "Gimnasio completo", "Pesas básicas", "Máquinas de cardio"]
-    },
-    {
       id: "horario_preferido",
       text: "¿En qué horario prefieres entrenar?",
       type: "select",
@@ -63,7 +57,7 @@ const Chatbot = () => {
         if (res.ok) {
           setUserInfo(data);
           // Iniciar conversación
-          startConversation();
+          startConversation(data);
         }
       } catch (err) {
         console.error("Error cargando usuario:", err);
@@ -145,14 +139,14 @@ const Chatbot = () => {
     }
   };
 
-  const startConversation = () => {
+  const startConversation = (info = userInfo) => {
     setCurrentQuestion(0);
     setAnswers({});
     setShowResults(false);
     setGeneratedPlan(null);
     setMessages([{
       type: "bot",
-      text: userInfo ? `¡Hola ${userInfo.infoPersonal.nombre}! 👋 Soy tu entrenador personal virtual. Voy a ayudarte a crear una rutina y dieta personalizada basada en tu perfil.` : "¡Hola! 👋"
+      text: info?.infoPersonal?.nombre ? `¡Hola ${info.infoPersonal.nombre}! 👋 Soy tu entrenador personal virtual. Voy a ayudarte a crear una rutina y dieta personalizada basada en tu perfil.` : "¡Hola! 👋"
     }, {
       type: "bot",
       text: questions[0].text

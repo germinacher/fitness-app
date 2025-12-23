@@ -5,6 +5,7 @@ import MainMenu from './components/MainMenu';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProfileEdit from './components/ProfileEdit';
 import Chatbot from './components/Chatbot';
+import RutinaViewer from './components/RutinaViewer';
 
 function App() {
   return (
@@ -33,6 +34,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Chatbot />
+            </ProtectedRoute>
+          }
+        />
+        <Route 
+          path="/rutinaviewer" 
+          element={
+            <ProtectedRoute>
+              <RutinaViewer />
             </ProtectedRoute>
           }
         />

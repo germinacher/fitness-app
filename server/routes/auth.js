@@ -246,7 +246,7 @@ router.post("/users/:id/generate-plan", async (req, res) => {
 // Función para generar rutina personalizada
 function generateRutina(userInfo, answers) {
   const { objetivo, infoPersonal, genero } = userInfo;
-  const { dias_entrenamiento, duracion_entrenamiento, experiencia, equipamiento, horario_preferido } = answers;
+  const { dias_entrenamiento, duracion_entrenamiento, experiencia, horario_preferido } = answers;
   
   let rutina = `📋 RUTINA PERSONALIZADA\n\n`;
   rutina += `Objetivo: ${objetivo}\n`;
@@ -257,74 +257,386 @@ function generateRutina(userInfo, answers) {
   // Rutina según objetivo
   if (objetivo === "Aumentar masa muscular") {
     rutina += `💪 ENTRENAMIENTO DE FUERZA E HIPERTROFIA\n\n`;
-    rutina += `Día 1 - Tren Superior:\n`;
-    rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
-    rutina += `- Remo con barra: 4 series x 8-10 repeticiones\n`;
-    rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
-    rutina += `- Curl de bíceps: 3 series x 10-12 repeticiones\n`;
-    rutina += `- Tríceps en polea: 3 series x 10-12 repeticiones\n\n`;
-    
-    rutina += `Día 2 - Tren Inferior:\n`;
-    rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
-    rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
-    rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
-    rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
-    rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n\n`;
-    
-    if (dias_entrenamiento.includes("5") || dias_entrenamiento.includes("6")) {
+
+    if (dias_entrenamiento.includes("3")) {
+      rutina += `Día 1 - Tren Superior:\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Remo con barra: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Curl de bíceps: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Tríceps en polea: 3 series x 10-12 repeticiones\n\n`;
+      
+      rutina += `Día 2 - Tren Inferior:\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n\n`;
+
       rutina += `Día 3 - Tren Superior (Variación):\n`;
       rutina += `- Press inclinado: 4 series x 8-10 repeticiones\n`;
       rutina += `- Dominadas o jalones: 4 series x 8-10 repeticiones\n`;
       rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
       rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
     }
-  } else if (objetivo === "Perder grasa") {
+    else if (dias_entrenamiento.includes("4")) {
+      rutina += `Día 1 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 2 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 3 - Piernas:\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n\n`;
+
+      rutina += `Día 4 - Tren Superior:\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Remo con barra: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Curl de bíceps: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Tríceps en polea: 3 series x 10-12 repeticiones\n\n`;
+    }
+    else if (dias_entrenamiento.includes("5")) {
+      rutina += `Día 1 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 2 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 3 - Piernas:\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n\n`;
+      
+      rutina += `Día 4 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 5 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+    }
+    else {
+      rutina += `Día 1 - Hombros + Piernas:\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n\n`;
+      
+      rutina += `Día 2 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 3 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 4 - Hombros + Piernas:\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n\n`;
+      
+      rutina += `Día 5 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 6 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+    }
+  } 
+  
+  if (objetivo === "Perder grasa") {
     rutina += `🔥 ENTRENAMIENTO DE QUEMA DE GRASA\n\n`;
-    rutina += `Día 1 - Full Body + Cardio:\n`;
-    rutina += `- Sentadillas: 3 series x 15-20 repeticiones\n`;
-    rutina += `- Flexiones: 3 series x 12-15 repeticiones\n`;
-    rutina += `- Zancadas: 3 series x 12 por pierna\n`;
-    rutina += `- Plancha: 3 series x 30-60 segundos\n`;
-    rutina += `- Cardio: 20-30 minutos (correr, bici, elíptica)\n\n`;
-    
-    rutina += `Día 2 - Circuito HIIT:\n`;
-    rutina += `- Burpees: 30 segundos\n`;
-    rutina += `- Mountain climbers: 30 segundos\n`;
-    rutina += `- Jumping jacks: 30 segundos\n`;
-    rutina += `- Plancha: 30 segundos\n`;
-    rutina += `- Descanso: 30 segundos\n`;
-    rutina += `- Repetir circuito 4-5 veces\n\n`;
-    
-    rutina += `Día 3 - Cardio + Fuerza:\n`;
-    rutina += `- 10 minutos de calentamiento\n`;
-    rutina += `- Entrenamiento de fuerza (circuito): 20 minutos\n`;
-    rutina += `- 20 minutos de cardio moderado\n`;
-    rutina += `- 5 minutos de estiramiento\n\n`;
-  } else {
+
+    if (dias_entrenamiento.includes("3")) {
+      rutina += `Día 1 - Full Body + Cardio:\n`;
+      rutina += `- Sentadillas: 3 series x 15-20 repeticiones\n`;
+      rutina += `- Flexiones: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Zancadas: 3 series x 12 por pierna\n`;
+      rutina += `- Plancha: 3 series x 30-60 segundos\n`;
+      rutina += `- Cardio: 20-30 minutos (correr, bici, elíptica)\n\n`;
+      
+      rutina += `Día 2 - Circuito HIIT:\n`;
+      rutina += `- Burpees: 30 segundos\n`;
+      rutina += `- Mountain climbers: 30 segundos\n`;
+      rutina += `- Jumping jacks: 30 segundos\n`;
+      rutina += `- Plancha: 30 segundos\n`;
+      rutina += `- Descanso: 30 segundos\n`;
+      rutina += `- Repetir circuito 4-5 veces\n\n`;
+      
+      rutina += `Día 3 - Cardio + Fuerza:\n`;
+      rutina += `- 10 minutos de calentamiento\n`;
+      rutina += `- Entrenamiento de fuerza (circuito): 20 minutos\n`;
+      rutina += `- 20 minutos de cardio moderado\n`;
+      rutina += `- 5 minutos de estiramiento\n\n`;
+    }
+    else if (dias_entrenamiento.includes("4")) {
+      rutina += `Día 1 - Piernas + Cardio:\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Cardio: 20-30 minutos zona 2 (correr, bici, elíptica)\n\n`;
+      
+      rutina += `Día 2 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull down: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull up: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull down: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 3 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 4 - Circuito HIIT:\n`;
+      rutina += `- Burpees: 30 segundos\n`;
+      rutina += `- Mountain climbers: 30 segundos\n`;
+      rutina += `- Jumping jacks: 30 segundos\n`;
+      rutina += `- Plancha: 30 segundos\n`;
+      rutina += `- Descanso: 30 segundos\n`;
+      rutina += `- Repetir circuito 4-5 veces\n\n`;
+    }
+    else if (dias_entrenamiento.includes("5")) {
+      rutina += `Día 1 - Piernas + Cardio:\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Cardio: 20-30 minutos zona 2 (correr, bici, elíptica)\n\n`;
+
+      rutina += `Día 2 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull down: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull up: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull down: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 3 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 4 - HIIT:\n`;
+      rutina += `- 10 minutos de cardio, zona 3\n`;
+      rutina += `- 5-7 pasadas de 1 minuto de alta intensidad (90%)\n`;
+      rutina += `- Descanso activo de 2 minutos entre pasadas, zona 2-3\n`;
+      rutina += `- 5 minutos de enfriamiento, zona 2-3\n\n`;
+
+      rutina += `Día 5 - Tren Superior:\n`;
+      rutina += `- Press de banca: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Remo con barra: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Curl de bíceps: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Tríceps en polea: 3 series x 10-12 repeticiones\n\n`;
+    }
+    else {
+      rutina += `Día 1 - Piernas + Cardio:\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Cardio: 20-30 minutos zona 2 (correr, bici, elíptica)\n\n`;
+
+      rutina += `Día 2 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull down: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull up: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull down: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 3 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 4 - HIIT:\n`;
+      rutina += `- 10 minutos de cardio, zona 3\n`;
+      rutina += `- 5-7 pasadas de 1 minuto de alta intensidad (90%)\n`;
+      rutina += `- Descanso activo de 2 minutos entre pasadas, zona 2-3\n`;
+      rutina += `- 5 minutos de enfriamiento, zona 2-3\n\n`;
+
+      rutina += `Día 5 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull down: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull up: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Pull down: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 6 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+    }
+  } 
+  
+  if (objetivo === "Mantener peso") {
     rutina += `⚖️ ENTRENAMIENTO DE MANTENIMIENTO\n\n`;
-    rutina += `Día 1 - Tren Superior:\n`;
-    rutina += `- Press de banca: 3 series x 10-12 repeticiones\n`;
-    rutina += `- Remo: 3 series x 10-12 repeticiones\n`;
-    rutina += `- Press militar: 3 series x 10-12 repeticiones\n`;
-    rutina += `- Curl bíceps: 2 series x 12-15 repeticiones\n\n`;
-    
-    rutina += `Día 2 - Tren Inferior:\n`;
-    rutina += `- Sentadillas: 3 series x 12-15 repeticiones\n`;
-    rutina += `- Peso muerto: 3 series x 10-12 repeticiones\n`;
-    rutina += `- Zancadas: 2 series x 12 por pierna\n`;
-    rutina += `- Cardio ligero: 15-20 minutos\n\n`;
-    
-    rutina += `Día 3 - Full Body:\n`;
-    rutina += `- Circuito completo: 30-40 minutos\n`;
-    rutina += `- Incluir ejercicios compuestos\n`;
-    rutina += `- Estiramiento final: 10 minutos\n\n`;
+
+    if (dias_entrenamiento.includes("3")) {
+      rutina += `Día 1 - Tren Superior:\n`;
+      rutina += `- Press de banca: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Remo: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Curl bíceps: 2 series x 12-15 repeticiones\n\n`;
+      
+      rutina += `Día 2 - Tren Inferior:\n`;
+      rutina += `- Sentadillas: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Peso muerto: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Zancadas: 2 series x 12 por pierna\n`;
+      rutina += `- Cardio ligero: 15-20 minutos\n\n`;
+      
+      rutina += `Día 3 - Full Body:\n`;
+      rutina += `- Circuito completo: 30-40 minutos\n`;
+      rutina += `- Incluir ejercicios compuestos\n`;
+      rutina += `- Estiramiento final: 10 minutos\n\n`;
+    }
+    else if (dias_entrenamiento.includes("4")) {
+      rutina += `Día 1 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 2 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 3 - Piernas:\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n\n`;
+
+      rutina += `Día 4 - Tren Superior:\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Remo con barra: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Curl de bíceps: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Tríceps en polea: 3 series x 10-12 repeticiones\n\n`;
+    }
+    else if (dias_entrenamiento.includes("5")) {
+      rutina += `Día 1 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 2 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 3 - Piernas:\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Curl de piernas: 3 series x 12-15 repeticiones\n\n`;
+      
+      rutina += `Día 4 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 5 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+    }
+    else {
+      rutina += `Día 1 - Hombros + Piernas:\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n\n`;
+      
+      rutina += `Día 2 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 3 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+
+      rutina += `Día 4 - Hombros + Piernas:\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Sentadillas: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Peso muerto: 4 series x 6-8 repeticiones\n`;
+      rutina += `- Prensa de piernas: 3 series x 10-12 repeticiones\n`;
+      rutina += `- Extensiones de cuádriceps: 3 series x 12-15 repeticiones\n\n`;
+      
+      rutina += `Día 5 - Jalón (Pull):\n`;
+      rutina += `- Jalón: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull up: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Pull down: 4 series x 8-10 repeticiones\n\n`;
+
+      rutina += `Día 6 - Empuje (Push):\n`;
+      rutina += `- Press de banca: 4 series x 8-10 repeticiones\n`;
+      rutina += `- Press militar: 3 series x 8-10 repeticiones\n`;
+      rutina += `- Elevaciones laterales: 3 series x 12-15 repeticiones\n`;
+      rutina += `- Martillo: 3 series x 10-12 repeticiones\n\n`;
+    }
   }
 
   rutina += `📝 NOTAS:\n`;
   rutina += `- Calienta 5-10 minutos antes de entrenar\n`;
   rutina += `- Descansa 60-90 segundos entre series\n`;
   rutina += `- Hidrátate constantemente\n`;
-  rutina += `- Escucha a tu cuerpo y ajusta la intensidad\n`;
+  rutina += `- Escucha a tu cuerpo y ajusta la intensidad\n\n`;
+
+  rutina += `⚠️ Este plan es orientativo y no reemplaza la evaluación de un profesional de la salud. Si tienes lesiones o condiciones médicas, consulta con un especialista\n.`;
 
   return rutina;
 }
@@ -333,6 +645,7 @@ function generateRutina(userInfo, answers) {
 function generateDieta(userInfo, answers) {
   const { objetivo, infoPersonal, preferencias, alergias, restricciones, intolerancias } = userInfo;
   const { peso, altura, edad, genero } = infoPersonal;
+  const {horario_preferido} = answers;
   
   // Calcular calorías aproximadas (fórmula simplificada)
   const alturaMetros = altura / 100;
@@ -462,7 +775,9 @@ function generateDieta(userInfo, answers) {
   dieta += `- Incluye proteína en cada comida\n`;
   dieta += `- Prioriza alimentos integrales y naturales\n`;
   dieta += `- Cocina al vapor, horno o plancha\n`;
-  dieta += `- Limita alimentos procesados\n`;
+  dieta += `- Limita alimentos procesados\n\n`;
+
+  dieta += `⚠️ Este plan es orientativo y no reemplaza la evaluación de un profesional de la salud. Si tienes lesiones o condiciones médicas, consulta con un especialista\n.`;
 
   return dieta;
 }
