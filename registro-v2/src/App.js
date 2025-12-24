@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ProfileEdit from './components/ProfileEdit';
 import Chatbot from './components/Chatbot';
 import RutinaViewer from './components/RutinaViewer';
+import DietaViewer from './components/DietaViewer';
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
           element={
             <ProtectedRoute>
               <RutinaViewer />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dietaviewer" 
+          element={
+            <ProtectedRoute>
+              <DietaViewer />
             </ProtectedRoute>
           }
         />

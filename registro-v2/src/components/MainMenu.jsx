@@ -63,15 +63,15 @@ const MainMenu = () => {
           onClick={() => navigate("/rutinaviewer")}
         >
           <span className="menu-icon">📋</span>
-          Mis Rutinas
+          Mi Rutina
         </button>
 
         <button 
           className="menu-button"
-          onClick={() => alert("Funcionalidad de dietas próximamente")}
+          onClick={() => navigate("/dietaviewer")}
         >
           <span className="menu-icon">🍎</span>
-          Mis Dietas
+          Mi Dieta
         </button>
 
         <button 
