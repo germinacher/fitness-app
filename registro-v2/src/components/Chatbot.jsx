@@ -14,6 +14,8 @@ const Chatbot = () => {
   const [showResults, setShowResults] = useState(false);
   const [generatedPlan, setGeneratedPlan] = useState(null);
   const messagesEndRef = useRef(null);
+  const pesoUsuario = userInfo?.infoPersonal?.peso;
+
 
   const questions = [
     {
@@ -35,12 +37,20 @@ const Chatbot = () => {
       options: ["Principiante", "Intermedio", "Avanzado"]
     },
     {
+      id: "peso_objetivo",
+      text: `Veo que tu peso actual es ${pesoUsuario} kg, ¿Cuál es tu peso objetivo?`,
+      type: "number",
+      min: 40,
+      max: 200
+    },    
+    {
       id: "horario_preferido",
       text: "¿En qué horario prefieres entrenar?",
       type: "select",
       options: ["Mañana", "Mediodía", "Tarde", "Noche"]
     }
   ];
+
 
   useEffect(() => {
     document.title = "Mi Entrenador Personal - Fitness App";
@@ -180,7 +190,76 @@ const Chatbot = () => {
           
           {!showResults && currentQ && !isGenerating && (
             <div className="question-options">
-              {currentQ.type === "select" || currentQ.type === "number" ? (
+              {currentQ.type === "number" ? (
+                currentQ.options && currentQ.options.length > 0 ? (
+                  // Caso con opciones predefinidas
+                  currentQ.options.map((option, idx) => (
+                    <button
+                      key={idx}
+                      className="option-button"
+                      onClick={() => handleAnswer(currentQ.id, option)}
+                    >
+                      {option}
+                    </button>
+                  ))
+                ) : (
+                  // Caso input libre con rango
+                <>
+                  <input
+                    type="number"
+                    min={currentQ.min || 40}
+                    max={currentQ.max || 200}
+                    value={answers[currentQ.id] || ""}
+                    onChange={(e) =>
+                      setAnswers({ ...answers, [currentQ.id]: e.target.value })
+                    }
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        const value = Number(e.target.value);
+                        const min = currentQ.min || 40;
+                        const max = currentQ.max || 200;
+                  
+                        if (value >= min && value <= max) {
+                          handleAnswer(currentQ.id, value);
+                        } else {
+                          setMessages(prev => [
+                            ...prev,
+                            {
+                              type: "bot",
+                              text: `Por favor ingresa un valor entre ${min} y ${max} kg 🙏`
+                            }
+                          ]);
+                        }
+                      }
+                    }}                                     
+                    className="option-input"
+                  />
+                 
+                    <button
+                      className="option-button confirm-button"
+                      onClick={() => {
+                        const value = Number(answers[currentQ.id]); // conversión a número
+                        const min = currentQ.min || 40;
+                        const max = currentQ.max || 200;
+                      
+                        if (value >= min && value <= max) {
+                          handleAnswer(currentQ.id, value);
+                        } else {
+                          setMessages(prev => [
+                            ...prev,
+                            {
+                              type: "bot",
+                              text: `Por favor ingresa un valor entre ${min} y ${max} kg 🙏`
+                            }
+                          ]);
+                        }
+                      }}                      
+                    >
+                      Continuar
+                    </button>
+                </>        
+                )
+              ) : currentQ.type === "select" ? (
                 currentQ.options.map((option, idx) => (
                   <button
                     key={idx}

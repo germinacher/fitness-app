@@ -246,7 +246,7 @@ router.post("/users/:id/generate-plan", async (req, res) => {
 // Función para generar rutina personalizada
 function generateRutina(userInfo, answers) {
   const { objetivo, infoPersonal, genero } = userInfo;
-  const { dias_entrenamiento, duracion_entrenamiento, experiencia, horario_preferido } = answers;
+  const { dias_entrenamiento, duracion_entrenamiento, experiencia } = answers;
 
   let reps;
   let series;
@@ -840,7 +840,7 @@ function generateRutina(userInfo, answers) {
 function generateDieta(userInfo, answers) {
   const { objetivo, infoPersonal, preferencias, alergias, restricciones, intolerancias } = userInfo;
   const { peso, altura, edad, genero } = infoPersonal;
-  const {horario_preferido} = answers;
+  const {horario_preferido, peso_objetivo} = answers;
   
   // Calcular calorías aproximadas (fórmula simplificada)
   const alturaMetros = altura / 100;
@@ -860,6 +860,8 @@ function generateDieta(userInfo, answers) {
   let dieta = `🍎 DIETA PERSONALIZADA\n\n`;
   dieta += `Calorías diarias objetivo: ${caloriasDiarias} kcal\n`;
   dieta += `Objetivo: ${objetivo}\n`;
+  dieta += `Peso actual: ${peso}\n`;
+  dieta += `Peso objetivo: ${peso_objetivo}\n`;
   dieta += `Preferencias: ${preferencias}\n\n`;
 
   // Considerar restricciones
