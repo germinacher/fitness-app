@@ -1,62 +1,166 @@
-// BASE DE DATOS DE EJERCICIOS
+// BASE DE DATOS DE EJERCICIOS CON CLASIFICACIÓN
 const ejerciciosDB = {
     pecho: {
-      compuestos: ['Press de banca', 'Press inclinado', 'Fondos en paralelas'],
-      aislamiento: ['Aperturas de pecho en máquina', 'Aperturas en polea alta', 'Press en máquina']
+      compuestos: [
+        { nombre: 'Press de banca', complejidad: 'alta', prioridad: 1 },
+        { nombre: 'Press inclinado', complejidad: 'alta', prioridad: 2 },
+        { nombre: 'Fondos en paralelas', complejidad: 'media', prioridad: 3 }
+      ],
+      aislamiento: [
+        { nombre: 'Aperturas de pecho en máquina', complejidad: 'baja', prioridad: 4 },
+        { nombre: 'Aperturas en polea alta', complejidad: 'baja', prioridad: 5 },
+        { nombre: 'Press en máquina', complejidad: 'baja', prioridad: 6 }
+      ]
     },
     espalda: {
-      compuestos: ['Jalón al pecho', 'Remo con barra', 'Remo en polea sentado', 'Dominadas'],
-      aislamiento: ['Jalón agarre cerrado', 'Jalón agarre neutro', 'Remo con mancuerna unilateral', 'Pullover en polea']
+      compuestos: [
+        { nombre: 'Dominadas', complejidad: 'alta', prioridad: 1 },
+        { nombre: 'Jalón al pecho', complejidad: 'alta', prioridad: 1 },
+        { nombre: 'Remo con barra', complejidad: 'alta', prioridad: 2 },
+        { nombre: 'Remo en polea sentado', complejidad: 'media', prioridad: 3 }
+      ],
+      aislamiento: [
+        { nombre: 'Jalón agarre cerrado', complejidad: 'baja', prioridad: 4 },
+        { nombre: 'Jalón agarre neutro', complejidad: 'baja', prioridad: 4 },
+        { nombre: 'Remo con mancuerna unilateral', complejidad: 'baja', prioridad: 5 },
+        { nombre: 'Pullover en polea', complejidad: 'baja', prioridad: 6 }
+      ]
     },
     hombros: {
-      compuestos: ['Press militar', 'Press con mancuernas'],
-      aislamiento: ['Elevaciones laterales', 'Aperturas invertidas en máquina', 'Elevaciones frontales', 'Encogimientos de trapecios']
+      compuestos: [
+        { nombre: 'Press militar', complejidad: 'alta', prioridad: 1 },
+        { nombre: 'Press con mancuernas', complejidad: 'alta', prioridad: 2 }
+      ],
+      aislamiento: [
+        { nombre: 'Elevaciones laterales', complejidad: 'media', prioridad: 3 },
+        { nombre: 'Aperturas invertidas en máquina', complejidad: 'baja', prioridad: 4 },
+        { nombre: 'Elevaciones frontales', complejidad: 'baja', prioridad: 5 },
+        { nombre: 'Encogimientos de trapecios', complejidad: 'baja', prioridad: 6 }
+      ]
     },
     piernas: {
-      cuadriceps: ['Sentadillas', 'Prensa de piernas', 'Extensiones de cuádriceps', 'Sentadilla hack', 'Estocadas'],
-      isquiotibiales: ['Curl femoral', 'Peso muerto rumano'],
-      gluteos: ['Hip thrust', 'Patada de glúteo en polea', 'Abducción de cadera'],
-      pantorrillas: ['Elevación de pantorrillas de pie', 'Elevación de pantorrillas sentado']
+      cuadriceps: [
+        { nombre: 'Sentadillas', complejidad: 'alta', prioridad: 1 },
+        { nombre: 'Prensa de piernas', complejidad: 'alta', prioridad: 2 },
+        { nombre: 'Sentadilla hack', complejidad: 'media', prioridad: 3 },
+        { nombre: 'Estocadas', complejidad: 'media', prioridad: 4 },
+        { nombre: 'Extensiones de cuádriceps', complejidad: 'baja', prioridad: 5 }
+      ],
+      isquiotibiales: [
+        { nombre: 'Peso muerto rumano', complejidad: 'alta', prioridad: 1 },
+        { nombre: 'Curl femoral', complejidad: 'baja', prioridad: 2 }
+      ],
+      gluteos: [
+        { nombre: 'Hip thrust', complejidad: 'media', prioridad: 1 },
+        { nombre: 'Patada de glúteo en polea', complejidad: 'baja', prioridad: 2 },
+        { nombre: 'Abducción de cadera', complejidad: 'baja', prioridad: 3 },
+        { nombre: 'Sentadilla búlgara', complejidad: 'media', prioridad: 2 }
+      ],
+      pantorrillas: [
+        { nombre: 'Elevación de pantorrillas de pie', complejidad: 'baja', prioridad: 1 },
+        { nombre: 'Elevación de pantorrillas sentado', complejidad: 'baja', prioridad: 2 }
+      ]
     },
     brazos: {
-      biceps: ['Curl de bíceps en barra W', 'Bíceps martillo', 'Curl de bíceps en banco inclinado', 'Curl en polea baja', 'Curl concentrado'],
-      triceps: ['Tríceps press francés', 'Extensión de tríceps con polea', 'Extensión de tríceps con soga', 'Fondos en paralelas para tríceps']
+      biceps: [
+        { nombre: 'Curl de bíceps en barra W', complejidad: 'media', prioridad: 1 },
+        { nombre: 'Bíceps martillo', complejidad: 'baja', prioridad: 2 },
+        { nombre: 'Curl de bíceps en banco inclinado', complejidad: 'baja', prioridad: 3 },
+        { nombre: 'Curl en polea baja', complejidad: 'baja', prioridad: 4 },
+        { nombre: 'Curl concentrado', complejidad: 'baja', prioridad: 5 }
+      ],
+      triceps: [
+        { nombre: 'Fondos en paralelas para tríceps', complejidad: 'alta', prioridad: 1 },
+        { nombre: 'Tríceps press francés', complejidad: 'media', prioridad: 2 },
+        { nombre: 'Extensión de tríceps con polea', complejidad: 'baja', prioridad: 3 },
+        { nombre: 'Extensión de tríceps con soga', complejidad: 'baja', prioridad: 4 }
+      ]
     },
     core: {
-      general: ['Plancha', 'Abdominales con peso', 'Elevación de piernas', 'Russian twist', 'Bicycle crunches']
+      general: [
+        { nombre: 'Plancha', complejidad: 'baja', prioridad: 1 },
+        { nombre: 'Plancha lateral', complejidad: 'baja', prioridad: 2 },
+        { nombre: 'Abdominales con peso', complejidad: 'media', prioridad: 3 },
+        { nombre: 'Elevación de piernas', complejidad: 'media', prioridad: 4 },
+        { nombre: 'Russian twist', complejidad: 'baja', prioridad: 5 }
+      ]
     }
-};
+  };
   
-  // CONFIGURACIÓN POR NIVEL DE EXPERIENCIA
-  function getConfiguracionNivel(experiencia, objetivo) {
+  // SISTEMA RIR (Reps In Reserve)
+  const rir_info = {
+    explicacion: `
+  RIR (Reps In Reserve) = Repeticiones en Reserva
+  Es cuántas repeticiones podrías hacer MÁS antes de llegar al fallo muscular.
+  
+  Ejemplos:
+  • RIR 0 = Fallo total (no puedes hacer ni 1 rep más)
+  • RIR 1 = Podrías hacer 1 rep más
+  • RIR 2 = Podrías hacer 2 reps más (punto óptimo de entrenamiento)
+  • RIR 3 = Podrías hacer 3 reps más (muy fácil)
+  
+  ¿Por qué es importante?
+  - RIR 0-1: Máximo estímulo pero mayor fatiga y riesgo de lesión
+  - RIR 2-3: Estímulo óptimo con buena recuperación (RECOMENDADO)
+  - RIR 4+: Poco estímulo, no hay suficiente intensidad
+  
+  Cómo aplicarlo:
+  Si dice "3x10 @RIR2", haz 10 reps dejando 2 en reserva.
+  Si llegas a 10 reps y podrías hacer 12, el peso es correcto.
+  Si llegas a 10 y podrías hacer 15, aumenta el peso la próxima vez.
+    `,
+    valores: {
+      'Principiante': { inicio: 3, fin: 2 },
+      'Intermedio': { inicio: 2, fin: 1 },
+      'Avanzado': { inicio: 2, fin: 0 }
+    }
+  };
+  
+  // CONFIGURACIÓN POR NIVEL Y SEMANA
+  function getConfiguracionNivel(experiencia, objetivo, semana) {
+    const esDeload = semana % 4 === 0;
+    
     const configs = {
       'Principiante': {
         reps: '10-12',
-        series: 2,
+        series: esDeload ? 2 : 3,
+        rir: esDeload ? 4 : (semana % 4 === 1 ? 3 : 2),
         descansoSeries: '60-90',
         descansoEjercicios: '90-120',
-        volumenMultiplicador: 0.7,
-        mensaje: 'Aprender técnica y adaptarse sin sobrecarga'
+        volumenMultiplicador: esDeload ? 0.6 : 0.7,
+        carga: esDeload ? '60-70%' : '70-80%',
+        mensaje: 'Aprender técnica y adaptarse progresivamente'
       },
       'Intermedio': {
         reps: '8-12',
-        series: 3,
+        series: esDeload ? 2 : 3,
+        rir: esDeload ? 4 : (semana % 4 <= 2 ? 2 : 1),
         descansoSeries: '60-90',
         descansoEjercicios: '120-150',
-        volumenMultiplicador: 1.0,
-        mensaje: 'Progresar semana a semana'
+        volumenMultiplicador: esDeload ? 0.65 : 1.0,
+        carga: esDeload ? '65-75%' : '75-85%',
+        mensaje: 'Progresar semana a semana con intensidad controlada'
       },
       'Avanzado': {
         reps: objetivo === 'Aumentar masa muscular' ? '6-10' : '8-12',
-        series: objetivo === 'Aumentar masa muscular' ? 4 : 3,
+        series: esDeload ? 2 : (objetivo === 'Aumentar masa muscular' ? 4 : 3),
+        rir: esDeload ? 4 : (semana % 4 === 3 ? 0 : 1),
         descansoSeries: '90-120',
         descansoEjercicios: '120-180',
-        volumenMultiplicador: 1.3,
-        mensaje: 'Máximo estímulo con volumen ' + (objetivo === 'Aumentar masa muscular' ? 'alto' : 'medio') + ' pero controlado'
+        volumenMultiplicador: esDeload ? 0.7 : 1.3,
+        carga: esDeload ? '70-80%' : '80-90%',
+        mensaje: 'Máximo estímulo con volumen ' + (objetivo === 'Aumentar masa muscular' ? 'alto' : 'medio')
       }
     };
     
-    return configs[experiencia] || configs['Intermedio'];
+    const config = configs[experiencia] || configs['Intermedio'];
+    
+    if (esDeload) {
+      config.esDeload = true;
+      config.mensajeDeload = '⚠️ SEMANA DE DESCARGA - Reduce volumen e intensidad para recuperación';
+    }
+    
+    return config;
   }
   
   // CALCULAR EJERCICIOS SEGÚN DURACIÓN
@@ -69,38 +173,37 @@ const ejerciciosDB = {
     };
     
     const minutos = minutosMap[duracion] || 60;
-    const config = getConfiguracionNivel(experiencia);
+    const config = getConfiguracionNivel(experiencia, 'Mantener peso', 1);
     
-    // Tiempo estimado por ejercicio: (series * descanso promedio entre series) + tiempo de ejecución
-    const tiempoPorEjercicio = (config.series * 1.5) + 3; // ~3 min ejecución + descansos
-    const calentamiento = 8; // 8 minutos de calentamiento
-    const estiramiento = 5; // 5 minutos de estiramiento final
+    const tiempoPorEjercicio = (config.series * 1.5) + 3;
+    const calentamiento = 8;
+    const estiramiento = 5;
     
     const tiempoDisponible = minutos - calentamiento - estiramiento;
     const numEjercicios = Math.floor(tiempoDisponible / tiempoPorEjercicio);
     
     return {
-      numEjercicios: Math.max(4, Math.min(numEjercicios, 10)), // Mínimo 4, máximo 10
+      numEjercicios: Math.max(4, Math.min(numEjercicios, 10)),
       tiempoCalentamiento: calentamiento,
       tiempoEstiramiento: estiramiento
     };
   }
   
-  // ADAPTACIONES POR GÉNERO
-  function getAdaptacionesGenero(genero, objetivo, enfoque) {
+  // ADAPTACIONES POR ENFOQUE
+  function getAdaptacionesEnfoque(enfoque, objetivo) {
     if (enfoque === 'Adaptada') {
       return {
         enfasisPiernas: true,
         enfasisGluteos: true,
         enfasisCore: true,
-        reducirVolumenSuperior: 0.8, // 20% menos volumen en tren superior
-        mensaje: '💪 Rutina adaptada con mayor énfasis en piernas, glúteos y core',
+        reducirVolumenSuperior: 0.85,
+        mensaje: '💪 Rutina adaptada con mayor énfasis en tren inferior y core',
         ejerciciosExtra: {
-          gluteos: ['Hip thrust', 'Patada de glúteo en polea'],
-          core: ['Plancha lateral', 'Elevación de piernas colgada']
+          gluteos: ['Hip thrust', 'Patada de glúteo en polea', 'Sentadilla búlgara'],
+          core: ['Plancha lateral', 'Elevación de piernas']
         },
         modificaciones: {
-          'Press de banca': 'Press de banca o press con mancuernas (menor peso, más control)',
+          'Press de banca': 'Press de banca o press con mancuernas',
           'Fondos en paralelas': 'Fondos asistidos o press en máquina',
           'Dominadas': 'Jalón al pecho o dominadas asistidas'
         }
@@ -118,17 +221,32 @@ const ejerciciosDB = {
     }
   }
   
+  // ORDENAR EJERCICIOS POR COMPLEJIDAD (COMPUESTOS PRIMERO)
+  function ordenarEjerciciosPorComplejidad(ejercicios) {
+    return ejercicios.sort((a, b) => {
+      // Primero por prioridad (más bajo = primero)
+      if (a.prioridad !== b.prioridad) {
+        return a.prioridad - b.prioridad;
+      }
+      // Luego por complejidad
+      const complejidadOrden = { 'alta': 1, 'media': 2, 'baja': 3 };
+      return complejidadOrden[a.complejidad] - complejidadOrden[b.complejidad];
+    });
+  }
+  
   // SELECCIONAR EJERCICIOS PARA UN GRUPO MUSCULAR
-  function seleccionarEjercicios(grupoMuscular, cantidad, yaUsados = []) {
+  function seleccionarEjercicios(grupoMuscular, cantidad, yaUsados = [], enfoque = 'Estándar') {
     let ejercicios = [];
     
     if (grupoMuscular === 'piernas') {
       ejercicios = [
         ...ejerciciosDB.piernas.cuadriceps,
         ...ejerciciosDB.piernas.isquiotibiales,
-        ...ejerciciosDB.piernas.gluteos,
+        ...(enfoque === 'Adaptada' ? ejerciciosDB.piernas.gluteos : []),
         ...ejerciciosDB.piernas.pantorrillas
       ];
+    } else if (grupoMuscular === 'gluteos') {
+      ejercicios = ejerciciosDB.piernas.gluteos;
     } else if (grupoMuscular === 'pecho') {
       ejercicios = [...ejerciciosDB.pecho.compuestos, ...ejerciciosDB.pecho.aislamiento];
     } else if (grupoMuscular === 'espalda') {
@@ -139,94 +257,131 @@ const ejerciciosDB = {
       ejercicios = ejerciciosDB.brazos.biceps;
     } else if (grupoMuscular === 'triceps') {
       ejercicios = ejerciciosDB.brazos.triceps;
+    } else if (grupoMuscular === 'core') {
+      ejercicios = ejerciciosDB.core.general;
     }
     
     // Filtrar los ya usados
-    ejercicios = ejercicios.filter(e => !yaUsados.includes(e));
+    ejercicios = ejercicios.filter(e => !yaUsados.includes(e.nombre));
     
-    // Seleccionar aleatoriamente
-    const seleccionados = [];
-    for (let i = 0; i < cantidad && ejercicios.length > 0; i++) {
-      const index = Math.floor(Math.random() * ejercicios.length);
-      seleccionados.push(ejercicios[index]);
-      ejercicios.splice(index, 1);
-    }
+    // Ordenar por complejidad
+    ejercicios = ordenarEjerciciosPorComplejidad(ejercicios);
     
-    return seleccionados;
+    // Seleccionar primeros N ejercicios (ya están ordenados)
+    return ejercicios.slice(0, cantidad);
   }
   
   // CONSTRUIR DÍA DE ENTRENAMIENTO
-  function construirDia(nombre, grupos, config, tiempoInfo, adaptacionesGenero) {
-    let diaTexto = `${nombre}:\n`;
+  function construirDia(nombre, grupos, config, tiempoInfo, adaptaciones, semana) {
+    let diaTexto = `${nombre}${config.esDeload ? ' (DELOAD)' : ''}:\n`;
     const { numEjercicios } = tiempoInfo;
     
-    // Distribuir ejercicios entre grupos musculares
     const ejerciciosPorGrupo = Math.ceil(numEjercicios / grupos.length);
+    let ejerciciosTotales = 0;
     
     grupos.forEach(grupo => {
-      const ejercicios = seleccionarEjercicios(grupo.nombre, grupo.cantidad || ejerciciosPorGrupo);
+      const cantidadEjercicios = Math.min(grupo.cantidad || ejerciciosPorGrupo, numEjercicios - ejerciciosTotales);
+      if (cantidadEjercicios <= 0) return;
+      
+      const ejercicios = seleccionarEjercicios(grupo.nombre, cantidadEjercicios, [], adaptaciones.enfasisGluteos ? 'Adaptada' : 'Estándar');
       
       if (ejercicios.length > 0) {
         diaTexto += `${grupo.label || grupo.nombre.toUpperCase()}:\n`;
         
-        ejercicios.forEach(ejercicio => {
-          // Aplicar modificaciones de género si existen
-          const ejercicioFinal = adaptacionesGenero.modificaciones[ejercicio] || ejercicio;
+        ejercicios.forEach((ejercicio, index) => {
+          const ejercicioFinal = adaptaciones.modificaciones[ejercicio.nombre] || ejercicio.nombre;
           
-          // Ajustar series según género y grupo muscular
+          // Ajustar series según adaptaciones
           let seriesAjustadas = config.series;
-          if (adaptacionesGenero.enfasisPiernas && ['piernas', 'gluteos'].includes(grupo.nombre)) {
-            seriesAjustadas = Math.ceil(config.series * 1.2); // 20% más series
-          } else if (grupo.nombre === 'pecho' || grupo.nombre === 'espalda') {
-            seriesAjustadas = Math.ceil(config.series * adaptacionesGenero.reducirVolumenSuperior);
+          if (adaptaciones.enfasisPiernas && ['piernas', 'gluteos'].includes(grupo.nombre)) {
+            seriesAjustadas = Math.ceil(config.series * 1.2);
+          } else if (['pecho', 'espalda'].includes(grupo.nombre)) {
+            seriesAjustadas = Math.ceil(config.series * adaptaciones.reducirVolumenSuperior);
           }
           
-          diaTexto += `- ${ejercicioFinal}: ${seriesAjustadas} series x ${config.reps} repeticiones\n`;
+          // RIR progresivo: compuestos más intensos
+          let rirEjercicio = config.rir;
+          if (index === 0 && ejercicio.complejidad === 'alta') {
+            rirEjercicio = Math.max(1, config.rir - 1); // Primer compuesto más intenso
+          }
+          
+          diaTexto += `${index + 1}. ${ejercicioFinal}: ${seriesAjustadas}x${config.reps} @RIR${rirEjercicio}`;
+          
+          // Nota de intensidad
+          if (rirEjercicio <= 1) {
+            diaTexto += ` 💪`; //(cerca del fallo)
+          }
+          diaTexto += `\n`;
         });
+        
         diaTexto += `\n`;
+        ejerciciosTotales += ejercicios.length;
       }
     });
+    
+    // Agregar descansos
+    diaTexto += `⏱️ Descanso: ${config.descansoSeries}seg entre series | ${config.descansoEjercicios}seg entre ejercicios\n\n`;
     
     return diaTexto;
   }
   
   // FUNCIÓN PRINCIPAL MEJORADA
-  function generateRutina(userInfo, answers) {
-    const { objetivo, genero } = userInfo;
+  function generateRutina(userInfo, answers, semanaActual = 1) {
+    const { objetivo } = userInfo;
     const { dias_entrenamiento, duracion_entrenamiento, experiencia, enfoque } = answers;
     
     // Obtener configuraciones
-    const config = getConfiguracionNivel(experiencia, objetivo);
+    const config = getConfiguracionNivel(experiencia, objetivo, semanaActual);
     const tiempoInfo = calcularEjerciciosPorDuracion(duracion_entrenamiento, experiencia);
-    const adaptacionesGenero = getAdaptacionesGenero(genero, objetivo, enfoque);
+    const adaptaciones = getAdaptacionesEnfoque(enfoque, objetivo);
     
     // Construir rutina
-    let rutina = `📋 RUTINA PERSONALIZADA\n\n`;
+    let rutina = `📋 RUTINA PERSONALIZADA - SEMANA ${semanaActual}\n\n`;
+    
+    // Alerta de deload
+    if (config.esDeload) {
+      rutina += `🔄 ${config.mensajeDeload}\n`;
+      rutina += `Esta semana es de RECUPERACIÓN ACTIVA para permitir que tus músculos se regeneren.\n`;
+      rutina += `Reduce el peso al ${config.carga} de tu carga habitual.\n\n`;
+    }
     
     // Información general
     rutina += `👤 PERFIL:\n`;
-    rutina += `Género: ${genero}\n`;
     rutina += `Objetivo: ${objetivo}\n`;
     rutina += `Nivel: ${experiencia}\n`;
     rutina += `Días por semana: ${dias_entrenamiento}\n`;
     rutina += `Duración por sesión: ${duracion_entrenamiento}\n`;
-    rutina += `Enfoque: ${config.mensaje}\n\n`;
+    rutina += `Enfoque: ${config.mensaje}\n`;
+    rutina += `Semana del ciclo: ${semanaActual % 4 || 4}/4\n\n`;
     
     rutina += `⚙️ PARÁMETROS DE ENTRENAMIENTO:\n`;
-    rutina += `Series por ejercicio: ${config.series}\n`;
+    rutina += `Series por ejercicio: ${config.series}${config.esDeload ? ' (reducido)' : ''}\n`;
     rutina += `Rango de repeticiones: ${config.reps}\n`;
-    rutina += `Descanso entre series: ${config.descansoSeries} segundos\n`;
-    rutina += `Descanso entre ejercicios: ${config.descansoEjercicios} segundos\n`;
-    rutina += `Ejercicios por sesión: ~${tiempoInfo.numEjercicios}\n`;
-    rutina += `Calentamiento: ${tiempoInfo.tiempoCalentamiento} minutos\n`;
-    rutina += `Estiramiento final: ${tiempoInfo.tiempoEstiramiento} minutos\n\n`;
+    rutina += `RIR (Reps in Reserve): ${config.rir}${config.esDeload ? ' (muy fácil)' : ''}\n`;
+    rutina += `Carga recomendada: ${config.carga} de tu 1RM\n`;
+    rutina += `Descanso entre series: ${config.descansoSeries}seg\n`;
+    rutina += `Descanso entre ejercicios: ${config.descansoEjercicios}seg\n`;
+    rutina += `Ejercicios por sesión: ~${tiempoInfo.numEjercicios}\n\n`;
     
-    // Mensaje de adaptación de rutina
+    // Explicación RIR
+    rutina += `📚 ¿QUÉ ES RIR?\n`;
+    rutina += `RIR = Reps In Reserve (Repeticiones en Reserva)\n`;
+    rutina += `Es cuántas repeticiones más podrías hacer antes del fallo muscular.\n\n`;
+    rutina += `Ejemplos prácticos:\n`;
+    rutina += `• @RIR0 = Fallo total (no puedes hacer ni 1 más) ❌\n`;
+    rutina += `• @RIR1 = Podrías hacer 1 más ⚠️ Muy cerca del fallo\n`;
+    rutina += `• @RIR2 = Podrías hacer 2 más ✅ PUNTO ÓPTIMO\n`;
+    rutina += `• @RIR3 = Podrías hacer 3 más ✅ Bueno para técnica\n`;
+    rutina += `• @RIR4+ = Muy fácil ❌ Poco estímulo\n\n`;
+    rutina += `💡 Tip: Si haces 10 reps @RIR2, significa que al terminar la 10ª rep podrías hacer 2 más.\n`;
+    rutina += `Si llegas a 10 y podrías hacer 15, aumenta el peso la próxima vez.\n\n`;
+    
+    // Mensaje de adaptación
     if (enfoque === 'Adaptada') {
-      rutina += `${adaptacionesGenero.mensaje}\n`;
-      rutina += `• Mayor volumen en piernas y glúteos (+20%)\n`;
-      rutina += `• Énfasis en ejercicios de glúteo y core\n`;
-      rutina += `• Ejercicios de tren superior adaptados para mejor técnica\n\n`;
+      rutina += `${adaptaciones.mensaje}\n`;
+      rutina += `• Mayor volumen en tren inferior (+20%)\n`;
+      rutina += `• Énfasis en glúteos y core\n`;
+      rutina += `• Ejercicios de tren superior adaptados\n\n`;
     }
     
     // Determinar tipo de rutina según objetivo
@@ -234,851 +389,246 @@ const ejerciciosDB = {
     if (objetivo === 'Aumentar masa muscular') {
       tipoRutina = '💪 ENTRENAMIENTO DE FUERZA E HIPERTROFIA';
     } else if (objetivo === 'Perder grasa') {
-      tipoRutina = '🔥 ENTRENAMIENTO DE QUEMA DE GRASA';
+      tipoRutina = '🔥 ENTRENAMIENTO DE FUERZA (PRIORIDAD) + CARDIO MODERADO';
     } else {
       tipoRutina = '⚖️ ENTRENAMIENTO DE MANTENIMIENTO';
     }
     
     rutina += `${tipoRutina}\n\n`;
     
+    // Mensaje importante para perder grasa
+    if (objetivo === 'Perder grasa') {
+      rutina += `⚠️ IMPORTANTE - PERDER GRASA:\n`;
+      rutina += `❌ ERROR COMÚN: Hacer solo cardio y perder músculo\n`;
+      rutina += `✅ CORRECTO: Mantener fuerza + déficit calórico + cardio moderado\n\n`;
+      rutina += `Prioridades:\n`;
+      rutina += `1. Entrenar FUERZA ${dias_entrenamiento} días/semana (mantener músculo)\n`;
+      rutina += `2. Déficit calórico controlado en la dieta (lo más importante)\n`;
+      rutina += `3. Cardio moderado 2-3x/semana OPCIONAL (no obligatorio)\n\n`;
+      rutina += `El músculo quema calorías. Si solo haces cardio, pierdes músculo y bajas tu metabolismo.\n`;
+      rutina += `Con fuerza + dieta, pierdes SOLO grasa y mantienes el músculo.\n\n`;
+    }
+    
     // Generar días según frecuencia
     const numDias = parseInt(dias_entrenamiento);
     
     if (objetivo === 'Aumentar masa muscular') {
-      rutina += generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptacionesGenero, genero);
+      rutina += generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, semanaActual);
     } else if (objetivo === 'Perder grasa') {
-      rutina += generarRutinaPerderGrasa(numDias, config, tiempoInfo, adaptacionesGenero, genero);
+      rutina += generarRutinaPerderGrasa(numDias, config, tiempoInfo, adaptaciones, semanaActual);
     } else {
-      rutina += generarRutinaMantenimiento(numDias, config, tiempoInfo, adaptacionesGenero, genero);
+      rutina += generarRutinaMantenimiento(numDias, config, tiempoInfo, adaptaciones, semanaActual);
+    }
+    
+    // PROGRESIÓN SEMANAL
+    if (!config.esDeload) {
+      rutina += `\n📈 PROGRESIÓN PARA ESTA SEMANA:\n`;
+      if (semanaActual % 4 === 1) {
+        rutina += `• Mantén los mismos pesos esta semana\n`;
+        rutina += `• Enfócate en perfeccionar la técnica\n`;
+        rutina += `• Asegúrate de sentir el músculo trabajando\n`;
+      } else if (semanaActual % 4 === 2) {
+        rutina += `• Intenta aumentar 2.5-5kg en ejercicios grandes (sentadilla, press)\n`;
+        rutina += `• O haz 1-2 reps más con el mismo peso\n`;
+        rutina += `• RIR bajará a ${config.rir - 1} la próxima semana\n`;
+      } else if (semanaActual % 4 === 3) {
+        rutina += `• Esta es tu SEMANA MÁS INTENSA\n`;
+        rutina += `• Lleva los ejercicios principales cerca del fallo (RIR 0-1)\n`;
+        rutina += `• Es normal sentirse más cansado\n`;
+        rutina += `• Próxima semana será DELOAD (descanso activo)\n`;
+      }
+      rutina += `\n`;
+    } else {
+      rutina += `\n🔄 DESPUÉS DEL DELOAD:\n`;
+      rutina += `• La próxima semana vuelves al ciclo normal\n`;
+      rutina += `• Deberías sentirte más fuerte y recuperado\n`;
+      rutina += `• Intenta superar los pesos de hace 4 semanas\n\n`;
     }
     
     // Notas finales
-    rutina += `\n📝 INSTRUCCIONES IMPORTANTES:\n`;
-    rutina += `• Calienta ${tiempoInfo.tiempoCalentamiento} minutos (cardio ligero + movilidad articular)\n`;
-    rutina += `• Hidratación constante durante el entrenamiento\n`;
-    rutina += `• Progresión: Aumenta peso cuando puedas hacer el límite superior de reps con buena técnica\n`;
-    rutina += `• Escucha a tu cuerpo y ajusta la intensidad según necesites\n`;
-    rutina += `• Estira ${tiempoInfo.tiempoEstiramiento} minutos al finalizar\n\n`;
+    rutina += `📝 CALENTAMIENTO (${tiempoInfo.tiempoCalentamiento} minutos):\n`;
+    rutina += `1. Cardio ligero: 3-5 min (bici, elíptica, caminata rápida)\n`;
+    rutina += `2. Movilidad articular: 2-3 min (círculos de brazos, rotaciones de cadera)\n`;
+    rutina += `3. Series de activación: 1-2 series del primer ejercicio con peso muy ligero\n\n`;
     
-    if (genero === 'Femenino') {
-      rutina += `💡 TIPS PARA MUJERES:\n`;
-      rutina += `• No temas usar peso en los ejercicios - no te pondrás "demasiado musculosa"\n`;
-      rutina += `• El entrenamiento de fuerza ayuda a tonificar y define la figura\n`;
-      rutina += `• Presta especial atención a la técnica en ejercicios de glúteos\n`;
-      rutina += `• Ciclo menstrual: Ajusta intensidad si sientes fatiga excesiva\n\n`;
+    rutina += `📝 DURANTE EL ENTRENAMIENTO:\n`;
+    rutina += `• Hidratación constante entre series\n`;
+    rutina += `• Respeta los descansos (no menos, no más)\n`;
+    rutina += `• Si el RIR no coincide, ajusta el peso inmediatamente\n`;
+    rutina += `• La técnica es MÁS importante que el peso\n\n`;
+    
+    rutina += `📝 ESTIRAMIENTO (${tiempoInfo.tiempoEstiramiento} minutos):\n`;
+    rutina += `• Estira todos los grupos musculares trabajados\n`;
+    rutina += `• Mantén cada estiramiento 20-30 segundos\n`;
+    rutina += `• NO rebotes, estira suavemente y constante\n\n`;
+    
+    if (enfoque === 'Adaptada') {
+      rutina += `💡 TIPS ADICIONALES:\n`;
+      rutina += `• Presta especial atención a la conexión mente-músculo en glúteos\n`;
+      rutina += `• En hip thrust, aprieta fuerte el glúteo arriba por 1-2 segundos\n`;
+      rutina += `• El core se fortalece mejor con estabilidad (planchas) que con abdominales tradicionales\n`;
+      rutina += `• Si un ejercicio causa molestias, usa la variación sugerida\n\n`;
     }
     
     rutina += `⚠️ ADVERTENCIA:\n`;
-    rutina += `Este plan es orientativo y no reemplaza la evaluación de un profesional. Si tienes lesiones, condiciones médicas o dolor durante los ejercicios, consulta con un especialista antes de continuar.\n`;
+    rutina += `Este plan es orientativo y no reemplaza la evaluación de un profesional. Si tienes lesiones, dolor durante los ejercicios, o condiciones médicas, consulta con un especialista antes de continuar. Detente inmediatamente si sientes dolor agudo.\n`;
     
     return rutina;
   }
   
   // RUTINA PARA HIPERTROFIA
-  function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, genero) {
-    let rutina = '';
+  // AL FINAL DEL ARCHIVO, REEMPLAZA DESDE "function generarRutinaHipertrofia" en adelante:
+
+function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, semana) {
+    const { series, reps, rir } = config;
+    const seriesPiernas = adaptaciones.enfasisPiernas ? Math.ceil(series * 1.2) : series;
+    let r = '';
     
     if (numDias === 3) {
-      rutina += construirDia('DÍA 1 - Tren Superior', [
+      r += construirDia('DÍA 1 - Tren Superior', [
         { nombre: 'pecho', cantidad: 2 },
         { nombre: 'espalda', cantidad: 2 },
         { nombre: 'hombros', cantidad: 1 },
         { nombre: 'biceps', cantidad: 1 },
         { nombre: 'triceps', cantidad: 1 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 2 - Tren Inferior', [
+      r += construirDia('DÍA 2 - Tren Inferior', [
         { nombre: 'piernas', cantidad: adaptaciones.enfasisPiernas ? 5 : 4 },
         ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 1 }] : [])
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 3 - Tren Superior (Variación)', [
+      r += construirDia('DÍA 3 - Tren Superior (Variación)', [
         { nombre: 'pecho', cantidad: 2 },
         { nombre: 'espalda', cantidad: 2 },
         { nombre: 'hombros', cantidad: 1 },
         { nombre: 'biceps', cantidad: 1 },
         { nombre: 'triceps', cantidad: 1 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
     } else if (numDias === 4) {
-      rutina += construirDia('DÍA 1 - Jalón (Pull)', [
+      r += construirDia('DÍA 1 - Jalón (Pull)', [
         { nombre: 'espalda', label: 'ESPALDA', cantidad: 3 },
         { nombre: 'biceps', label: 'BÍCEPS', cantidad: 2 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 2 - Empuje (Push)', [
+      r += construirDia('DÍA 2 - Empuje (Push)', [
         { nombre: 'pecho', label: 'PECHO', cantidad: 2 },
         { nombre: 'hombros', label: 'HOMBROS', cantidad: 2 },
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 2 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 3 - Piernas', [
+      r += construirDia('DÍA 3 - Piernas', [
         { nombre: 'piernas', cantidad: adaptaciones.enfasisPiernas ? 6 : 5 },
         ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 1 }] : [])
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 4 - Tren Superior (Full)', [
+      r += construirDia('DÍA 4 - Tren Superior (Full)', [
         { nombre: 'pecho', cantidad: 2 },
         { nombre: 'espalda', cantidad: 2 },
         { nombre: 'hombros', cantidad: 1 },
         { nombre: 'biceps', cantidad: 1 },
         { nombre: 'triceps', cantidad: 1 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
     } else if (numDias === 5) {
-      rutina += construirDia('DÍA 1 - Jalón (Pull)', [
+      r += construirDia('DÍA 1 - Jalón (Pull)', [
         { nombre: 'espalda', label: 'ESPALDA', cantidad: 4 },
         { nombre: 'biceps', label: 'BÍCEPS', cantidad: 3 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 2 - Empuje (Push)', [
+      r += construirDia('DÍA 2 - Empuje (Push)', [
         { nombre: 'pecho', label: 'PECHO', cantidad: 4 },
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 3 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 3 - Hombros y Piernas', [
+      r += construirDia('DÍA 3 - Piernas y Hombros', [
         { nombre: 'hombros', label: 'HOMBROS', cantidad: 3 },
         { nombre: 'piernas', label: 'PIERNAS', cantidad: adaptaciones.enfasisPiernas ? 5 : 4 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 4 - Jalón (Pull - Variación)', [
+      r += construirDia('DÍA 4 - Jalón (Pull - Variación)', [
         { nombre: 'espalda', label: 'ESPALDA', cantidad: 4 },
         { nombre: 'biceps', label: 'BÍCEPS', cantidad: 3 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 5 - Empuje (Push - Variación)', [
+      r += construirDia('DÍA 5 - Empuje (Push - Variación)', [
         { nombre: 'pecho', label: 'PECHO', cantidad: 4 },
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 3 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
     } else { // 6 días
-      rutina += construirDia('DÍA 1 - Hombros y Piernas', [
+      r += construirDia('DÍA 1 - Piernas y Hombros', [
         { nombre: 'hombros', label: 'HOMBROS', cantidad: 3 },
         { nombre: 'piernas', label: 'PIERNAS', cantidad: 5 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 2 - Jalón (Pull)', [
+      r += construirDia('DÍA 2 - Jalón (Pull)', [
         { nombre: 'espalda', label: 'ESPALDA', cantidad: 4 },
         { nombre: 'biceps', label: 'BÍCEPS', cantidad: 3 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 3 - Empuje (Push)', [
+      r += construirDia('DÍA 3 - Empuje (Push)', [
         { nombre: 'pecho', label: 'PECHO', cantidad: 4 },
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 3 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 4 - Hombros y Piernas (Variación)', [
+      r += construirDia('DÍA 4 - Piernas y Hombros (Variación)', [
         { nombre: 'hombros', label: 'HOMBROS', cantidad: 3 },
         { nombre: 'piernas', label: 'PIERNAS', cantidad: 5 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 5 - Jalón (Pull - Variación)', [
+      r += construirDia('DÍA 5 - Jalón (Pull - Variación)', [
         { nombre: 'espalda', label: 'ESPALDA', cantidad: 4 },
         { nombre: 'biceps', label: 'BÍCEPS', cantidad: 3 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += construirDia('DÍA 6 - Empuje (Push - Variación)', [
+      r += construirDia('DÍA 6 - Empuje (Push - Variación)', [
         { nombre: 'pecho', label: 'PECHO', cantidad: 4 },
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 3 }
-      ], config, tiempoInfo, adaptaciones);
+      ], config, tiempoInfo, adaptaciones, semana);
     }
     
-    return rutina;
+    return r;
   }
   
-  // RUTINA PARA PERDER GRASA
-  function generarRutinaPerderGrasa(numDias, config, tiempoInfo, adaptaciones, genero) {
+  function generarRutinaPerderGrasa(numDias, config, tiempoInfo, adaptaciones, semana) {
     let rutina = '';
-    const cardioZona2 = Math.min(20, Math.floor(tiempoInfo.numEjercicios * 3)); // Cardio proporcional al tiempo
     
     if (numDias === 3) {
-      rutina += construirDia('DÍA 1 - Tren Inferior + Cardio', [
+      rutina += construirDia('DÍA 1 - Fuerza Inferior', [
         { nombre: 'piernas', cantidad: 5 }
-      ], config, tiempoInfo, adaptaciones);
-      rutina += `- Cardio: ${cardioZona2} minutos zona 2 (correr, bici, elíptica)\n\n`;
+      ], config, tiempoInfo, adaptaciones, semana);
       
-      rutina += `DÍA 2 - HIIT:\n`;
-      rutina += `- 10 minutos de cardio zona 3 (calentamiento)\n`;
-      rutina += `- 5-7 intervalos: 1 min alta intensidad (90%) + 2 min recuperación (zona 2)\n`;
-      rutina += `- 5 minutos de enfriamiento zona 2\n\n`;
-      
-      rutina += construirDia('DÍA 3 - Full Body Fuerza', [
+      rutina += construirDia('DÍA 2 - Fuerza Superior', [
         { nombre: 'pecho', cantidad: 2 },
         { nombre: 'espalda', cantidad: 2 },
-        { nombre: 'piernas', cantidad: 2 },
         { nombre: 'hombros', cantidad: 1 }
-      ], config, tiempoInfo, adaptaciones);
-      
-    } else if (numDias >= 4) {
-      rutina += construirDia('DÍA 1 - Tren Inferior + Cardio', [
-        { nombre: 'piernas', cantidad: 5 }
-      ], config, tiempoInfo, adaptaciones);
-      rutina += `- Cardio: ${cardioZona2} minutos zona 2\n\n`;
-      
-      rutina += construirDia('DÍA 2 - Jalón (Pull)', [
-        { nombre: 'espalda', label: 'ESPALDA', cantidad: 4 },
-        { nombre: 'biceps', label: 'BÍCEPS', cantidad: 3 }
-      ], config, tiempoInfo, adaptaciones);
-      
-      rutina += construirDia('DÍA 3 - Empuje (Push)', [
-        { nombre: 'pecho', label: 'PECHO', cantidad: 2 },
-        { nombre: 'hombros', label: 'HOMBROS', cantidad: 2 },
-        { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 2 }
-      ], config, tiempoInfo, adaptaciones);
-      
-      rutina += `DÍA 4 - HIIT:\n`;
-      rutina += `- 10 minutos de cardio zona 3\n`;
-      rutina += `- 5-7 intervalos: 1 min alta intensidad + 2 min recuperación\n`;
-      rutina += `- 5 minutos de enfriamiento\n\n`;
-      
-      if (numDias >= 5) {
-        rutina += construirDia('DÍA 5 - Tren Superior Full', [
-          { nombre: 'pecho', cantidad: 2 },
-          { nombre: 'espalda', cantidad: 2 },
-          { nombre: 'hombros', cantidad: 1 },
-          { nombre: 'biceps', cantidad: 1 },
-          { nombre: 'triceps', cantidad: 1 }
-        ], config, tiempoInfo, adaptaciones);
-      }
-      
-      if (numDias === 6) {
-        rutina += construirDia('DÍA 6 - Empuje + Core', [
-          { nombre: 'pecho', cantidad: 3 },
-          { nombre: 'triceps', cantidad: 2 },
-          { nombre: 'core', label: 'CORE', cantidad: 2 }
-        ], config, tiempoInfo, adaptaciones);
-      }
-    }
-    
-    return rutina;
-  }
-  
-  // RUTINA PARA MANTENIMIENTO
-  function generarRutinaMantenimiento(numDias, config, tiempoInfo, adaptaciones, genero) {
-    let rutina = '';
-    
-    if (numDias === 3) {
-      rutina += construirDia('DÍA 1 - Tren Superior', [
-        { nombre: 'pecho', cantidad: 2 },
-        { nombre: 'espalda', cantidad: 2 },
-        { nombre: 'hombros', cantidad: 1 },
-        { nombre: 'biceps', cantidad: 1 },
-        { nombre: 'triceps', cantidad: 1 }
-      ], config, tiempoInfo, adaptaciones);
-      
-      rutina += construirDia('DÍA 2 - Tren Inferior + Cardio', [
-        { nombre: 'piernas', cantidad: 5 }
-      ], config, tiempoInfo, adaptaciones);
-      rutina += `- Cardio moderado: 20-25 minutos\n\n`;
+      ], config, tiempoInfo, adaptaciones, semana);
       
       rutina += construirDia('DÍA 3 - Full Body', [
-        { nombre: 'pecho', cantidad: 1 },
-        { nombre: 'espalda', cantidad: 2 },
-        { nombre: 'hombros', cantidad: 1 },
         { nombre: 'piernas', cantidad: 2 },
-        { nombre: 'biceps', cantidad: 1 }
-      ], config, tiempoInfo, adaptaciones);
+        { nombre: 'pecho', cantidad: 1 },
+        { nombre: 'espalda', cantidad: 2 }
+      ], config, tiempoInfo, adaptaciones, semana);
+      
+      rutina += `\n💡 CARDIO OPCIONAL (NO OBLIGATORIO):\n`;
+      rutina += `• 2x/semana: 30-40 min caminata (Zona 2) en días libres\n`;
+      rutina += `• PRIORIZA LA FUERZA sobre el cardio\n\n`;
       
     } else {
-      // Para 4+ días usar división similar a hipertrofia pero con menos volumen
-      return generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, genero);
+      // Para 4+ días, usa misma estructura que hipertrofia
+      rutina = generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, semana);
+      rutina += `\n💡 CARDIO OPCIONAL: 2-3x/semana, 30 min Zona 2 en días libres\n\n`;
     }
     
     return rutina;
   }
   
-
-// Función para generar rutina personalizada
-function generateRutinaViejo(userInfo, answers) {
-    const { objetivo, infoPersonal, genero } = userInfo;
-    const { dias_entrenamiento, duracion_entrenamiento, experiencia } = answers;
-  
-    let reps;
-    let series;
-    let busqueda;
-    if (experiencia === "Principiante"){
-      reps = "10-12";
-      series = "2";
-      busqueda = "Aprender técnica y adaptarse sin sobrecarga";
-    }
-    else if (experiencia === "Intermedio"){
-      reps = "8-12";
-      series = "3";
-      busqueda = "Progresar semana a semana";
-    }
-    else if (experiencia === "Avanzado" && objetivo === "Aumentar masa muscular") {
-      reps = "6-10";
-      series = "4";
-      busqueda = "Máximo estímulo con volumen alto pero controlado";
-    }
-    else {
-      reps = "8-12";
-      series = "3";
-      busqueda = "Máximo estímulo con volumen medio";
-    }
-    
-    let rutina = `📋 RUTINA PERSONALIZADA\n\n`;
-    rutina += `Objetivo: ${objetivo}\n`;
-    rutina += `Días de entrenamiento: ${dias_entrenamiento}\n`;
-    rutina += `Duración por sesión: ${duracion_entrenamiento}\n`;
-    rutina += `Búsqueda: ${busqueda}\n`;
-    rutina += `Nivel: ${experiencia}\n\n`;
-  
-    // Rutina según objetivo
-    if (objetivo === "Aumentar masa muscular") {
-      rutina += `💪 ENTRENAMIENTO DE FUERZA E HIPERTROFIA\n\n`;
-  
-      if (dias_entrenamiento.includes("3")) {
-        rutina += `Día 1 - Tren Superior:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con barra: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Tríceps en polea: ${series} series x ${reps} repeticiones\n\n`;
-        
-        rutina += `Día 2 - Tren Inferior:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Tren Superior (Variación):\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Dominadas o jalon al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Triceps press francés: ${series} series x ${reps} repeticiones\n\n`;
-      }
-      else if (dias_entrenamiento.includes("4")) {
-        rutina += `Día 1 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre cerrado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps con mancuernas en banco inclinado: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 2 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `HOMBROS:\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Piernas:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 4 - Tren Superior:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con barra: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Tríceps en polea: ${series} series x ${reps} repeticiones\n\n`;
-      }
-      else if (dias_entrenamiento.includes("5")) {
-        rutina += `Día 1 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre cerrado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps con mancuernas en banco inclinado: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 2 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas de pecho en maquina: ${series} series x ${reps} repeticiones\n`
-        rutina += `- Fondos en paralelas: ${series} series x ${reps} repeticiones\n`
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Hombros y Piernas:\n`;
-        rutina += `HOMBROS:\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas invertidas en maquina: ${series} series x ${reps} repeticiones\n`
-        rutina += `- Encogimientos de trapecios: ${series} series x ${reps} repeticiones\n`
-        rutina += `PIERNAS:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n\n`;
-        
-        rutina += `Día 4 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre neutro: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps en polea baja: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 5 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas de pecho en maquina: ${series} series x ${reps} repeticiones\n`
-        rutina += `- Aperturas en polea alta: ${series} series x ${reps} repeticiones\n`
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-      }
-      else {
-        rutina += `Día 1 - Hombros y Piernas:\n`;
-        rutina += `HOMBROS:\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas invertidas en maquina: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Encogimientos de trapecios: ${series} series x ${reps} repeticiones\n`;
-        rutina += `PIERNAS:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n\n`;
-        
-        rutina += `Día 2 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre cerrado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps con mancuernas en banco inclinado: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas de pecho en maquina: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Fondos en paralelas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 4 - Hombros y Piernas:\n`;
-        rutina += `HOMBROS:\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas invertidas en maquina: ${series} series x ${reps} repeticiones\n`
-        rutina += `- Encogimientos de trapecios: ${series} series x ${reps} repeticiones\n`
-        rutina += `PIERNAS:\n`;
-        rutina += `- Sentadilla en maquina Hack Squat: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Estocadas con mancuernas (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n\n`;
-        
-        rutina += `Día 5 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre neutro: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps en polea baja: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 6 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas de pecho en maquina: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas en polea alta: ${series} series x ${reps} repeticiones\n`;
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-      }
-    } 
-    
-    if (objetivo === "Perder grasa") {
-      rutina += `🔥 ENTRENAMIENTO DE QUEMA DE GRASA\n\n`;
-  
-      if (dias_entrenamiento.includes("3")) {
-        rutina += `Día 1 - Tren Inferior + Cardio:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Cardio: 20-30 minutos zona 2 (correr, bici, elíptica)\n\n`;
-        
-        rutina += `Día 2 - HIIT:\n`;
-        rutina += `- 10 minutos de cardio, zona 3\n`;
-        rutina += `- 5-7 pasadas de 1 minuto de alta intensidad (90%)\n`;
-        rutina += `- Descanso activo de 2 minutos entre pasadas, zona 2-3\n`;
-        rutina += `- 5 minutos de enfriamiento, zona 2-3\n\n`;
-        
-        rutina += `Día 3 - Full Body Fuerza:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con barra: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n\n`;
-      }
-      else if (dias_entrenamiento.includes("4")) {
-        rutina += `Día 1 - Tren Inferior + Cardio:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Cardio: 20-30 minutos zona 2 (correr, bici, elíptica)\n\n`;
-        
-        rutina += `Día 2 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre cerrado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps con mancuernas en banco inclinado: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `HOMBROS:\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 4 - HIIT:\n`;
-        rutina += `- 10 minutos de cardio, zona 3\n`;
-        rutina += `- 5-7 pasadas de 1 minuto de alta intensidad (90%)\n`;
-        rutina += `- Descanso activo de 2 minutos entre pasadas, zona 2-3\n`;
-        rutina += `- 5 minutos de enfriamiento, zona 2-3\n\n`;
-      }
-      else if (dias_entrenamiento.includes("5")) {
-        rutina += `Día 1 - Tren Inferior + Cardio:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Cardio: 20-30 minutos zona 2 (correr, bici, elíptica)\n\n`;
-  
-        rutina += `Día 2 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre cerrado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps con mancuernas en banco inclinado: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas de pecho en maquina: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Fondos en paralelas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 4 - HIIT:\n`;
-        rutina += `- 10 minutos de cardio, zona 3\n`;
-        rutina += `- 5-7 pasadas de 1 minuto de alta intensidad (90%)\n`;
-        rutina += `- Descanso activo de 2 minutos entre pasadas, zona 2-3\n`;
-        rutina += `- 5 minutos de enfriamiento, zona 2-3\n\n`;
-  
-        rutina += `Día 5 - Tren Superior Fuerza:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con barra: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Tríceps en polea: ${series} series x ${reps} repeticiones\n\n`;
-      }
-      else {
-        rutina += `Día 1 - Hombros y Piernas + Cardio:\n`;
-        rutina += `HOMBROS:\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas invertidas en maquina: ${series} series x ${reps} repeticiones\n`
-        rutina += `PIERNAS:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Cardio: 20-30 minutos zona 2 (correr, bici, elíptica)\n\n`;
-  
-        rutina += `Día 2 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre cerrado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps con mancuernas en banco inclinado: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas de pecho en maquina: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Fondos en paralelas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 4 - HIIT:\n`;
-        rutina += `- 10 minutos de cardio, zona 3\n`;
-        rutina += `- 5-7 pasadas de 1 minuto de alta intensidad (90%)\n`;
-        rutina += `- Descanso activo de 2 minutos entre pasadas, zona 2-3\n`;
-        rutina += `- 5 minutos de enfriamiento, zona 2-3\n\n`;
-  
-        rutina += `Día 5 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre neutro: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps en polea baja: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 6 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas de pecho en maquina: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas en polea alta: ${series} series x ${reps} repeticiones\n`;
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-      }
-    } 
-    
-    if (objetivo === "Mantener peso") {
-      rutina += `⚖️ ENTRENAMIENTO DE MANTENIMIENTO\n\n`;
-  
-      if (dias_entrenamiento.includes("3")) {
-        rutina += `Día 1 - Tren Superior:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n\n`;
-        
-        rutina += `Día 2 - Tren Inferior + Cardio:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Cardio: 20-30 minutos zona 2 (correr, bici, elíptica)\n\n`;
-        
-        rutina += `Día 3 - Full Body:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con barra: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`;
-      }
-      else if (dias_entrenamiento.includes("4")) {
-        rutina += `Día 1 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre cerrado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps con mancuernas en banco inclinado: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 2 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Fondos en paralelas: ${series} series x ${reps} repeticiones\n`
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Piernas y Hombros:\n`;
-        rutina += `HOMBROS:\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas invertidas en maquina: ${series} series x ${reps} repeticiones\n`
-        rutina += `PIERNAS:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 4 - Tren Superior:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con barra: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Tríceps en polea: ${series} series x ${reps} repeticiones\n\n`;
-      }
-      else if (dias_entrenamiento.includes("5")) {
-        rutina += `Día 1 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre cerrado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps con mancuernas en banco inclinado: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 2 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Fondos en paralelas: ${series} series x ${reps} repeticiones\n`
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Hombros y Piernas:\n`;
-        rutina += `HOMBROS:\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas invertidas en maquina: ${series} series x ${reps} repeticiones\n`
-        rutina += `PIERNAS:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensiones de cuádriceps: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl femoral: ${series} series x ${reps} repeticiones\n\n`;
-        
-        rutina += `Día 4 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre neutro: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps en polea baja: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 5 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas de pecho en maquina: ${series} series x ${reps} repeticiones\n`
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-      }
-      else {
-        rutina += `Día 1 - Hombros y Piernas:\n`;
-        rutina += `HOMBROS:\n`;
-        rutina += `- Press militar: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevaciones laterales: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas invertidas en maquina: ${series} series x ${reps} repeticiones\n`
-        rutina += `PIERNAS:\n`;
-        rutina += `- Sentadillas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Prensa de piernas: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Elevación de pantorrillas: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 2 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre cerrado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo con mancuerna (unilateral): ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps con mancuernas en banco inclinado: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 3 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas de pecho en maquina: ${series} series x ${reps} repeticiones\n`;
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 4 - HIIT:\n`;
-        rutina += `- 10 minutos de cardio, zona 3\n`;
-        rutina += `- 5-7 pasadas de 1 minuto de alta intensidad (90%)\n`;
-        rutina += `- Descanso activo de 2 minutos entre pasadas, zona 2-3\n`;
-        rutina += `- 5 minutos de enfriamiento, zona 2-3\n\n`;
-  
-        rutina += `Día 5 - Jalón (Pull):\n`;
-        rutina += `ESPALDA:\n`;
-        rutina += `- Jalón al pecho: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Jalón al pecho agarre neutro: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Remo en polea sentado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `BÍCEPS:\n`;
-        rutina += `- Curl de bíceps en barra W: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Bíceps martillo: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Curl de bíceps en polea baja: ${series} series x ${reps} repeticiones\n\n`;
-  
-        rutina += `Día 6 - Empuje (Push):\n`;
-        rutina += `PECHO:\n`;
-        rutina += `- Press de banca: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Press inclinado: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Aperturas en polea alta: ${series} series x ${reps} repeticiones\n`;
-        rutina += `TRÍCEPS:\n`;
-        rutina += `- Tríceps press francés: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con polea: ${series} series x ${reps} repeticiones\n`;
-        rutina += `- Extensión de tríceps con soga: ${series} series x ${reps} repeticiones\n\n`;
-      }
-    }
-  
-    rutina += `📝 NOTAS:\n`;
-    rutina += `- Calienta 5-10 minutos antes de entrenar\n`;
-    rutina += `- Descansa 60-90 segundos entre series y 120-180 segundos entre ejercicios\n`;
-    rutina += `- Hidrátate constantemente\n`;
-    rutina += `- Duerme al menos 8 horas diarias, tus músculos necesitan regenerarse\n`;
-    rutina += `- Escucha a tu cuerpo y ajusta la intensidad\n\n`;
-  
-    rutina += `⚠️ Este plan es orientativo y no reemplaza la evaluación de un profesional de la salud. Si tienes lesiones o condiciones médicas, consulta con un especialista\n.`;
-  
-    return rutina;
+  function generarRutinaMantenimiento(numDias, config, tiempoInfo, adaptaciones, semana) {
+    // Para mantenimiento, usar misma estructura que hipertrofia
+    return generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, semana);
   }
-
+  
   module.exports = { generateRutina };
+  
