@@ -37,6 +37,12 @@ const Chatbot = () => {
       options: ["Principiante", "Intermedio", "Avanzado"]
     },
     {
+      id: "enfoque",
+      text: "Si prefieres una rutina adaptada con mayor énfasis en piernas, glúteos y core, responde `Adaptada`. Si prefieres una rutina enfocada en desarrollo muscular balanceado, responde `Balanceada`.",
+      type: "select",
+      options: ["Adaptada", "Balanceada"],
+    },    
+    {
       id: "peso_objetivo",
       text: `Veo que tu peso actual es ${pesoUsuario} kg, ¿Cuál es tu peso objetivo?`,
       type: "number",
