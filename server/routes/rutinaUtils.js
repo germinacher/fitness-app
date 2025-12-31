@@ -2,87 +2,87 @@
 const ejerciciosDB = {
     pecho: {
       compuestos: [
-        { nombre: 'Press de banca', complejidad: 'alta', prioridad: 1 },
-        { nombre: 'Press inclinado', complejidad: 'alta', prioridad: 2 },
-        { nombre: 'Fondos en paralelas', complejidad: 'media', prioridad: 3 }
+        { nombre: 'Press de banca', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Press inclinado', complejidad: 'alta', prioridad: 2, tipo: 'dinamico' },
+        { nombre: 'Fondos en paralelas', complejidad: 'media', prioridad: 3, tipo: 'dinamico' }
       ],
       aislamiento: [
-        { nombre: 'Aperturas de pecho en máquina', complejidad: 'baja', prioridad: 4 },
-        { nombre: 'Aperturas en polea alta', complejidad: 'baja', prioridad: 5 },
-        { nombre: 'Press en máquina', complejidad: 'baja', prioridad: 6 }
+        { nombre: 'Aperturas de pecho en máquina', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Aperturas en polea alta', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' },
+        { nombre: 'Press en máquina', complejidad: 'baja', prioridad: 6, tipo: 'dinamico' }
       ]
     },
     espalda: {
       compuestos: [
-        { nombre: 'Dominadas', complejidad: 'alta', prioridad: 1 },
-        { nombre: 'Jalón al pecho', complejidad: 'alta', prioridad: 1 },
-        { nombre: 'Remo con barra', complejidad: 'alta', prioridad: 2 },
-        { nombre: 'Remo en polea sentado', complejidad: 'media', prioridad: 3 }
+        { nombre: 'Dominadas', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Jalón al pecho', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Remo con barra', complejidad: 'alta', prioridad: 2, tipo: 'dinamico' },
+        { nombre: 'Remo en polea sentado', complejidad: 'media', prioridad: 3, tipo: 'dinamico' }
       ],
       aislamiento: [
-        { nombre: 'Jalón agarre cerrado', complejidad: 'baja', prioridad: 4 },
-        { nombre: 'Jalón agarre neutro', complejidad: 'baja', prioridad: 4 },
-        { nombre: 'Remo con mancuerna unilateral', complejidad: 'baja', prioridad: 5 },
-        { nombre: 'Pullover en polea', complejidad: 'baja', prioridad: 6 }
+        { nombre: 'Jalón agarre cerrado', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Jalón agarre neutro', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Remo con mancuerna unilateral', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' },
+        { nombre: 'Pullover en polea', complejidad: 'baja', prioridad: 6, tipo: 'dinamico' }
       ]
     },
     hombros: {
       compuestos: [
-        { nombre: 'Press militar', complejidad: 'alta', prioridad: 1 },
-        { nombre: 'Press con mancuernas', complejidad: 'alta', prioridad: 2 }
+        { nombre: 'Press militar', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Press con mancuernas', complejidad: 'alta', prioridad: 2, tipo: 'dinamico' }
       ],
       aislamiento: [
-        { nombre: 'Elevaciones laterales', complejidad: 'media', prioridad: 3 },
-        { nombre: 'Aperturas invertidas en máquina', complejidad: 'baja', prioridad: 4 },
-        { nombre: 'Elevaciones frontales', complejidad: 'baja', prioridad: 5 },
-        { nombre: 'Encogimientos de trapecios', complejidad: 'baja', prioridad: 6 }
+        { nombre: 'Elevaciones laterales', complejidad: 'media', prioridad: 3, tipo: 'dinamico' },
+        { nombre: 'Aperturas invertidas en máquina', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Elevaciones frontales', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' },
+        { nombre: 'Encogimientos de trapecios', complejidad: 'baja', prioridad: 6, tipo: 'dinamico' }
       ]
     },
     piernas: {
       cuadriceps: [
-        { nombre: 'Sentadillas', complejidad: 'alta', prioridad: 1 },
-        { nombre: 'Prensa de piernas', complejidad: 'alta', prioridad: 2 },
-        { nombre: 'Sentadilla hack', complejidad: 'media', prioridad: 3 },
-        { nombre: 'Estocadas', complejidad: 'media', prioridad: 4 },
-        { nombre: 'Extensiones de cuádriceps', complejidad: 'baja', prioridad: 5 }
+        { nombre: 'Sentadillas', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Prensa de piernas', complejidad: 'alta', prioridad: 2, tipo: 'dinamico' },
+        { nombre: 'Sentadilla hack', complejidad: 'media', prioridad: 3, tipo: 'dinamico' },
+        { nombre: 'Estocadas', complejidad: 'media', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Extensiones de cuádriceps', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' }
       ],
       isquiotibiales: [
-        { nombre: 'Peso muerto rumano', complejidad: 'alta', prioridad: 1 },
-        { nombre: 'Curl femoral', complejidad: 'baja', prioridad: 2 }
+        { nombre: 'Peso muerto rumano', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Curl femoral', complejidad: 'baja', prioridad: 2, tipo: 'dinamico' }
       ],
       gluteos: [
-        { nombre: 'Hip thrust', complejidad: 'media', prioridad: 1 },
-        { nombre: 'Patada de glúteo en polea', complejidad: 'baja', prioridad: 2 },
-        { nombre: 'Abducción de cadera', complejidad: 'baja', prioridad: 3 },
-        { nombre: 'Sentadilla búlgara', complejidad: 'media', prioridad: 2 }
+        { nombre: 'Hip thrust', complejidad: 'media', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Patada de glúteo en polea', complejidad: 'baja', prioridad: 2, tipo: 'dinamico' },
+        { nombre: 'Abducción de cadera', complejidad: 'baja', prioridad: 3, tipo: 'dinamico' },
+        { nombre: 'Sentadilla búlgara', complejidad: 'media', prioridad: 2, tipo: 'dinamico' }
       ],
       pantorrillas: [
-        { nombre: 'Elevación de pantorrillas de pie', complejidad: 'baja', prioridad: 1 },
-        { nombre: 'Elevación de pantorrillas sentado', complejidad: 'baja', prioridad: 2 }
+        { nombre: 'Elevación de pantorrillas de pie', complejidad: 'baja', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Elevación de pantorrillas sentado', complejidad: 'baja', prioridad: 2, tipo: 'dinamico' }
       ]
     },
     brazos: {
       biceps: [
-        { nombre: 'Curl de bíceps en barra W', complejidad: 'media', prioridad: 1 },
-        { nombre: 'Bíceps martillo', complejidad: 'baja', prioridad: 2 },
-        { nombre: 'Curl de bíceps en banco inclinado', complejidad: 'baja', prioridad: 3 },
-        { nombre: 'Curl en polea baja', complejidad: 'baja', prioridad: 4 },
-        { nombre: 'Curl concentrado', complejidad: 'baja', prioridad: 5 }
+        { nombre: 'Curl de bíceps en barra W', complejidad: 'media', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Bíceps martillo', complejidad: 'baja', prioridad: 2, tipo: 'dinamico' },
+        { nombre: 'Curl de bíceps en banco inclinado', complejidad: 'baja', prioridad: 3, tipo: 'dinamico' },
+        { nombre: 'Curl en polea baja', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Curl concentrado', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' }
       ],
       triceps: [
-        { nombre: 'Fondos en paralelas para tríceps', complejidad: 'alta', prioridad: 1 },
-        { nombre: 'Tríceps press francés', complejidad: 'media', prioridad: 2 },
-        { nombre: 'Extensión de tríceps con polea', complejidad: 'baja', prioridad: 3 },
-        { nombre: 'Extensión de tríceps con soga', complejidad: 'baja', prioridad: 4 }
+        { nombre: 'Fondos en paralelas para tríceps', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Tríceps press francés', complejidad: 'media', prioridad: 2, tipo: 'dinamico' },
+        { nombre: 'Extensión de tríceps con polea', complejidad: 'baja', prioridad: 3, tipo: 'dinamico' },
+        { nombre: 'Extensión de tríceps con soga', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' }
       ]
     },
     core: {
       general: [
-        { nombre: 'Plancha', complejidad: 'baja', prioridad: 1 },
-        { nombre: 'Plancha lateral', complejidad: 'baja', prioridad: 2 },
-        { nombre: 'Abdominales con peso', complejidad: 'media', prioridad: 3 },
-        { nombre: 'Elevación de piernas', complejidad: 'media', prioridad: 4 },
-        { nombre: 'Russian twist', complejidad: 'baja', prioridad: 5 }
+        { nombre: 'Plancha', complejidad: 'baja', prioridad: 1, tipo: 'isometrico' },
+        { nombre: 'Plancha lateral', complejidad: 'baja', prioridad: 2, tipo: 'isometrico' },
+        { nombre: 'Abdominales con peso', complejidad: 'media', prioridad: 3, tipo: 'dinamico' },
+        { nombre: 'Elevación de piernas', complejidad: 'media', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Russian twist', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' }
       ]
     }
   };
@@ -280,7 +280,7 @@ const ejerciciosDB = {
     let ejerciciosTotales = 0;
     
     grupos.forEach(grupo => {
-      const cantidadEjercicios = Math.min(grupo.cantidad || ejerciciosPorGrupo, numEjercicios - ejerciciosTotales);
+      const cantidadEjercicios = Math.min(grupo.cantidad ?? ejerciciosPorGrupo, numEjercicios - ejerciciosTotales);
       if (cantidadEjercicios <= 0) return;
       
       const ejercicios = seleccionarEjercicios(grupo.nombre, cantidadEjercicios, [], adaptaciones.enfasisGluteos ? 'Adaptada' : 'Estándar');
@@ -304,8 +304,17 @@ const ejerciciosDB = {
           if (index === 0 && ejercicio.complejidad === 'alta') {
             rirEjercicio = Math.max(1, config.rir - 1); // Primer compuesto más intenso
           }
-          
-          diaTexto += `${index + 1}. ${ejercicioFinal}: ${seriesAjustadas}x${config.reps} @RIR${rirEjercicio}`;
+
+          // diferencia ejercicios dinamicos de isometricos
+          if (grupo.nombre === 'core') {
+            if (ejercicio.tipo === 'isometrico') {
+              diaTexto += `${index + 1}. ${ejercicioFinal}: ${seriesAjustadas} x 30-60seg\n`;
+            } else {
+              diaTexto += `${index + 1}. ${ejercicioFinal}: ${seriesAjustadas}x${config.reps} @RIR${rirEjercicio}\n`;
+            }
+          } else {
+            diaTexto += `${index + 1}. ${ejercicioFinal}: ${seriesAjustadas}x${config.reps} @RIR${rirEjercicio}`;
+          }
           
           // Nota de intensidad
           if (rirEjercicio <= 1) {
@@ -477,7 +486,6 @@ const ejerciciosDB = {
   }
   
   // RUTINA PARA HIPERTROFIA
-  // AL FINAL DEL ARCHIVO, REEMPLAZA DESDE "function generarRutinaHipertrofia" en adelante:
 
 function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, semana) {
     const { series, reps, rir } = config;
@@ -486,24 +494,29 @@ function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, sem
     
     if (numDias === 3) {
       r += construirDia('DÍA 1 - Tren Superior', [
-        { nombre: 'pecho', cantidad: 2 },
-        { nombre: 'espalda', cantidad: 2 },
+        { nombre: 'pecho', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
+        { nombre: 'espalda', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
         { nombre: 'hombros', cantidad: 1 },
-        { nombre: 'biceps', cantidad: 1 },
-        { nombre: 'triceps', cantidad: 1 }
+        { nombre: 'biceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        { nombre: 'triceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        //  si hay énfasis en core, lo agrego acá
+        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 2 - Tren Inferior', [
         { nombre: 'piernas', cantidad: adaptaciones.enfasisPiernas ? 5 : 4 },
-        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 1 }] : [])
+        //  solo agrego core si NO hay énfasis en core
+        ...(adaptaciones.enfasisCore ? [] : [{ nombre: 'core', label: 'CORE', cantidad: 1 }])
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 3 - Tren Superior (Variación)', [
-        { nombre: 'pecho', cantidad: 2 },
-        { nombre: 'espalda', cantidad: 2 },
+        { nombre: 'pecho', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
+        { nombre: 'espalda', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
         { nombre: 'hombros', cantidad: 1 },
-        { nombre: 'biceps', cantidad: 1 },
-        { nombre: 'triceps', cantidad: 1 }
+        { nombre: 'biceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        { nombre: 'triceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        //  si hay énfasis en core, lo agrego acá
+        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
       
     } else if (numDias === 4) {
@@ -518,28 +531,35 @@ function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, sem
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 2 }
       ], config, tiempoInfo, adaptaciones, semana);
       
+      // Día 3 - Piernas
       r += construirDia('DÍA 3 - Piernas', [
         { nombre: 'piernas', cantidad: adaptaciones.enfasisPiernas ? 6 : 5 },
-        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 1 }] : [])
+        //  solo agrego core si NO hay énfasis en core
+        ...(adaptaciones.enfasisCore ? [] : [{ nombre: 'core', label: 'CORE', cantidad: 1 }])
       ], config, tiempoInfo, adaptaciones, semana);
-      
+
+      // Día 4 - Tren Superior
       r += construirDia('DÍA 4 - Tren Superior (Full)', [
-        { nombre: 'pecho', cantidad: 2 },
-        { nombre: 'espalda', cantidad: 2 },
+        { nombre: 'pecho', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
+        { nombre: 'espalda', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
         { nombre: 'hombros', cantidad: 1 },
-        { nombre: 'biceps', cantidad: 1 },
-        { nombre: 'triceps', cantidad: 1 }
+        { nombre: 'biceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        { nombre: 'triceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        //  si hay énfasis en core, lo agrego acá
+        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
+
       
     } else if (numDias === 5) {
       r += construirDia('DÍA 1 - Jalón (Pull)', [
-        { nombre: 'espalda', label: 'ESPALDA', cantidad: 4 },
+        { nombre: 'espalda', label: 'ESPALDA', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
         { nombre: 'biceps', label: 'BÍCEPS', cantidad: 3 }
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 2 - Empuje (Push)', [
-        { nombre: 'pecho', label: 'PECHO', cantidad: 4 },
-        { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 3 }
+        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
+        { nombre: 'triceps', label: 'TRÍCEPS', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
+        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 2 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 3 - Piernas y Hombros', [
@@ -548,44 +568,47 @@ function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, sem
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 4 - Jalón (Pull - Variación)', [
-        { nombre: 'espalda', label: 'ESPALDA', cantidad: 4 },
+        { nombre: 'espalda', label: 'ESPALDA', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
         { nombre: 'biceps', label: 'BÍCEPS', cantidad: 3 }
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 5 - Empuje (Push - Variación)', [
-        { nombre: 'pecho', label: 'PECHO', cantidad: 4 },
-        { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 3 }
+        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
+        { nombre: 'triceps', label: 'TRÍCEPS', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
+        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
       
     } else { // 6 días
       r += construirDia('DÍA 1 - Piernas y Hombros', [
         { nombre: 'hombros', label: 'HOMBROS', cantidad: 3 },
-        { nombre: 'piernas', label: 'PIERNAS', cantidad: 5 }
+        { nombre: 'piernas', label: 'PIERNAS', cantidad: adaptaciones.enfasisPiernas ? 5 : 4 }
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 2 - Jalón (Pull)', [
-        { nombre: 'espalda', label: 'ESPALDA', cantidad: 4 },
+        { nombre: 'espalda', label: 'ESPALDA', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
         { nombre: 'biceps', label: 'BÍCEPS', cantidad: 3 }
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 3 - Empuje (Push)', [
-        { nombre: 'pecho', label: 'PECHO', cantidad: 4 },
-        { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 3 }
+        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
+        { nombre: 'triceps', label: 'TRÍCEPS', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
+        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 4 - Piernas y Hombros (Variación)', [
         { nombre: 'hombros', label: 'HOMBROS', cantidad: 3 },
-        { nombre: 'piernas', label: 'PIERNAS', cantidad: 5 }
+        { nombre: 'piernas', label: 'PIERNAS', cantidad: adaptaciones.enfasisPiernas ? 5 : 4 }
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 5 - Jalón (Pull - Variación)', [
-        { nombre: 'espalda', label: 'ESPALDA', cantidad: 4 },
+        { nombre: 'espalda', label: 'ESPALDA', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
         { nombre: 'biceps', label: 'BÍCEPS', cantidad: 3 }
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 6 - Empuje (Push - Variación)', [
-        { nombre: 'pecho', label: 'PECHO', cantidad: 4 },
-        { nombre: 'triceps', label: 'TRÍCEPS', cantidad: 3 }
+        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
+        { nombre: 'triceps', label: 'TRÍCEPS', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
+        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
     }
     
@@ -601,15 +624,24 @@ function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, sem
       ], config, tiempoInfo, adaptaciones, semana);
       
       rutina += construirDia('DÍA 2 - Fuerza Superior', [
-        { nombre: 'pecho', cantidad: 2 },
-        { nombre: 'espalda', cantidad: 2 },
-        { nombre: 'hombros', cantidad: 1 }
+        { nombre: 'pecho', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
+        { nombre: 'espalda', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
+        { nombre: 'hombros', cantidad: 1 },
+        { nombre: 'biceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        { nombre: 'triceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        //  si hay énfasis en core, lo agrego acá
+        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
       
       rutina += construirDia('DÍA 3 - Full Body', [
-        { nombre: 'piernas', cantidad: 2 },
-        { nombre: 'pecho', cantidad: 1 },
-        { nombre: 'espalda', cantidad: 2 }
+        { nombre: 'piernas', cantidad: adaptaciones.enfasisCore ? 2 : 1 },
+        { nombre: 'pecho', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
+        { nombre: 'espalda', cantidad: adaptaciones.enfasisCore ? 1 : 2 },
+        { nombre: 'hombros', cantidad: 1 },
+        { nombre: 'biceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        { nombre: 'triceps', cantidad: adaptaciones.enfasisCore ? 0 : 1 },
+        //  si hay énfasis en core, lo agrego acá
+        ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
       
       rutina += `\n💡 CARDIO OPCIONAL (NO OBLIGATORIO):\n`;
