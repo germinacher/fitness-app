@@ -161,30 +161,12 @@ function filtrarAlimentos(categoria, alergias, intolerancias, preferencias) {
     // ===== MACRONUTRIENTES =====
     let proteinas, carbohidratos, grasas;
     let distribucionComidas = {};
-
-    function calcularProteinas(peso, objetivo) {
-      if (objetivo === "Perder grasa") return Math.round(peso * 2.2);
-      if (objetivo === "Aumentar masa muscular") return Math.round(peso * 1.8);
-      return Math.round(peso * 1.6);
-    }
-    
-    function calcularGrasas(peso, objetivo) {
-      if (objetivo === "Perder grasa") return Math.round(peso * 0.8);
-      if (objetivo === "Aumentar masa muscular") return Math.round(peso * 1.0);
-      return Math.round(peso * 0.9);
-    }
-    
-    function calcularCarbohidratos(calorias, proteinas, grasas) {
-      return Math.round(
-        (calorias - (proteinas * 4) - (grasas * 9)) / 4
-      );
-    }
     
     if (objetivo === "Aumentar masa muscular") {
       // Mayor énfasis en proteína y carbohidratos para construcción muscular
-      proteinas = calcularProteinas(peso, objetivo);
-      grasas = calcularGrasas(peso, objetivo);
-      carbohidratos = calcularCarbohidratos(caloriasDiarias, proteinas, grasas);
+      proteinas = Math.round(caloriasDiarias * 0.30 / 4);
+      carbohidratos = Math.round(caloriasDiarias * 0.45 / 4);
+      grasas = Math.round(caloriasDiarias * 0.25 / 9);
       
       // Distribución optimizada para ganancia muscular
       distribucionComidas = {
@@ -196,9 +178,9 @@ function filtrarAlimentos(categoria, alergias, intolerancias, preferencias) {
       };
     } else if (objetivo === "Perder grasa") {
       // Mayor proteína para preservar músculo, carbohidratos moderados
-      proteinas = calcularProteinas(peso, objetivo);
-      grasas = calcularGrasas(peso, objetivo);
-      carbohidratos = calcularCarbohidratos(caloriasDiarias, proteinas, grasas);
+      proteinas = Math.round(caloriasDiarias * 0.35 / 4);
+      carbohidratos = Math.round(caloriasDiarias * 0.35 / 4);
+      grasas = Math.round(caloriasDiarias * 0.30 / 9);
       
       // Distribución para control del hambre y energía
       distribucionComidas = {
@@ -210,9 +192,9 @@ function filtrarAlimentos(categoria, alergias, intolerancias, preferencias) {
       };
     } else { // Mantener peso
       // Balance equilibrado para mantenimiento
-      proteinas = calcularProteinas(peso, objetivo);
-      grasas = calcularGrasas(peso, objetivo);
-      carbohidratos = calcularCarbohidratos(caloriasDiarias, proteinas, grasas);
+      proteinas = Math.round(caloriasDiarias * 0.30 / 4);
+      carbohidratos = Math.round(caloriasDiarias * 0.40 / 4);
+      grasas = Math.round(caloriasDiarias * 0.30 / 9);
       
       // Distribución balanceada
       distribucionComidas = {
@@ -270,26 +252,9 @@ function filtrarAlimentos(categoria, alergias, intolerancias, preferencias) {
       dieta += ` (Calorías de mantenimiento)\n`;
     }
     
-    // calcular porcentajes reales
-
-    const kcalProteinas = proteinas * 4;
-    const kcalGrasas = grasas * 9;
-    const kcalCarbs = carbohidratos * 4;
-
-    const totalMacrosKcal = kcalProteinas + kcalGrasas + kcalCarbs;
-
-    const pctProteinas = Math.round((kcalProteinas / totalMacrosKcal) * 100);
-    const pctGrasas = Math.round((kcalGrasas / totalMacrosKcal) * 100);
-    const pctCarbs = Math.round((kcalCarbs / totalMacrosKcal) * 100);
-
-    dieta += `• Proteínas: ${proteinas} g (≈ ${(proteinas / peso).toFixed(1)} g/kg)\n`;
-    dieta += `• Grasas: ${grasas} g (≈ ${(grasas / peso).toFixed(1)} g/kg)\n`;
-    dieta += `• Carbohidratos: ${carbohidratos} g\n\n`;
-
-    dieta += `Distribución calórica:\n`;
-    dieta += `• Proteínas: ${pctProteinas}%\n`;
-    dieta += `• Grasas: ${pctGrasas}%\n`;
-    dieta += `• Carbohidratos: ${pctCarbs}%\n\n`;
+    dieta += `• Proteínas: ${proteinas}g (${Math.round(proteinas * 4)} kcal - ${Math.round(proteinas * 4 / caloriasDiarias * 100)}%)\n`;
+    dieta += `• Carbohidratos: ${carbohidratos}g (${Math.round(carbohidratos * 4)} kcal - ${Math.round(carbohidratos * 4 / caloriasDiarias * 100)}%)\n`;
+    dieta += `• Grasas: ${grasas}g (${Math.round(grasas * 9)} kcal - ${Math.round(grasas * 9 / caloriasDiarias * 100)}%)\n\n`;
   
     // ===== TIMING DE NUTRIENTES =====
     dieta += `⏰ TIMING DE NUTRIENTES:\n`;
