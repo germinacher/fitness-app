@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
-import "../styles/MainMenu.css";
+import "../styles/MainMenu.css"; // Usar estilos específicos de MainMenu
 
 const MainMenu = () => {
   const navigate = useNavigate();
@@ -13,10 +13,7 @@ const MainMenu = () => {
     
     const fetchUserName = async () => {
       const userId = localStorage.getItem("userId");
-      if (!userId) {
-        setLoading(false);
-        return;
-      }
+      if (!userId) return;
       
       try {
         const res = await fetch(`${API_BASE}/api/users/${userId}`);
@@ -36,60 +33,62 @@ const MainMenu = () => {
   }, []);
   
   const handleLogout = () => {
+    // Limpiar token del localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
+    // Redirigir al login
     navigate("/login");
   };
 
   return (
     <div className="main-menu-container">
-      {/* Título y mensaje de bienvenida */}
-      <div className="main-menu-header">
-        <h1 className="main-menu-title">Menú Principal</h1>
-        <p className="welcome-message">
-          {loading ? "Cargando..." : `¡Hola ${userName}!`}
-        </p>
-      </div>
+      <h2>Menú Principal</h2>
       
+      <div className="welcome-message">
+        {loading ? "Cargando..." : `¡Hola ${userName}!`}
+      </div>
+
       <div className="main-menu-form">
-        {/* Primer botón rectangular - Entrenador Personal */}
+        {/* Botones del menú */}
         <button 
-          className="menu-button-large"
+          className="menu-button"
           onClick={() => navigate("/chatbot")}
         >
-          <span>💪 Mi entrenador personal</span>
+          <span className="menu-icon">💪</span>
+          Mi entrenador personal
+        </button>
+        
+        <button 
+          className="menu-button"
+          onClick={() => navigate("/rutinaviewer")}
+        >
+          <span className="menu-icon">📋</span>
+          Mi Rutina
         </button>
 
-        {/* Dos botones cuadrados - Rutina y Dieta */}
-        <div className="menu-grid">
-          <button 
-            className="menu-button-square"
-            onClick={() => navigate("/rutinaviewer")}
-          >
-            <span>📋 Mi Rutina</span>
-          </button>
-          <button 
-            className="menu-button-square"
-            onClick={() => navigate("/dietaviewer")}
-          >
-            <span>🍎 Mi Dieta</span>
-          </button>
-        </div>
-
-        {/* Segundo botón rectangular - Mi Perfil */}
         <button 
-          className="menu-button-large"
+          className="menu-button"
+          onClick={() => navigate("/dietaviewer")}
+        >
+          <span className="menu-icon">🍎</span>
+          Mi Dieta
+        </button>
+
+        <button 
+          className="menu-button"
           onClick={() => navigate("/profile")}
         >
-          <span>👤 Mi Perfil</span>
+          <span className="menu-icon">👤</span>
+          Mi Perfil
         </button>
 
-        {/* Botón pequeño - Cerrar Sesión */}
+        {/* Botón de logout */}
         <button 
-          className="menu-button-small"
+          className="menu-button logout-button"
           onClick={handleLogout}
         >
-          <span>🚪 Cerrar Sesión</span>
+          <span className="menu-icon">🚪</span>
+          Cerrar Sesión
         </button>
       </div>
     </div>

@@ -312,6 +312,12 @@ function seleccionarAlimento(alimentos, cantidad = 1) {
       dieta += `• Pre-entreno: Carbohidratos de rápida absorción (plátano, avena) 30-60 min antes\n`;
       dieta += `• Post-entreno: Comida principal con proteína + carbohidratos dentro de 2 horas\n`;
       dieta += `• Resto del día: Distribuir calorías restantes equitativamente\n\n`;
+    } else if (horario_preferido === "Mediodía") {
+      dieta += `Entrenas al mediodía:\n`;
+      dieta += `• Desayuno: Comida completa con proteína + carbohidratos 2-3 horas antes\n`;
+      dieta += `• Pre-entreno: Snack ligero (fruta, yogurt) 30-60 min antes si lo necesitas\n`;
+      dieta += `• Post-entreno: Almuerzo abundante con proteína + carbohidratos dentro de 1-2 horas\n`;
+      dieta += `• Resto del día: Distribuir calorías restantes entre merienda y cena\n\n`;
     } else if (horario_preferido === "Tarde") {
       dieta += `Entrenas por la tarde:\n`;
       dieta += `• Almuerzo: Mayor carga de carbohidratos 2-3 horas antes\n`;

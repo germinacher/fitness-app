@@ -184,7 +184,6 @@ const ProfileEdit = () => {
                     <option value="">Seleccionar...</option>
                     <option value="Vegano">Vegano</option>
                     <option value="Vegetariano">Vegetariano</option>
-                    <option value="Pescetariano">Pescetariano</option>
                     <option value="Ninguna">Ninguna</option>
                     </select>
                 </div>

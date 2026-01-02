@@ -1,49 +1,179 @@
+/* Register.css - Diseño oscuro optimizado */
+
 body {
   font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg, #28BCEC, #50DEFF);
+  background: #000000;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 * {
   box-sizing: border-box;
 }
 
+/* CONTENEDOR PRINCIPAL */
 .register-container {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: #1C1C1E;
   padding: 2rem 3rem;
   border-radius: 20px;
-  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.5);
   width: 100%;
   max-width: 1200px;
   text-align: center;
-  backdrop-filter: blur(10px);
 }
 
 .register-container h2 {
-  color: #009BD8;
+  color: #ffffff;
   margin-bottom: 1.5rem;
   font-size: 1.8rem;
+  font-weight: 600;
 }
 
+/* FORMULARIO */
 .register-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* Layout de dos columnas para desktop */
+/* GRUPOS DE FORMULARIO */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 0.5rem;
+}
+
+label {
+  color: #E5E5EA;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* INPUTS Y SELECTS */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 2px solid #3A3A3C;
+  font-size: 1rem;
+  background-color: #2C2C2E;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #0A84FF;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.1);
+}
+
+input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+select option {
+  background-color: #2C2C2E;
+  color: #ffffff;
+}
+
+/* CHECKBOXES */
+.checkbox-group {
+  margin-top: 1rem;
+}
+
+.checkbox-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.checkbox-list label {
+  font-weight: 500;
+  color: #E5E5EA;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.checkbox-list input[type="checkbox"] {
+  width: auto;
+  cursor: pointer;
+  accent-color: #0A84FF;
+}
+
+/* BOTÓN VOLVER */
+.back-row {
+  text-align: left;
+  margin-bottom: 0.5rem;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: #0A84FF;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 0;
+}
+
+.back-button:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* BOTÓN PRINCIPAL */
+.register-button {
+  background-color: #0A84FF;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 1.2rem;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(10, 132, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.register-button:hover {
+  background-color: #0077ED;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(10, 132, 255, 0.4);
+}
+
+.register-button:active {
+  transform: translateY(0);
+}
+
+.register-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* LAYOUT DE DOS COLUMNAS (Desktop) */
 @media (min-width: 769px) {
   .register-form {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    align-items: start;
   }
 
   .form-column {
@@ -53,18 +183,18 @@ body {
   }
 
   .form-section {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: #2C2C2E;
     padding: 1.5rem;
     border-radius: 15px;
-    border: 1px solid rgba(46, 125, 50, 0.1);
+    border: 1px solid #3A3A3C;
   }
 
   .form-section h3 {
-    color: #009BD8;
+    color: #ffffff;
     font-size: 1.1rem;
     margin-bottom: 1rem;
     text-align: left;
-    border-bottom: 2px solid #009BD8;
+    border-bottom: 2px solid #0A84FF;
     padding-bottom: 0.5rem;
   }
 
@@ -74,209 +204,58 @@ body {
   }
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 0.5rem;
-}
-
-label {
-  color: #009BD8;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="number"],
-select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  transition: border-color 0.3s;
-}
-
-input:focus,
-select:focus {
-  border-color: #009BD8;
-  outline: none;
-}
-
-.checkbox-group {
-  margin-top: 1rem;
-}
-
-.checkbox-list {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-}
-
-.checkbox-list label {
-  font-weight: 500;
-  color: #444;
-}
-
-/* Botón "Volver" en formularios tipo register/profile */
-.back-row {
-  text-align: left;
-  margin-bottom: 0.5rem;
-}
-
-.back-button {
-  background: none;
-  border: none;
-  color: #009BD8;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  text-decoration: underline;
-}
-
-.register-button {
-  background-color: #009BD8;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.3s;
-  width: 100%;
-  margin-top: 1.2rem;
-}
-
-.register-button:hover {
-  background-color: #14ACE2;
-}
-
-/* Estilos responsivos para móviles */
+/* TABLETS */
 @media (max-width: 768px) {
-  body {
-    padding: 0;
-    margin: 0;
-  }
-
   .register-container {
     width: 90%;
     padding: 1.5rem 2rem;
-    margin: 0 auto;
+    margin: 1rem auto;
     max-width: 400px;
-    position: relative;
-    left: 0;
-    right: 0;
   }
 
   .register-container h2 {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
   }
 
   .register-form {
-    display: flex;
-    flex-direction: column;
     gap: 0.8rem;
   }
 
   .form-section {
     background-color: transparent;
-    padding: 0;
+    padding: 1rem 0;
     border: none;
-    border-radius: 0;
   }
 
   .form-section h3 {
-    color: #009BD8;
+    color: #ffffff;
     font-size: 1rem;
-    margin-bottom: 0.5rem;
     text-align: center;
-    border-bottom: 1px solid #009BD8;
-    padding-bottom: 0.3rem;
-  }
-
-  .form-group {
-    margin-bottom: 0.5rem;
-  }
-
-  label {
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="number"],
-  select {
-    padding: 12px;
-    font-size: 1rem;
+    border-bottom: 2px solid #0A84FF;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .checkbox-list {
     flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  .checkbox-list label {
-    font-size: 0.85rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .register-button {
-    padding: 14px;
-    font-size: 1rem;
-    margin-top: 1rem;
+    gap: 0.5rem;
   }
 }
 
-/* Estilos para pantallas muy pequeñas (móviles pequeños) */
+/* MÓVILES */
 @media (max-width: 480px) {
-  body {
-    padding: 0;
-    margin: 0;
-  }
-
   .register-container {
     width: 95%;
     padding: 1rem 1.5rem;
-    margin: 0 auto;
     max-width: 350px;
-    position: relative;
-    left: 0;
-    right: 0;
   }
 
   .register-container h2 {
     font-size: 1.3rem;
   }
 
-  .register-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .form-section {
-    background-color: transparent;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-  }
-
-  .form-section h3 {
-    color: #009BD8;
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
-    text-align: center;
-    border-bottom: 1px solid #009BD8;
-    padding-bottom: 0.2rem;
+  label {
+    font-size: 0.85rem;
   }
 
   input[type="text"],
@@ -290,10 +269,6 @@ select:focus {
 
   .register-button {
     padding: 12px;
-    font-size: 0.9rem;
-  }
-
-  .checkbox-list label {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
   }
 }
