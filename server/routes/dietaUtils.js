@@ -2,64 +2,64 @@
 const alimentosDB = {
     proteinas: {
       animales: [
-        { nombre: 'Pechuga de pollo', proteina: 31, carbs: 0, grasa: 3.6, por: '100g', excluir: [] },
-        { nombre: 'Pechuga de pavo', proteina: 29, carbs: 0, grasa: 1, por: '100g', excluir: [] },
-        { nombre: 'Pescado blanco (merluza)', proteina: 17, carbs: 0, grasa: 2, por: '100g', excluir: [] },
-        { nombre: 'Salmón', proteina: 20, carbs: 0, grasa: 13, por: '100g', excluir: [] },
-        { nombre: 'Atún en agua', proteina: 25, carbs: 0, grasa: 1, por: '100g', excluir: [] },
-        { nombre: 'Huevos', proteina: 6, carbs: 0.6, grasa: 5, por: 'unidad', excluir: ['Huevos'] },
-        { nombre: 'Yogur griego natural', proteina: 10, carbs: 4, grasa: 0.4, por: '100g', excluir: ['Lácteos', 'Lactosa'] },
-        { nombre: 'Queso cottage bajo en grasa', proteina: 11, carbs: 3.4, grasa: 4.3, por: '100g', excluir: ['Lácteos', 'Lactosa'] },
+        { nombre: 'Pechuga de pollo', proteina: 31, carbs: 0, grasa: 3.6, por: '100g', excluir: [], prioridad: 1 },
+        { nombre: 'Pescado blanco (merluza)', proteina: 17, carbs: 0, grasa: 2, por: '100g', excluir: [], prioridad: 1 },
+        { nombre: 'Atún en agua', proteina: 25, carbs: 0, grasa: 1, por: '100g', excluir: [], prioridad: 1 },
+        { nombre: 'Huevos', proteina: 6, carbs: 0.6, grasa: 5, por: 'unidad', excluir: ['Huevos'], prioridad: 1 },
+        { nombre: 'Salmón', proteina: 20, carbs: 0, grasa: 13, por: '100g', excluir: [], prioridad: 2 },
+        { nombre: 'Yogur griego natural', proteina: 10, carbs: 4, grasa: 0.4, por: '100g', excluir: ['Lácteos', 'Lactosa'], prioridad: 2 },
+        { nombre: 'Pechuga de pavo', proteina: 29, carbs: 0, grasa: 1, por: '100g', excluir: [], prioridad: 3 },
+        { nombre: 'Queso cottage bajo en grasa', proteina: 11, carbs: 3.4, grasa: 4.3, por: '100g', excluir: ['Lácteos', 'Lactosa'], prioridad: 3 },
       ],
       vegetales: [
-        { nombre: 'Tofu firme', proteina: 8, carbs: 2, grasa: 4, por: '100g', excluir: [] },
-        { nombre: 'Tempeh', proteina: 19, carbs: 9, grasa: 11, por: '100g', excluir: [] },
-        { nombre: 'Seitán', proteina: 25, carbs: 14, grasa: 2, por: '100g', excluir: ['Gluten'] },
-        { nombre: 'Lentejas cocidas', proteina: 9, carbs: 20, grasa: 0.4, por: '100g', excluir: [] },
-        { nombre: 'Garbanzos cocidos', proteina: 9, carbs: 27, grasa: 2.6, por: '100g', excluir: [] },
-        { nombre: 'Frijoles negros cocidos', proteina: 8.9, carbs: 24, grasa: 0.5, por: '100g', excluir: [] },
-        { nombre: 'Quinoa cocida', proteina: 4.4, carbs: 21, grasa: 1.9, por: '100g', excluir: [] },
+        { nombre: 'Tofu firme', proteina: 8, carbs: 2, grasa: 4, por: '100g', excluir: [], prioridad: 1 }, // ← MÁS COMÚN
+        { nombre: 'Lentejas cocidas', proteina: 9, carbs: 20, grasa: 0.4, por: '100g', excluir: [], prioridad: 1 },
+        { nombre: 'Garbanzos cocidos', proteina: 9, carbs: 27, grasa: 2.6, por: '100g', excluir: [], prioridad: 1 },
+        { nombre: 'Frijoles negros cocidos', proteina: 8.9, carbs: 24, grasa: 0.5, por: '100g', excluir: [], prioridad: 2 },
+        { nombre: 'Quinoa cocida', proteina: 4.4, carbs: 21, grasa: 1.9, por: '100g', excluir: [], prioridad: 2 },
+        { nombre: 'Tempeh', proteina: 19, carbs: 9, grasa: 11, por: '100g', excluir: [], prioridad: 3 },
+        { nombre: 'Seitán', proteina: 25, carbs: 14, grasa: 2, por: '100g', excluir: ['Gluten'], prioridad: 4 }, // ← MENOS COMÚN
       ]
     },
     carbohidratos: {
       sinGluten: [
-        { nombre: 'Arroz integral', proteina: 2.6, carbs: 23, grasa: 0.9, por: '100g cocido', excluir: [] },
-        { nombre: 'Arroz blanco', proteina: 2.7, carbs: 28, grasa: 0.3, por: '100g cocido', excluir: [] },
-        { nombre: 'Quinoa', proteina: 4.4, carbs: 21, grasa: 1.9, por: '100g cocido', excluir: [] },
-        { nombre: 'Patata cocida', proteina: 2, carbs: 20, grasa: 0.1, por: '100g', excluir: [] },
-        { nombre: 'Batata/boniato', proteina: 1.6, carbs: 20, grasa: 0.1, por: '100g', excluir: [] },
-        { nombre: 'Avena sin gluten', proteina: 2.4, carbs: 12, grasa: 1.4, por: '30g', excluir: [] },
+        { nombre: 'Avena sin gluten', proteina: 2.4, carbs: 12, grasa: 1.4, por: '30g', excluir: [], prioridad: 1 }, // ← MÁS COMÚN
+        { nombre: 'Arroz blanco', proteina: 2.7, carbs: 28, grasa: 0.3, por: '100g cocido', excluir: [], prioridad: 1 },
+        { nombre: 'Patata cocida', proteina: 2, carbs: 20, grasa: 0.1, por: '100g', excluir: [], prioridad: 1 },
+        { nombre: 'Arroz integral', proteina: 2.6, carbs: 23, grasa: 0.9, por: '100g cocido', excluir: [], prioridad: 2 },
+        { nombre: 'Batata/boniato', proteina: 1.6, carbs: 20, grasa: 0.1, por: '100g', excluir: [], prioridad: 2 },
+        { nombre: 'Quinoa', proteina: 4.4, carbs: 21, grasa: 1.9, por: '100g cocido', excluir: [], prioridad: 3 },
       ],
       conGluten: [
-        { nombre: 'Pasta integral', proteina: 5, carbs: 26, grasa: 0.9, por: '100g cocida', excluir: ['Gluten'] },
-        { nombre: 'Pan integral', proteina: 3.5, carbs: 15, grasa: 1, por: 'rebanada (30g)', excluir: ['Gluten'] },
-        { nombre: 'Avena tradicional', proteina: 2.4, carbs: 12, grasa: 1.4, por: '30g', excluir: ['Gluten'] },
-        { nombre: 'Tortillas integrales', proteina: 2.5, carbs: 15, grasa: 1.5, por: 'unidad', excluir: ['Gluten'] },
+        { nombre: 'Pan integral', proteina: 3.5, carbs: 15, grasa: 1, por: 'rebanada (30g)', excluir: ['Gluten'], prioridad: 1 }, // ← MÁS COMÚN
+        { nombre: 'Avena tradicional', proteina: 2.4, carbs: 12, grasa: 1.4, por: '30g', excluir: ['Gluten'], prioridad: 1 },
+        { nombre: 'Pasta integral', proteina: 5, carbs: 26, grasa: 0.9, por: '100g cocida', excluir: ['Gluten'], prioridad: 2 },
+        { nombre: 'Tortillas integrales', proteina: 2.5, carbs: 15, grasa: 1.5, por: 'unidad', excluir: ['Gluten'], prioridad: 3 },
       ]
     },
     grasasSaludables: [
-      { nombre: 'Aguacate', proteina: 2, carbs: 9, grasa: 15, por: '100g', excluir: [] },
-      { nombre: 'Aceite de oliva', proteina: 0, carbs: 0, grasa: 14, por: '1 cucharada', excluir: [] },
-      { nombre: 'Almendras', proteina: 6, carbs: 6, grasa: 14, por: '30g (puñado)', excluir: ['Frutos secos'] },
-      { nombre: 'Nueces', proteina: 4.3, carbs: 3.9, grasa: 18, por: '30g', excluir: ['Frutos secos'] },
-      { nombre: 'Mantequilla de maní natural', proteina: 7, carbs: 6, grasa: 16, por: '2 cucharadas', excluir: ['Frutos secos'] },
-      { nombre: 'Semillas de chía', proteina: 4.7, carbs: 12, grasa: 8.6, por: '30g', excluir: [] },
-      { nombre: 'Semillas de calabaza', proteina: 5.2, carbs: 3.8, grasa: 12, por: '30g', excluir: [] },
+      { nombre: 'Aguacate', proteina: 2, carbs: 9, grasa: 15, por: '100g', excluir: [], prioridad: 1 },
+      { nombre: 'Aceite de oliva', proteina: 0, carbs: 0, grasa: 14, por: '1 cucharada', excluir: [], prioridad: 1 },
+      { nombre: 'Almendras', proteina: 6, carbs: 6, grasa: 14, por: '30g (puñado)', excluir: ['Frutos secos'], prioridad: 1 },
+      { nombre: 'Nueces', proteina: 4.3, carbs: 3.9, grasa: 18, por: '30g', excluir: ['Frutos secos'], prioridad: 1 },
+      { nombre: 'Mantequilla de maní natural', proteina: 7, carbs: 6, grasa: 16, por: '2 cucharadas', excluir: ['Frutos secos'], prioridad: 1 },
+      { nombre: 'Semillas de chía', proteina: 4.7, carbs: 12, grasa: 8.6, por: '30g', excluir: [], prioridad: 2 },
+      { nombre: 'Semillas de calabaza', proteina: 5.2, carbs: 3.8, grasa: 12, por: '30g', excluir: [], prioridad: 3 },
     ],
     verduras: [
-      { nombre: 'Brócoli', proteina: 2.8, carbs: 7, grasa: 0.4, por: '100g', excluir: [] },
-      { nombre: 'Espinacas', proteina: 2.9, carbs: 3.6, grasa: 0.4, por: '100g', excluir: [] },
-      { nombre: 'Lechuga mixta', proteina: 1.4, carbs: 2.9, grasa: 0.2, por: '100g', excluir: [] },
-      { nombre: 'Tomate', proteina: 0.9, carbs: 3.9, grasa: 0.2, por: '100g', excluir: [] },
-      { nombre: 'Zanahoria', proteina: 0.9, carbs: 10, grasa: 0.2, por: '100g', excluir: [] },
-      { nombre: 'Calabacín', proteina: 1.2, carbs: 3.1, grasa: 0.3, por: '100g', excluir: [] },
+      { nombre: 'Brócoli', proteina: 2.8, carbs: 7, grasa: 0.4, por: '100g', excluir: [], prioridad: 1 },
+      { nombre: 'Espinacas', proteina: 2.9, carbs: 3.6, grasa: 0.4, por: '100g', excluir: [], prioridad: 1 },
+      { nombre: 'Lechuga mixta', proteina: 1.4, carbs: 2.9, grasa: 0.2, por: '100g', excluir: [], prioridad: 1 },
+      { nombre: 'Tomate', proteina: 0.9, carbs: 3.9, grasa: 0.2, por: '100g', excluir: [], prioridad: 1 },
+      { nombre: 'Zanahoria', proteina: 0.9, carbs: 10, grasa: 0.2, por: '100g', excluir: [], prioridad: 1 },
+      { nombre: 'Calabacín', proteina: 1.2, carbs: 3.1, grasa: 0.3, por: '100g', excluir: [], prioridad: 1 },
     ],
     frutas: [
-      { nombre: 'Manzana', proteina: 0.3, carbs: 14, grasa: 0.2, por: 'unidad mediana', excluir: ['Fructosa'] },
-      { nombre: 'Plátano', proteina: 1.1, carbs: 23, grasa: 0.3, por: 'unidad', excluir: ['Fructosa'] },
-      { nombre: 'Fresas', proteina: 0.7, carbs: 8, grasa: 0.3, por: '100g', excluir: ['Fructosa'] },
-      { nombre: 'Arándanos', proteina: 0.7, carbs: 14, grasa: 0.3, por: '100g', excluir: ['Fructosa'] },
-      { nombre: 'Naranja', proteina: 0.9, carbs: 12, grasa: 0.1, por: 'unidad', excluir: ['Fructosa'] },
+      { nombre: 'Manzana', proteina: 0.3, carbs: 14, grasa: 0.2, por: 'unidad mediana', excluir: ['Fructosa'], prioridad: 1 },
+      { nombre: 'Plátano', proteina: 1.1, carbs: 23, grasa: 0.3, por: 'unidad', excluir: ['Fructosa'], prioridad: 1 },
+      { nombre: 'Fresas', proteina: 0.7, carbs: 8, grasa: 0.3, por: '100g', excluir: ['Fructosa'], prioridad: 1 },
+      { nombre: 'Arándanos', proteina: 0.7, carbs: 14, grasa: 0.3, por: '100g', excluir: ['Fructosa'], prioridad: 1 },
+      { nombre: 'Naranja', proteina: 0.9, carbs: 12, grasa: 0.1, por: 'unidad', excluir: ['Fructosa'], prioridad: 1 },
     ]
   };
 
@@ -97,20 +97,34 @@ function filtrarAlimentos(categoria, alergias, intolerancias, preferencias) {
     });
   }
   
-  // FUNCIÓN PARA SELECCIONAR ALIMENTOS ALEATORIOS
-  function seleccionarAlimento(alimentos, cantidad = 1) {
-    if (alimentos.length === 0) return [];
-    const seleccionados = [];
-    const copiaAlimentos = [...alimentos];
+// Función para seleccionar alimentos priorizando los más comunes
+function seleccionarAlimento(alimentos, cantidad = 1) {
+  if (alimentos.length === 0) return [];
+  
+  // Ordenar por prioridad (1 = más común, 4 = menos común)
+  const alimentosOrdenados = [...alimentos].sort((a, b) => {
+    const prioridadA = a.prioridad || 99;
+    const prioridadB = b.prioridad || 99;
+    return prioridadA - prioridadB;
+  });
+  
+  const seleccionados = [];
+  
+  for (let i = 0; i < cantidad && alimentosOrdenados.length > 0; i++) {
+    // Seleccionar del top 50% más comunes (prioridad 1-2)
+    const alimentosComunes = alimentosOrdenados.filter(a => (a.prioridad || 99) <= 2);
+    const poolSeleccion = alimentosComunes.length > 0 ? alimentosComunes : alimentosOrdenados;
     
-    for (let i = 0; i < cantidad && copiaAlimentos.length > 0; i++) {
-      const index = Math.floor(Math.random() * copiaAlimentos.length);
-      seleccionados.push(copiaAlimentos[index]);
-      copiaAlimentos.splice(index, 1);
-    }
+    const index = Math.floor(Math.random() * Math.min(poolSeleccion.length, 3)); // Elige entre los 3 primeros
+    seleccionados.push(poolSeleccion[index]);
     
-    return seleccionados;
+    // Remover del array para no repetir
+    const indexOriginal = alimentosOrdenados.indexOf(poolSeleccion[index]);
+    alimentosOrdenados.splice(indexOriginal, 1);
   }
+  
+  return seleccionados;
+}
   
   // FUNCIÓN PARA CALCULAR PORCIONES SEGÚN CALORÍAS OBJETIVO
   //function calcularPorcion(alimento, caloriasObjetivo, macroObjetivo) {
@@ -311,7 +325,7 @@ function filtrarAlimentos(categoria, alergias, intolerancias, preferencias) {
     }
   
     // ===== PLAN DE COMIDAS ESPECÍFICO =====
-    dieta += `🍽️ PLAN DE COMIDAS DETALLADO:\n\n`;
+    dieta += `🍽️ IDEA PARA PLAN DE COMIDAS:\n\n`;
     
     // DESAYUNO
     const calDesayuno = Math.round(caloriasDiarias * distribucionComidas.desayuno);
