@@ -4,38 +4,38 @@ const ejerciciosDB = {
       compuestos: [
         { nombre: 'Press de banca', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
         { nombre: 'Press inclinado', complejidad: 'alta', prioridad: 2, tipo: 'dinamico' },
-        { nombre: 'Fondos en paralelas', complejidad: 'media', prioridad: 3, tipo: 'dinamico' }
+        { nombre: 'Fondos en paralelas', complejidad: 'media', prioridad: 4, tipo: 'dinamico' }
       ],
       aislamiento: [
-        { nombre: 'Aperturas de pecho en máquina', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Aperturas de pecho en máquina', complejidad: 'baja', prioridad: 2, tipo: 'dinamico' },
         { nombre: 'Aperturas en polea alta', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' },
         { nombre: 'Press en máquina', complejidad: 'baja', prioridad: 6, tipo: 'dinamico' }
       ]
     },
     espalda: {
       compuestos: [
-        { nombre: 'Dominadas', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Dominadas', complejidad: 'alta', prioridad: 4, tipo: 'dinamico' },
         { nombre: 'Jalón al pecho', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
-        { nombre: 'Remo con barra', complejidad: 'alta', prioridad: 2, tipo: 'dinamico' },
-        { nombre: 'Remo en polea sentado', complejidad: 'media', prioridad: 3, tipo: 'dinamico' }
+        { nombre: 'Remo con barra', complejidad: 'alta', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Remo en polea sentado', complejidad: 'media', prioridad: 2, tipo: 'dinamico' }
       ],
       aislamiento: [
-        { nombre: 'Jalón agarre cerrado', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' },
+        { nombre: 'Jalón agarre cerrado', complejidad: 'baja', prioridad: 2, tipo: 'dinamico' },
         { nombre: 'Jalón agarre neutro', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' },
-        { nombre: 'Remo con mancuerna unilateral', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' },
+        { nombre: 'Remo con mancuerna unilateral', complejidad: 'baja', prioridad: 3, tipo: 'dinamico' },
         { nombre: 'Pullover en polea', complejidad: 'baja', prioridad: 6, tipo: 'dinamico' }
       ]
     },
     hombros: {
       compuestos: [
         { nombre: 'Press militar', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
-        { nombre: 'Press con mancuernas', complejidad: 'alta', prioridad: 2, tipo: 'dinamico' }
+        { nombre: 'Press con mancuernas', complejidad: 'alta', prioridad: 4, tipo: 'dinamico' }
       ],
       aislamiento: [
-        { nombre: 'Elevaciones laterales', complejidad: 'media', prioridad: 3, tipo: 'dinamico' },
-        { nombre: 'Aperturas invertidas en máquina', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' },
-        { nombre: 'Elevaciones frontales', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' },
-        { nombre: 'Encogimientos de trapecios', complejidad: 'baja', prioridad: 6, tipo: 'dinamico' }
+        { nombre: 'Elevaciones laterales', complejidad: 'media', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Aperturas invertidas en máquina', complejidad: 'baja', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Elevaciones frontales', complejidad: 'baja', prioridad: 2, tipo: 'dinamico' },
+        { nombre: 'Encogimientos de trapecios', complejidad: 'baja', prioridad: 3, tipo: 'dinamico' }
       ]
     },
     piernas: {
@@ -70,10 +70,10 @@ const ejerciciosDB = {
         { nombre: 'Curl concentrado', complejidad: 'baja', prioridad: 5, tipo: 'dinamico' }
       ],
       triceps: [
-        { nombre: 'Fondos en paralelas para tríceps', complejidad: 'alta', prioridad: 1, tipo: 'dinamico' },
-        { nombre: 'Tríceps press francés', complejidad: 'media', prioridad: 2, tipo: 'dinamico' },
-        { nombre: 'Extensión de tríceps con polea', complejidad: 'baja', prioridad: 3, tipo: 'dinamico' },
-        { nombre: 'Extensión de tríceps con soga', complejidad: 'baja', prioridad: 4, tipo: 'dinamico' }
+        { nombre: 'Fondos en paralelas para tríceps', complejidad: 'alta', prioridad: 3, tipo: 'dinamico' },
+        { nombre: 'Tríceps press francés', complejidad: 'media', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Extensión de tríceps con polea', complejidad: 'baja', prioridad: 1, tipo: 'dinamico' },
+        { nombre: 'Extensión de tríceps con soga', complejidad: 'baja', prioridad: 2, tipo: 'dinamico' }
       ]
     },
     core: {
@@ -308,7 +308,7 @@ const ejerciciosDB = {
           // diferencia ejercicios dinamicos de isometricos
           if (grupo.nombre === 'core') {
             if (ejercicio.tipo === 'isometrico') {
-              diaTexto += `${index + 1}. ${ejercicioFinal}: ${seriesAjustadas} x 30-60seg\n`;
+              diaTexto += `${index + 1}. ${ejercicioFinal}: ${seriesAjustadas} x 30-60seg`;
             } else {
               diaTexto += `${index + 1}. ${ejercicioFinal}: ${seriesAjustadas}x${config.reps} @RIR${rirEjercicio}\n`;
             }
@@ -557,7 +557,7 @@ function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, sem
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 2 - Empuje (Push)', [
-        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
+        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
         ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 2 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
@@ -573,7 +573,7 @@ function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, sem
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 5 - Empuje (Push - Variación)', [
-        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
+        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
         ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
@@ -590,7 +590,7 @@ function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, sem
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 3 - Empuje (Push)', [
-        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
+        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
         ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
@@ -606,7 +606,7 @@ function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, sem
       ], config, tiempoInfo, adaptaciones, semana);
       
       r += construirDia('DÍA 6 - Empuje (Push - Variación)', [
-        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 3 : 4 },
+        { nombre: 'pecho', label: 'PECHO', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
         { nombre: 'triceps', label: 'TRÍCEPS', cantidad: adaptaciones.enfasisPiernas ? 2 : 3 },
         ...(adaptaciones.enfasisCore ? [{ nombre: 'core', label: 'CORE', cantidad: 3 }] : [])
       ], config, tiempoInfo, adaptaciones, semana);
