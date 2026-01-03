@@ -435,6 +435,38 @@ body {
     .rutina-normal-line {
       font-size: 0.9rem;
     }
+  
+    /* Dieta en tablets */
+    .dieta-main-title {
+      font-size: 1.2rem;
+    }
+  
+    .dieta-meal-title {
+      font-size: 1.05rem;
+      padding: 0.65rem 0.85rem;
+    }
+  
+    .dieta-section-subtitle {
+      font-size: 0.95rem;
+    }
+  
+    .dieta-food-item {
+      font-size: 0.9rem;
+      padding: 0.6rem 0.8rem;
+    }
+  
+    .dieta-macros-info {
+      font-size: 0.85rem;
+    }
+  
+    .dieta-tip-info {
+      font-size: 0.87rem;
+      padding: 0.55rem 0.8rem;
+    }
+  
+    .dieta-normal-line {
+      font-size: 0.9rem;
+    }
   }
   
   /* Responsive - Móviles */
@@ -530,6 +562,45 @@ body {
       font-size: 0.85rem;
       line-height: 1.6;
     }
+  
+    /* Dieta en móviles */
+    .dieta-main-title {
+      font-size: 1.1rem;
+      margin-top: 1.25rem;
+      padding-bottom: 0.4rem;
+    }
+  
+    .dieta-meal-title {
+      font-size: 1rem;
+      padding: 0.6rem 0.75rem;
+      margin-top: 1rem;
+    }
+  
+    .dieta-section-subtitle {
+      font-size: 0.9rem;
+      margin-top: 0.85rem;
+    }
+  
+    .dieta-food-item {
+      font-size: 0.85rem;
+      padding: 0.55rem 0.7rem;
+      margin-bottom: 0.4rem;
+    }
+  
+    .dieta-macros-info {
+      font-size: 0.8rem;
+      padding: 0.55rem 0.75rem;
+    }
+  
+    .dieta-tip-info {
+      font-size: 0.82rem;
+      padding: 0.5rem 0.7rem;
+    }
+  
+    .dieta-normal-line {
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
   }
   
   /* Móviles muy pequeños */
@@ -579,4 +650,121 @@ body {
     .rutina-normal-line {
       font-size: 0.8rem;
     }
+  
+    /* Dieta en móviles muy pequeños */
+    .dieta-main-title {
+      font-size: 1rem;
+    }
+  
+    .dieta-meal-title {
+      font-size: 0.95rem;
+      padding: 0.55rem 0.65rem;
+    }
+  
+    .dieta-food-item {
+      font-size: 0.8rem;
+      padding: 0.5rem 0.65rem;
+    }
+  
+    .dieta-macros-info {
+      font-size: 0.75rem;
+    }
+  
+    .dieta-tip-info {
+      font-size: 0.77rem;
+    }
+  
+    .dieta-normal-line {
+      font-size: 0.8rem;
+    }
+  }
+  
+  /* ===== ESTILOS PARA DIETA VIEWER ===== */
+  
+  /* Línea vacía (espaciador) */
+  .dieta-empty-line {
+    height: 8px;
+  }
+  
+  /* Título principal (emojis grandes: 🍎, 👤, 🎯, etc.) */
+  .dieta-main-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    border-bottom: 3px solid #0A84FF;
+    padding-bottom: 0.5rem;
+  }
+  
+  .dieta-main-title.first {
+    margin-top: 0;
+  }
+  
+  /* Título de comida (DESAYUNO, ALMUERZO, etc.) */
+  .dieta-meal-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0A84FF;
+    background-color: #2C2C2E;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+    border: 2px solid #0A84FF;
+  }
+  
+  /* Subtítulo de sección (INFORMACIÓN:, TIMING:) */
+  .dieta-section-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #64D2FF;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Item de comida (• Pechuga de pollo: 150g) */
+  .dieta-food-item {
+    background-color: #1C1C1E;
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid #0A84FF;
+    font-size: 0.95rem;
+    color: #E5E5EA;
+    line-height: 1.6;
+  }
+  
+  /* Información de macros */
+  .dieta-macros-info {
+    background-color: #2C2C2E;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: #64D2FF;
+    font-style: italic;
+    border: 1px solid #3A3A3C;
+  }
+  
+  /* Tips y consejos (💪, 🔥, ✅, etc.) */
+  .dieta-tip-info {
+    background-color: #1C1C1E;
+    padding: 0.6rem 0.9rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    border-left: 3px solid #FFD60A;
+    font-size: 0.92rem;
+    color: #E5E5EA;
+    line-height: 1.6;
+  }
+  
+  /* Línea normal */
+  .dieta-normal-line {
+    color: #E5E5EA;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
   }
