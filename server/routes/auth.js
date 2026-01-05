@@ -4,7 +4,7 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const { generateDieta } = require("./dietaUtils.js");
-const { generateRutina } = require("./rutinaUtils.js");
+const { generateRutina, completarSemana } = require("./rutinaUtils.js");
 
 // POST /api/register
 router.post("/register",
@@ -226,22 +226,87 @@ router.post("/users/:id/generate-plan", async (req, res) => {
     if (!user) return res.status(404).json({ error: "Usuario no encontrado" });
 
     // Generar rutina basada en la información
-    const rutina = generateRutina(userInfo, answers);
+    const rutina = generateRutina(userInfo, answers, 1);
     const dieta = generateDieta(userInfo, answers);
 
     // Actualizar usuario con la rutina y dieta generadas
     user.rutina = rutina.split('\n').filter(line => line.trim());
     user.dieta = dieta.split('\n').filter(line => line.trim());
+
+    user.semanaActual = 1; // Primera semana del ciclo
+
+    // Guardar respuestas del chatbot para futuras regeneraciones
+    user.dias_entrenamiento = answers.dias_entrenamiento;
+    user.duracion_entrenamiento = answers.duracion_entrenamiento;
+    user.experiencia = answers.experiencia;
+    user.enfoque = answers.enfoque;
+    user.peso_objetivo = answers.peso_objetivo;
+    user.horario_preferido = answers.horario_preferido;
+
     await user.save();
 
     return res.status(200).json({
       message: "Plan generado exitosamente",
       rutina,
-      dieta
+      dieta,
+      semanaActual: 1
     });
   } catch (err) {
     console.error(err);
     return res.status(500).json({ error: "Error interno del servidor" });
+  }
+});
+
+router.post('/users/:id/completar-semana', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+
+    // Preparar userInfo
+    const userInfo = {
+      objetivo: user.objetivo,
+      infoPersonal: user.infoPersonal,
+      preferencias: user.preferencias,
+      alergias: user.alergias,
+      restricciones: user.restricciones,
+      intolerancias: user.intolerancias,
+      genero: user.genero
+    };
+
+    // ========== USAR ANSWERS GUARDADOS ==========
+    const answers = {
+      dias_entrenamiento: user.dias_entrenamiento,
+      duracion_entrenamiento: user.duracion_entrenamiento,
+      experiencia: user.experiencia,
+      enfoque: user.enfoque,
+      horario_preferido: user.horario_preferido,
+      peso_objetivo: user.peso_objetivo
+    };
+
+    const semanaActual = user.semanaActual || 1;
+
+    // Llamar a completarSemana
+    const resultado = completarSemana(userInfo, answers, semanaActual);
+
+    // Actualizar BD
+    user.rutina = resultado.rutina.split('\n');
+    user.semanaActual = resultado.semanaActual;
+    await user.save();
+
+    res.json({
+      message: 'Rutina actualizada',
+      rutina: user.rutina,
+      semanaActual: resultado.semanaActual,
+      cicloCompletado: resultado.cicloCompletado
+    });
+
+  } catch (err) {
+    console.error('Error al completar semana:', err);
+    res.status(500).json({ error: 'Error al generar nueva rutina' });
   }
 });
 

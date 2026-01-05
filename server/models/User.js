@@ -21,6 +21,17 @@ const userSchema = new mongoose.Schema({
   intolerancias: { type: [String], required: true },
   dieta: { type: [String], default: [] }, // ids de platos
   rutina: { type: [String], default: [] }, // ids de ejercicios
+
+  // Respuestas del chatbot para regenerar rutinas
+  dias_entrenamiento: { type: String }, // "3 días", "4 días", etc.
+  duracion_entrenamiento: { type: String }, // "30 minutos", "60 minutos", etc.
+  experiencia: { type: String }, // "Principiante", "Intermedio", "Avanzado"
+  enfoque: { type: String }, // "Adaptada", "Balanceada"
+  peso_objetivo: { type: Number }, // kg
+  horario_preferido: { type: String }, // "Mañana", "Tarde", etc.
+  
+  // Control de progresión semanal
+  semanaActual: { type: Number, default: 1, min: 1, max: 4 },
 }, { timestamps: true }); // añade createdAt y updatedAt
 
 module.exports = mongoose.model("User", userSchema);

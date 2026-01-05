@@ -662,5 +662,20 @@ function generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, sem
     return generarRutinaHipertrofia(numDias, config, tiempoInfo, adaptaciones, semana);
   }
   
-  module.exports = { generateRutina };
+  function completarSemana(userInfo, answers, semanaActual) {
+    // Calcular nueva semana (ciclo 1-4)
+    const nuevaSemana = semanaActual === 4 ? 1 : semanaActual + 1;
+    
+    // Generar nueva rutina con la nueva semana
+    const nuevaRutina = generateRutina(userInfo, answers, nuevaSemana);
+    
+    return {
+      rutina: nuevaRutina,
+      semanaActual: nuevaSemana,
+      cicloCompletado: semanaActual === 4
+    };
+  }
+  
+  // Exportar la nueva función
+  module.exports = { generateRutina, completarSemana };
   
