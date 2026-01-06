@@ -4,13 +4,21 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const helmet = require("helmet");        // Opcional, seguridad
 const rateLimit = require("express-rate-limit"); // Opcional
+const path = require("path"); // para build
 
 const app = express();
 
+//nueva
+app.set("trust proxy", 1);
+
 // Middlewares globales
 app.use(helmet());
-app.use(cors({ origin: "http://localhost:3000" })); // permite peticiones desde frontend
+app.use(cors()); // para build
+// app.use(cors({ origin: "http://localhost:3000" })); // permite peticiones desde frontend
 app.use(express.json()); // parsea JSON entrante
+
+// para build
+app.use(express.static(path.join(__dirname, "../registro-v2/build")));
 
 // Limitar peticiones a 100 por 15 minutos (ejemplo del opcional)
 const limiter = rateLimit({
@@ -35,8 +43,14 @@ mongoose.connect(uri, {
 const authRoutes = require("./routes/auth");
 app.use("/api", authRoutes); // todas las rutas empiezan con /api
 
+// para build
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, "../registro-v2/build/index.html"));
+});
+
 // Iniciar servidor
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
