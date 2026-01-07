@@ -443,14 +443,14 @@ const ejerciciosDB = {
       } else if (semanaActual % 4 === 3) {
         rutina += `• Esta es tu SEMANA MÁS INTENSA\n`;
         rutina += `• Lleva los ejercicios principales cerca del fallo (RIR 0-1)\n`;
-        rutina += `• Es normal sentirse más cansado\n`;
+        rutina += `• Es normal sentir más cansancio\n`;
         rutina += `• Próxima semana será DELOAD (descanso activo)\n`;
       }
       rutina += `\n`;
     } else {
       rutina += `\n🔄 DESPUÉS DEL DELOAD:\n`;
       rutina += `• La próxima semana vuelves al ciclo normal\n`;
-      rutina += `• Deberías sentirte más fuerte y recuperado\n`;
+      rutina += `• Deberías sentirte más fuerte y recuperado/a\n`;
       rutina += `• Intenta superar los pesos de hace 4 semanas\n\n`;
     }
     

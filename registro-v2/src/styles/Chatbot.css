@@ -679,6 +679,38 @@ body {
     }
   }
   
+  /* ===== BOTÓN FIJO INFERIOR PARA RUTINA ===== */
+  .rutina-footer-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1C1C1E;
+    padding: 12px 16px;
+    border-top: 2px solid #2C2C2E;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+  }
+  
+  /* Responsive para tablets */
+  @media (max-width: 768px) {
+    .rutina-footer-button {
+      padding: 10px 12px;
+    }
+  }
+  
+  /* Responsive para móviles */
+  @media (max-width: 480px) {
+    .rutina-footer-button {
+      padding: 8px 10px;
+    }
+    
+    .rutina-footer-button .restart-button {
+      padding: 12px;
+      font-size: 0.9rem;
+    }
+  }
+  
   /* ===== ESTILOS PARA DIETA VIEWER ===== */
   
   /* Línea vacía (espaciador) */

@@ -79,7 +79,7 @@ const Register = () => {
         return;
       }
 
-      alert("Registro exitoso — id: " + data.userId);
+      alert("Registro exitoso");
       // Redirigir a login después del registro exitoso
       navigate("/login");
     } catch (err) {
