@@ -1,0 +1,205 @@
+/* =========================
+   RESET
+========================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #000;
+  overflow-x: hidden;
+}
+
+/* =========================
+   ROOT LAYOUT
+========================= */
+
+.profile-edit-container {
+  min-height: 100vh;
+  background-color: #1C1C1E;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.profile-header {
+  background-color: #2C2C2E;
+  padding: 1rem;
+  border-bottom: 2px solid #3A3A3C;
+}
+
+.profile-header h2 {
+  color: #fff;
+  font-size: 1.3rem;
+  margin: 0.5rem 0 0;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.profile-content {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+/* =========================
+   SIDEBAR TABS (FIXED WIDTH)
+========================= */
+
+.profile-tabs {
+  width: clamp(110px, 22vw, 240px);
+  min-width: clamp(110px, 22vw, 240px);
+  max-width: clamp(110px, 22vw, 240px);
+  background-color: #2C2C2E;
+  border-right: 2px solid #3A3A3C;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  color: #E5E5EA;
+  padding: 1rem 0.75rem;
+  font-size: clamp(0.75rem, 2.5vw, 1rem);
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  text-align: left;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tab-button.active {
+  color: #0A84FF;
+  border-left-color: #0A84FF;
+}
+
+/* =========================
+   CONTENT AREA
+========================= */
+
+.profile-form-container {
+  flex: 1;
+  width: 257px;
+  min-width: 0;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* =========================
+   FORM (LIMITED WIDTH)
+========================= */
+
+.profile-form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.profile-form h3 {
+  color: #fff;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #0A84FF;
+  padding-bottom: 0.5rem;
+}
+
+.profile-form h4 {
+  color: #E5E5EA;
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+}
+
+/* =========================
+   FORM ELEMENTS
+========================= */
+
+label {
+  color: #E5E5EA;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #3A3A3C;
+  background-color: #2C2C2E;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+}
+
+input:focus,
+select:focus {
+  border-color: #0A84FF;
+  outline: none;
+}
+
+.checkbox-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.checkbox-list label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.register-button {
+  background-color: #0A84FF;
+  color: #fff;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.register-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================
+   DESKTOP ENHANCEMENTS
+========================= */
+
+@media (min-width: 768px) {
+  .profile-header {
+    padding: 1.5rem 2rem;
+  }
+
+  .profile-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .profile-form-container {
+    padding: 2rem;
+  }
+
+  .profile-form {
+    max-width: 600px;
+  }
+}

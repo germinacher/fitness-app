@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
-import "../styles/Register.css";
+import "../styles/ProfileEdit.css";
 
 const ProfileEdit = () => {
   const navigate = useNavigate();
@@ -9,6 +9,7 @@ const ProfileEdit = () => {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [changingPwd, setChangingPwd] = useState(false);
+  const [activeTab, setActiveTab] = useState("datos"); // Control de tabs
 
   const [formData, setFormData] = useState({
     altura: "",
@@ -104,7 +105,6 @@ const ProfileEdit = () => {
     e.preventDefault();
     if (!userId) return;
     
-    // Validar que la nueva contraseña sea diferente a la actual
     if (pwdForm.currentPassword === pwdForm.newPassword) {
       alert("La nueva contraseña debe ser diferente a la contraseña actual");
       return;
@@ -138,131 +138,163 @@ const ProfileEdit = () => {
   if (loading) return <div className="register-container"><h2>Cargando perfil...</h2></div>;
 
   return (
-    <div className="register-container">
-        <div className="back-row">
-            <button
-            type="button"
-            onClick={() => navigate("/main-menu")}
-            className="back-button"
-            >
-            ← Volver
-            </button>
-        </div>
+    <div className="profile-edit-container">
+      <div className="profile-header">
+        <button
+          type="button"
+          onClick={() => navigate("/main-menu")}
+          className="back-button"
+        >
+          ← Volver
+        </button>
         <h2>Editar Perfil</h2>
-        <form onSubmit={handleSave} className="register-form">
-            <div className="form-column">
-                <div className="form-section">
-                    <h3>Datos Físicos</h3>
-                    <div className="form-group">
-                        <label>Altura (cm)</label>
-                        <input type="number" min="100" max="300" name="altura" value={formData.altura} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group">
-                        <label>Peso (kg)</label>
-                        <input type="number" min="35" max="300" name="peso" value={formData.peso} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group">
-                        <label>Edad</label>
-                        <input type="number" min="18" max="120" name="edad" value={formData.edad} onChange={handleChange} required />
-                    </div>
-                </div>
+      </div>
 
-                <div className="form-section">
-                <h3>Objetivos y Preferencias</h3>
-                <div className="form-group">
-                    <label>Objetivo principal</label>
-                    <select name="objetivo" value={formData.objetivo} onChange={handleChange} required>
-                    <option value="">Seleccionar...</option>
-                    <option value="Aumentar masa muscular">Aumentar masa muscular</option>
-                    <option value="Perder grasa">Perder grasa</option>
-                    <option value="Mantener peso">Mantener peso</option>
-                    </select>
-                </div>
-                <div className="form-group">
-                    <label>Preferencias Alimentarias</label>
-                    <select name="preferencias" value={formData.preferencias} onChange={handleChange} required>
-                    <option value="">Seleccionar...</option>
-                    <option value="Vegano">Vegano</option>
-                    <option value="Vegetariano">Vegetariano</option>
-                    <option value="Ninguna">Ninguna</option>
-                    </select>
-                </div>
-                </div>
-            </div>
-
-            <div className="form-column">
-                <div className="form-section">
-                    <h3>Alergias</h3>
-                    <div className="form-group checkbox-group">
-                        <div className="checkbox-list">
-                            {opciones.alergias.map((item) => (
-                                <label key={item}>
-                                <input type="checkbox" checked={formData.alergias.includes(item)} onChange={() => handleCheckboxChange("alergias", item)} />
-                                {item}
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="form-section">
-                    <h3>Restricciones Médicas</h3>
-                    <div className="form-group checkbox-group">
-                        <div className="checkbox-list">
-                            {opciones.restricciones.map((item) => (
-                                <label key={item}>
-                                <input type="checkbox" checked={formData.restricciones.includes(item)} onChange={() => handleCheckboxChange("restricciones", item)} />
-                                {item}
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                <div className="form-section">
-                    <h3>Intolerancias</h3>
-                    <div className="form-group checkbox-group">
-                        <div className="checkbox-list">
-                            {opciones.intolerancias.map((item) => (
-                                <label key={item}>
-                                <input type="checkbox" checked={formData.intolerancias.includes(item)} onChange={() => handleCheckboxChange("intolerancias", item)} />
-                                {item}
-                                </label>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="form-full-width">
-                <button type="submit" className="register-button" disabled={saving}>
-                {saving ? "Guardando..." : "Guardar cambios"}
-                </button>
-            </div>
-        </form>
-
-        <div className="form-full-width" style={{ marginTop: "1rem" }}>
-            <div className="form-section">
-                <h3>Cambiar contraseña</h3>
-                <form onSubmit={handlePwdChange}>
-                    <div className="form-group">
-                        <label>Contraseña actual</label>
-                        <input type="password" value={pwdForm.currentPassword} onChange={e => setPwdForm({ ...pwdForm, currentPassword: e.target.value })} required />
-                    </div>
-                    <div className="form-group">
-                        <label>Nueva contraseña</label>
-                        <input type="password" value={pwdForm.newPassword} onChange={e => setPwdForm({ ...pwdForm, newPassword: e.target.value })} required />
-                    </div>
-                    <button type="submit" className="register-button" disabled={changingPwd}>
-                        {changingPwd ? "Actualizando..." : "Actualizar contraseña"}
-                    </button>
-                </form>
-            </div>
+      <div className="profile-content">
+        {/* Navegación lateral con tabs */}
+        <div className="profile-tabs">
+          <button
+            className={`tab-button ${activeTab === "datos" ? "active" : ""}`}
+            onClick={() => setActiveTab("datos")}
+          >
+            Datos Físicos
+          </button>
+          <button
+            className={`tab-button ${activeTab === "objetivos" ? "active" : ""}`}
+            onClick={() => setActiveTab("objetivos")}
+          >
+            Objetivos
+          </button>
+          <button
+            className={`tab-button ${activeTab === "salud" ? "active" : ""}`}
+            onClick={() => setActiveTab("salud")}
+          >
+            Salud
+          </button>
+          <button
+            className={`tab-button ${activeTab === "password" ? "active" : ""}`}
+            onClick={() => setActiveTab("password")}
+          >
+            Contraseña
+          </button>
         </div>
+
+        {/* Contenido de cada tab */}
+        <div className="profile-form-container">
+          {activeTab === "datos" && (
+            <form onSubmit={handleSave} className="profile-form">
+              <h3>Datos Físicos</h3>
+              <div className="form-group">
+                <label>Altura (cm)</label>
+                <input type="number" min="100" max="300" name="altura" value={formData.altura} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <label>Peso (kg)</label>
+                <input type="number" min="35" max="300" name="peso" value={formData.peso} onChange={handleChange} required />
+              </div>
+              <div className="form-group">
+                <label>Edad</label>
+                <input type="number" min="18" max="120" name="edad" value={formData.edad} onChange={handleChange} required />
+              </div>
+              <button type="submit" className="register-button" disabled={saving}>
+                {saving ? "Guardando..." : "Guardar cambios"}
+              </button>
+            </form>
+          )}
+
+          {activeTab === "objetivos" && (
+            <form onSubmit={handleSave} className="profile-form">
+              <h3>Objetivos y Preferencias</h3>
+              <div className="form-group">
+                <label>Objetivo principal</label>
+                <select name="objetivo" value={formData.objetivo} onChange={handleChange} required>
+                  <option value="">Seleccionar...</option>
+                  <option value="Aumentar masa muscular">Aumentar masa muscular</option>
+                  <option value="Perder grasa">Perder grasa</option>
+                  <option value="Mantener peso">Mantener peso</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Preferencias Alimentarias</label>
+                <select name="preferencias" value={formData.preferencias} onChange={handleChange} required>
+                  <option value="">Seleccionar...</option>
+                  <option value="Vegano">Vegano</option>
+                  <option value="Vegetariano">Vegetariano</option>
+                  <option value="Ninguna">Ninguna</option>
+                </select>
+              </div>
+              <button type="submit" className="register-button" disabled={saving}>
+                {saving ? "Guardando..." : "Guardar cambios"}
+              </button>
+            </form>
+          )}
+
+          {activeTab === "salud" && (
+            <form onSubmit={handleSave} className="profile-form">
+              <h3>Información de Salud</h3>
+              
+              <div className="form-section-small">
+                <h4>Alergias</h4>
+                <div className="checkbox-list">
+                  {opciones.alergias.map((item) => (
+                    <label key={item}>
+                      <input type="checkbox" checked={formData.alergias.includes(item)} onChange={() => handleCheckboxChange("alergias", item)} />
+                      {item}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="form-section-small">
+                <h4>Restricciones Médicas</h4>
+                <div className="checkbox-list">
+                  {opciones.restricciones.map((item) => (
+                    <label key={item}>
+                      <input type="checkbox" checked={formData.restricciones.includes(item)} onChange={() => handleCheckboxChange("restricciones", item)} />
+                      {item}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div className="form-section-small">
+                <h4>Intolerancias</h4>
+                <div className="checkbox-list">
+                  {opciones.intolerancias.map((item) => (
+                    <label key={item}>
+                      <input type="checkbox" checked={formData.intolerancias.includes(item)} onChange={() => handleCheckboxChange("intolerancias", item)} />
+                      {item}
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <button type="submit" className="register-button" disabled={saving}>
+                {saving ? "Guardando..." : "Guardar cambios"}
+              </button>
+            </form>
+          )}
+
+          {activeTab === "password" && (
+            <form onSubmit={handlePwdChange} className="profile-form">
+              <h3>Cambiar Contraseña</h3>
+              <div className="form-group">
+                <label>Contraseña actual</label>
+                <input type="password" value={pwdForm.currentPassword} onChange={e => setPwdForm({ ...pwdForm, currentPassword: e.target.value })} required />
+              </div>
+              <div className="form-group">
+                <label>Nueva contraseña</label>
+                <input type="password" value={pwdForm.newPassword} onChange={e => setPwdForm({ ...pwdForm, newPassword: e.target.value })} required />
+              </div>
+              <button type="submit" className="register-button" disabled={changingPwd}>
+                {changingPwd ? "Actualizando..." : "Actualizar contraseña"}
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
 
 export default ProfileEdit;
-
-
