@@ -18,7 +18,7 @@ app.use(cors()); // para build
 app.use(express.json()); // parsea JSON entrante
 
 // para build
-app.use(express.static(path.join(__dirname, "../registro-v2/build")));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 // Limitar peticiones a 100 por 15 minutos (ejemplo del opcional)
 const limiter = rateLimit({
@@ -45,7 +45,7 @@ app.use("/api", authRoutes); // todas las rutas empiezan con /api
 
 // para build
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../registro-v2/build/index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
 
 // Iniciar servidor

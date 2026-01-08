@@ -92,7 +92,7 @@ const Chatbot = () => {
     const newAnswers = { ...answers, [questionId]: answer };
     setAnswers(newAnswers);
 
-    // Agregar mensaje del usuario
+    // Agregar mensaje del usuario NO BORRAR
     const question = questions.find(q => q.id === questionId);
     setMessages(prev => [...prev, {
       type: "user",
