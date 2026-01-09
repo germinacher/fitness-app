@@ -166,7 +166,7 @@ const RutinaViewer = () => {
           <div className="chat-messages">
             <div className="message bot">
               <div className="message-content">
-                  No hay dieta disponible todavía. Ve a "Mi entrenador personal" para generar tu plan.
+                  No hay rutina disponible todavía. Ve a "Mi entrenador personal" para generar tu plan.
               </div>
             </div>
           </div>
