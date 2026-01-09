@@ -1,0 +1,141 @@
+/* CustomAlert.css - Alertas personalizadas in-app */
+
+.custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .custom-alert-box {
+    background-color: #2C2C2E;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+    text-align: center;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .custom-alert-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+  
+  .custom-alert-title {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+  }
+  
+  .custom-alert-message {
+    color: #E5E5EA;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 24px 0;
+    white-space: pre-line;
+  }
+  
+  .custom-alert-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+  
+  .custom-alert-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: "Poppins", sans-serif;
+    min-width: 100px;
+  }
+  
+  .custom-alert-button.confirm {
+    background-color: #0A84FF;
+    color: white;
+  }
+  
+  .custom-alert-button.confirm:hover {
+    background-color: #0077ED;
+    transform: translateY(-2px);
+  }
+  
+  .custom-alert-button.confirm:active {
+    transform: translateY(0);
+  }
+  
+  .custom-alert-button.cancel {
+    background-color: #48484A;
+    color: white;
+  }
+  
+  .custom-alert-button.cancel:hover {
+    background-color: #5A5A5C;
+    transform: translateY(-2px);
+  }
+  
+  .custom-alert-button.cancel:active {
+    transform: translateY(0);
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .custom-alert-box {
+      padding: 20px;
+      max-width: 90%;
+    }
+  
+    .custom-alert-icon {
+      font-size: 2.5rem;
+    }
+  
+    .custom-alert-title {
+      font-size: 1.2rem;
+    }
+  
+    .custom-alert-message {
+      font-size: 0.95rem;
+    }
+  
+    .custom-alert-buttons {
+      flex-direction: column;
+    }
+  
+    .custom-alert-button {
+      width: 100%;
+    }
+  }
