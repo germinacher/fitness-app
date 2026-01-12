@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import "../styles/Register.css"; // Reutilizamos los mismos estilos
 
+import CustomAlert from "./CustomAlert";
+import useAlert from "../hooks/useAlert";
+
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -11,6 +14,8 @@ const Login = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const { showAlert, alertConfig } = useAlert();
 
   useEffect(() => {
     document.title = "Iniciar Sesión - Fitness App";
@@ -38,7 +43,7 @@ const Login = () => {
       
       if (!res.ok) {
         console.error(data);
-        alert(data.error || "Error al iniciar sesión");
+        showAlert("error", "Error", data.error || "Error al iniciar sesión");
         return;
       }
 
@@ -50,13 +55,13 @@ const Login = () => {
         localStorage.setItem("userId", data.userId);
       }
 
-      alert("Inicio de sesión exitoso");
+      //alert("Inicio de sesión exitoso");
       // Redirigir al menú principal usando React Router
       navigate("/main-menu");
       
     } catch (err) {
       console.error("Error de conexión:", err);
-      alert("No se pudo conectar al servidor");
+      showAlert("error", "Error", "No se pudo conectar al servidor");
     } finally {
       setIsLoading(false);
     }
@@ -117,6 +122,8 @@ const Login = () => {
           </p>
         </div>
       </form>
+
+      <CustomAlert {...alertConfig} />
     </div>
   );
 };

@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import "../styles/ProfileEdit.css";
 
+import CustomAlert from "./CustomAlert";
+import useAlert from "../hooks/useAlert";
+
 const ProfileEdit = () => {
   const navigate = useNavigate();
   const userId = useMemo(() => localStorage.getItem("userId"), []);
@@ -10,6 +13,7 @@ const ProfileEdit = () => {
   const [saving, setSaving] = useState(false);
   const [changingPwd, setChangingPwd] = useState(false);
   const [activeTab, setActiveTab] = useState("datos"); // Control de tabs
+  const { alertConfig, showAlert } = useAlert();
 
   const [formData, setFormData] = useState({
     altura: "",
@@ -49,13 +53,13 @@ const ProfileEdit = () => {
         });
       } catch (e) {
         console.error(e);
-        alert("No se pudo cargar el perfil");
+        showAlert("error", "Error", "No se pudo cargar el perfil");
       } finally {
         setLoading(false);
       }
     };
     fetchProfile();
-  }, [userId, navigate]);
+  }, [userId, navigate, showAlert]);
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -92,10 +96,10 @@ const ProfileEdit = () => {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || (data.errors && data.errors.map(e => e.msg).join(", ")) || "Error al actualizar perfil");
-      alert("Perfil actualizado");
+      showAlert("success", "Perfil actualizado", "Modificaciones guardadas correctamente");
     } catch (e) {
       console.error(e);
-      alert(e.message || "No se pudo actualizar el perfil");
+      showAlert("error","Error", "No se pudo actualizar el perfil");
     } finally {
       setSaving(false);
     }
@@ -106,7 +110,7 @@ const ProfileEdit = () => {
     if (!userId) return;
     
     if (pwdForm.currentPassword === pwdForm.newPassword) {
-      alert("La nueva contraseña debe ser diferente a la contraseña actual");
+      showAlert("info", "Contraseña repetida", "La nueva contraseña debe ser diferente a la contraseña actual");
       return;
     }
     
@@ -119,11 +123,11 @@ const ProfileEdit = () => {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || (data.errors && data.errors.map(e => e.msg).join(", ")) || "Error al cambiar contraseña");
-      alert("Contraseña actualizada");
+      showAlert("success", "Contraseña actualizada", "La contraseña se actualizado correctamente");
       setPwdForm({ currentPassword: "", newPassword: "" });
     } catch (e) {
       console.error(e);
-      alert(e.message || "No se pudo cambiar la contraseña");
+      showAlert("error", "Error", "No se pudo cambiar la contraseña");
     } finally {
       setChangingPwd(false);
     }
@@ -293,6 +297,8 @@ const ProfileEdit = () => {
           )}
         </div>
       </div>
+
+      <CustomAlert {...alertConfig} />
     </div>
   );
 };

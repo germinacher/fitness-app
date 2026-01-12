@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import "../styles/Register.css";
 
+import CustomAlert from "./CustomAlert";
+import useAlert from "../hooks/useAlert";
+
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -20,6 +23,8 @@ const Register = () => {
     restricciones: [],
     intolerancias: [],
   });
+
+  const { alertConfig, showAlert } = useAlert();
 
   useEffect(() => {
     document.title = "Registro - Fitness App";
@@ -75,16 +80,16 @@ const Register = () => {
       if (!res.ok) {
         // mostrar errores de validación o mensaje backend
         console.error(data);
-        alert(data.error || (data.errors && data.errors.map(e=>e.msg).join(", ")) || "Error al registrar");
+        showAlert("error", "Error", data.error || (data.errors && data.errors.map(e=>e.msg).join(", ")) || "Error al registrar");
         return;
       }
 
-      alert("Registro exitoso");
+      showAlert("success", "Registro exitoso", "Tu cuenta ha sido creada exitosamente");
       // Redirigir a login después del registro exitoso
-      navigate("/login");
+      setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
       console.error("Error de conexión:", err);
-      alert("No se pudo conectar al servidor");
+      showAlert("error", "Error", "No se pudo conectar al servidor");
     }
   };
 
@@ -341,6 +346,8 @@ const Register = () => {
           </div>
         </div>
       </form>
+
+      <CustomAlert {...alertConfig} />
     </div>
   );
 };
