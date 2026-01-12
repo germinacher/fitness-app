@@ -1,7 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import "../styles/Chatbot.css";
+
+import CustomAlert from "./CustomAlert";
+import useAlert from "../hooks/useAlert";
 
 const Chatbot = () => {
   const navigate = useNavigate();
@@ -15,9 +18,10 @@ const Chatbot = () => {
   const [generatedPlan, setGeneratedPlan] = useState(null);
   const messagesEndRef = useRef(null);
   const pesoUsuario = userInfo?.infoPersonal?.peso;
+  const { showAlert, alertConfig } = useAlert();
 
 
-  const questions = [
+  const questions = useMemo(() => ([
     {
       id: "dias_entrenamiento",
       text: "¿Cuántos días a la semana puedes entrenar?",
@@ -55,8 +59,21 @@ const Chatbot = () => {
       type: "select",
       options: ["Mañana", "Mediodía", "Tarde", "Noche"]
     }
-  ];
+  ]), [pesoUsuario]);
 
+  const startConversation = useCallback((info = userInfo) => {
+    setCurrentQuestion(0);
+    setAnswers({});
+    setShowResults(false);
+    setGeneratedPlan(null);
+    setMessages([{
+      type: "bot",
+      text: info?.infoPersonal?.nombre ? `¡Hola ${info.infoPersonal.nombre}! 👋 Soy tu entrenador personal virtual. Voy a ayudarte a crear una rutina y dieta personalizada basada en tu perfil.` : "¡Hola! 👋"
+    }, {
+      type: "bot",
+      text: questions[0].text
+    }]);
+  }, [userInfo, questions]);
 
   useEffect(() => {
     document.title = "Mi Entrenador Personal - Fitness App";
@@ -72,17 +89,22 @@ const Chatbot = () => {
         const data = await res.json();
         if (res.ok) {
           setUserInfo(data);
-          // Iniciar conversación
-          startConversation(data);
         }
       } catch (err) {
         console.error("Error cargando usuario:", err);
-        alert("No se pudo cargar tu información");
+        showAlert("error", "Error", "No se pudo cargar tu información");
       }
     };
 
     fetchUserInfo();
-  }, [userId, navigate]);
+  }, [userId, navigate, showAlert]);
+
+  useEffect(() => {
+    if (userInfo) {
+      // Iniciar conversación
+      startConversation(userInfo);
+    }
+  }, [userInfo, startConversation]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -92,8 +114,8 @@ const Chatbot = () => {
     const newAnswers = { ...answers, [questionId]: answer };
     setAnswers(newAnswers);
 
-    // Agregar mensaje del usuario NO BORRAR
-    const question = questions.find(q => q.id === questionId);
+    // Agregar mensaje del usuario
+    // const question = questions.find(q => q.id === questionId);
     setMessages(prev => [...prev, {
       type: "user",
       text: answer
@@ -153,20 +175,6 @@ const Chatbot = () => {
     } finally {
       setIsGenerating(false);
     }
-  };
-
-  const startConversation = (info = userInfo) => {
-    setCurrentQuestion(0);
-    setAnswers({});
-    setShowResults(false);
-    setGeneratedPlan(null);
-    setMessages([{
-      type: "bot",
-      text: info?.infoPersonal?.nombre ? `¡Hola ${info.infoPersonal.nombre}! 👋 Soy tu entrenador personal virtual. Voy a ayudarte a crear una rutina y dieta personalizada basada en tu perfil.` : "¡Hola! 👋"
-    }, {
-      type: "bot",
-      text: questions[0].text
-    }]);
   };
 
   const currentQ = questions[currentQuestion];
@@ -358,9 +366,10 @@ const Chatbot = () => {
           </button>
         )}
       </div>
+
+      <CustomAlert {...alertConfig} />
     </div>
   );
 };
 
 export default Chatbot;
-

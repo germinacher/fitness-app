@@ -3,11 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import "../styles/Chatbot.css";
 
+import CustomAlert from "./CustomAlert";
+import useAlert from "../hooks/useAlert";
+
 const DietaViewer = () => {
   const navigate = useNavigate();
   const userId = useMemo(() => localStorage.getItem("userId"), []);
   const [loading, setLoading] = useState(true);
   const [dieta, setDieta] = useState([]);
+
+  const { showAlert, alertConfig } = useAlert();
 
   useEffect(() => {
     document.title = "Mi Dieta - Fitness App";
@@ -26,14 +31,14 @@ const DietaViewer = () => {
         setDieta(Array.isArray(data?.dieta) ? data.dieta : []);
       } catch (e) {
         console.error(e);
-        alert("No se pudo cargar la dieta");
+        showAlert("error", "Error", "No se pudo cargar la dieta");
       } finally {
         setLoading(false);
       }
     };
 
     fetchDieta();
-  }, [userId, navigate]);
+  }, [userId, navigate, showAlert]);
 
   // Función para detectar el tipo de línea
   const detectLineType = (linea) => {
@@ -145,6 +150,7 @@ const DietaViewer = () => {
   if (!dieta || dieta.length === 0) {
     return (
       <div className="chatbot-container">
+        <CustomAlert {...alertConfig} />
         <div className="chatbot-header">
           <button
             type="button"
