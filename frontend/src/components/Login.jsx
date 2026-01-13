@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
-import "../styles/Register.css"; // Reutilizamos los mismos estilos
-
+import "../styles/Register.css";
 import CustomAlert from "./CustomAlert";
 import useAlert from "../hooks/useAlert";
 
@@ -14,7 +13,6 @@ const Login = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-
   const { showAlert, alertConfig } = useAlert();
 
   useEffect(() => {
@@ -47,7 +45,6 @@ const Login = () => {
         return;
       }
 
-      // Guardar token y userId en localStorage
       if (data.token) {
         localStorage.setItem("token", data.token);
       }
@@ -55,8 +52,6 @@ const Login = () => {
         localStorage.setItem("userId", data.userId);
       }
 
-      //alert("Inicio de sesión exitoso");
-      // Redirigir al menú principal usando React Router
       navigate("/main-menu");
       
     } catch (err) {
@@ -71,7 +66,6 @@ const Login = () => {
     <div className="register-container">
       <h2>Iniciar Sesión</h2>
       <form onSubmit={handleSubmit} className="register-form">
-        {/* Email */}
         <div className="form-group">
           <label>Email</label>
           <input
@@ -84,7 +78,6 @@ const Login = () => {
           />
         </div>
 
-        {/* Contraseña */}
         <div className="form-group">
           <label>Contraseña</label>
           <input
@@ -97,6 +90,26 @@ const Login = () => {
           />
         </div>
 
+        {/* Link de olvidé mi contraseña */}
+        <div style={{ textAlign: "right", marginTop: "0.5rem" }}>
+          <button
+            type="button"
+            onClick={() => navigate("/forgot-password")}
+            style={{
+              background: "none",
+              border: "none",
+              color: "#0A84FF",
+              textDecoration: "underline",
+              cursor: "pointer",
+              fontSize: "0.9rem",
+              padding: 0,
+              fontFamily: "inherit"
+            }}
+          >
+            ¿Olvidaste tu contraseña?
+          </button>
+        </div>
+
         <button 
           type="submit" 
           className="register-button"
@@ -105,20 +118,25 @@ const Login = () => {
           {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
         </button>
 
-        {/* Enlace para ir a registro */}
         <div style={{ marginTop: "1rem", textAlign: "center" }}>
-          <p style={{ color: "#009BD8", fontSize: "0.9rem" }}>
+          <p style={{ color: "#E5E5EA", fontSize: "0.9rem", margin: 0 }}>
             ¿No tienes cuenta?{" "}
-            <a 
-              href="/register" 
-              style={{ 
-                color: "#009BD8", 
+            <button
+              type="button"
+              onClick={() => navigate("/register")}
+              style={{
+                background: "none",
+                border: "none",
+                color: "#0A84FF",
                 textDecoration: "underline",
-                fontWeight: "600"
+                fontWeight: "600",
+                cursor: "pointer",
+                fontSize: "inherit",
+                fontFamily: "inherit"
               }}
             >
               Regístrate aquí
-            </a>
+            </button>
           </p>
         </div>
       </form>

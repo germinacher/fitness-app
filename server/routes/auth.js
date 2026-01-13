@@ -1,10 +1,27 @@
 const express = require("express");
 const router = express.Router();
+const rateLimit = require('express-rate-limit');
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
+const transporter = require("../config/email.js");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const { generateDieta } = require("./dietaUtils.js");
 const { generateRutina, completarSemana } = require("./rutinaUtils.js");
+const forgotPasswordLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5, // 👈 MUY IMPORTANTE
+  message: {
+    error: "Demasiadas solicitudes. Intenta nuevamente en 15 minutos."
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+if (!process.env.FRONTEND_URL) {
+  throw new Error('FRONTEND_URL no está definida');
+}
 
 // POST /api/register
 router.post("/register",
@@ -309,5 +326,126 @@ router.post('/users/:id/completar-semana', async (req, res) => {
     res.status(500).json({ error: 'Error al generar nueva rutina' });
   }
 });
+
+// POST /api/forgot-password
+router.post('/forgot-password', forgotPasswordLimiter, async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Buscar usuario
+    const user = await User.findOne({ 'credenciales.email': email });
+    if (!user) {
+      // No revelar si el email existe o no (seguridad)
+      return res.json({ 
+        message: 'Si el correo existe, recibirás un enlace de recuperación' 
+      });
+    }
+
+    // Generar token único
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    
+    // Guardar token hasheado y expiración (1 hora)
+    user.resetPasswordToken = crypto
+      .createHash('sha256')
+      .update(resetToken)
+      .digest('hex');
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hora
+    
+    await user.save();
+
+    // Crear URL de reseteo
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+    
+    // Enviar email
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: 'Recuperación de Contraseña - Fitness App',
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #0A84FF;">Recuperación de Contraseña</h2>
+          <p>Hola ${user.infoPersonal.nombre},</p>
+          <p>Recibimos una solicitud para restablecer tu contraseña.</p>
+          <p>Haz clic en el siguiente botón para crear una nueva contraseña:</p>
+          <a href="${resetUrl}" 
+             style="display: inline-block; background-color: #0A84FF; color: white; 
+                    padding: 12px 24px; text-decoration: none; border-radius: 8px; 
+                    margin: 20px 0;">
+            Restablecer Contraseña
+          </a>
+          <p>O copia y pega este enlace en tu navegador:</p>
+          <p style="color: #666; word-break: break-all;">${resetUrl}</p>
+          <p style="color: #999; font-size: 0.9em;">
+            Este enlace expirará en 1 hora.
+          </p>
+          <p style="color: #999; font-size: 0.9em;">
+            Si no solicitaste esto, ignora este correo.
+          </p>
+        </div>
+      `
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.json({ 
+      message: 'Si el correo existe, recibirás un enlace de recuperación' 
+    });
+
+  } catch (err) {
+    console.error('Error en forgot-password:', err);
+    res.status(500).json({ error: 'Error al procesar la solicitud' });
+  }
+});
+
+// POST /api/reset-password/:token
+router.post('/reset-password/:token', async (req, res) => {
+  try {
+    const { token } = req.params;
+    const { password } = req.body;
+
+    // Validar contraseña
+    if (!password || password.length < 6) {
+      return res.status(400).json({ 
+        error: 'La contraseña debe tener al menos 6 caracteres' 
+      });
+    }
+
+    // Hashear token recibido
+    const hashedToken = crypto
+      .createHash('sha256')
+      .update(token)
+      .digest('hex');
+
+    // Buscar usuario con token válido y no expirado
+    const user = await User.findOne({
+      resetPasswordToken: hashedToken,
+      resetPasswordExpires: { $gt: Date.now() }
+    });
+
+    if (!user) {
+      return res.status(400).json({ 
+        error: 'Token inválido o expirado. Solicita un nuevo enlace.' 
+      });
+    }
+
+    // Actualizar contraseña
+    const bcrypt = require('bcryptjs');
+    const hashedPassword = await bcrypt.hash(password, 10);
+    user.credenciales.password = hashedPassword;
+    
+    // Limpiar campos de reseteo
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    
+    await user.save();
+
+    res.json({ message: 'Contraseña actualizada exitosamente' });
+
+  } catch (err) {
+    console.error('Error en reset-password:', err);
+    res.status(500).json({ error: 'Error al restablecer la contraseña' });
+  }
+});
+
 
 module.exports = router;

@@ -24,7 +24,7 @@ const Register = () => {
     intolerancias: [],
   });
 
-  const { alertConfig, showAlert } = useAlert();
+  const { alertConfig, showAlert, closeAlert } = useAlert();
 
   useEffect(() => {
     document.title = "Registro - Fitness App";
@@ -84,9 +84,15 @@ const Register = () => {
         return;
       }
 
-      showAlert("success", "Registro exitoso", "Tu cuenta ha sido creada exitosamente");
+      showAlert("success", "Registro exitoso", "Tu cuenta ha sido creada exitosamente", {
+        onConfirm: () => {
+          // Cerrar alerta y redirigir a login después del registro exitoso
+          closeAlert();
+          navigate("/login");
+        }
+      });
       // Redirigir a login después del registro exitoso
-      setTimeout(() => navigate("/login"), 2000);
+      // setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
       console.error("Error de conexión:", err);
       showAlert("error", "Error", "No se pudo conectar al servidor");
@@ -171,6 +177,7 @@ const Register = () => {
                 type="number"
                 min="100"
                 max="300"
+                maxLength="3"
                 name="altura"
                 value={formData.altura}
                 onChange={handleChange}

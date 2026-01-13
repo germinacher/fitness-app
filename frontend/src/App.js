@@ -7,6 +7,8 @@ import ProfileEdit from './components/ProfileEdit';
 import Chatbot from './components/Chatbot';
 import RutinaViewer from './components/RutinaViewer';
 import DietaViewer from './components/DietaViewer';
+import ForgotPassword from './components/ForgotPassword';
+import ResetPassword from './components/ResetPassword';
 
 function App() {
   return (
@@ -54,6 +56,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
         <Route path="/" element={<Login />} />
       </Routes>
     </Router>

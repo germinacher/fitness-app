@@ -32,6 +32,10 @@ const userSchema = new mongoose.Schema({
   
   // Control de progresión semanal
   semanaActual: { type: Number, default: 1, min: 1, max: 4 },
+
+  // Reseteo de contraseña
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
 }, { timestamps: true }); // añade createdAt y updatedAt
 
 module.exports = mongoose.model("User", userSchema);
