@@ -24,6 +24,7 @@ body {
   background-color: #1C1C1E;
   display: flex;
   flex-direction: column;
+  margin-top: 50px;
 }
 
 /* =========================
@@ -31,7 +32,7 @@ body {
 ========================= */
 
 .profile-header {
-  background-color: #2C2C2E;
+  background-color: #000000;
   padding: 1rem;
   border-bottom: 2px solid #3A3A3C;
 }

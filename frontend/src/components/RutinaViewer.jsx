@@ -29,10 +29,7 @@ const RutinaViewer = () => {
       try {
         const res = await fetch(`${API_BASE}/api/users/${userId}`);
         const data = await res.json();
-
-        if (!res.ok) {
-          throw new Error(data.error || "No se pudo obtener la rutina");
-        }
+        if (!res.ok) throw new Error(data.error || "No se pudo obtener la rutina");
 
         setRutina(Array.isArray(data?.rutina) ? data.rutina : []);
         setSemanaActual(data?.semanaActual || 1);
@@ -156,6 +153,7 @@ const RutinaViewer = () => {
   if (!rutina || rutina.length === 0) {
     return (
       <div className="chatbot-container">
+        <CustomAlert {...alertConfig} />
         <div className="chatbot-header">
           <button onClick={() => navigate("/main-menu")} className="back-button">
             ← Volver

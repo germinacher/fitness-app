@@ -27,7 +27,7 @@ const CustomAlert = ({
   };
 
   return (
-    <div className="custom-alert-overlay" onClick={type !== 'confirm' ? onConfirm : null}>
+    <div className="custom-alert-overlay">
       <div className="custom-alert-box" onClick={(e) => e.stopPropagation()}>
         <div className="custom-alert-icon">{getIcon()}</div>
         

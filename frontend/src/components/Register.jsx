@@ -24,6 +24,10 @@ const Register = () => {
     intolerancias: [],
   });
 
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+
   const { alertConfig, showAlert, closeAlert } = useAlert();
 
   useEffect(() => {
@@ -51,6 +55,18 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validar que se aceptaron los términos y la política de privacidad
+    if (!termsAccepted || !privacyAccepted) {
+      showAlert("error", "Error", "Debes aceptar los términos y condiciones y la política de privacidad para continuar");
+      return;
+    }
+
+    // Validar que las contraseñas coincidan
+    if (formData.password !== confirmPassword) {
+      showAlert("error", "Error", "Las contraseñas no coinciden");
+      return;
+    }
 
     // Construir payload de la forma que espera backend
     const payload = {
@@ -91,8 +107,6 @@ const Register = () => {
           navigate("/login");
         }
       });
-      // Redirigir a login después del registro exitoso
-      // setTimeout(() => navigate("/login"), 2000);
     } catch (err) {
       console.error("Error de conexión:", err);
       showAlert("error", "Error", "No se pudo conectar al servidor");
@@ -166,6 +180,17 @@ const Register = () => {
                 required
               />
             </div>
+
+            <div className="form-group">
+              <label>Confirmar Contraseña</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+            </div>
           </div>
 
           {/* Datos físicos */}
@@ -177,7 +202,6 @@ const Register = () => {
                 type="number"
                 min="100"
                 max="300"
-                maxLength="3"
                 name="altura"
                 value={formData.altura}
                 onChange={handleChange}
@@ -324,9 +348,53 @@ const Register = () => {
           </div>
         </div>
 
-        {/* Botón de registro - Full width */}
+        {/* Checkboxes de términos y política - Full width */}
         <div className="form-full-width">
-          <button type="submit" className="register-button">
+          <div className="terms-section">
+            <label className="terms-label">
+              <input
+                type="checkbox"
+                checked={termsAccepted}
+                onChange={(e) => setTermsAccepted(e.target.checked)}
+                className="terms-checkbox"
+              />
+              <span>
+                Acepto los{" "}
+                <button
+                  type="button"
+                  onClick={() => navigate("/terms")}
+                  className="terms-link"
+                >
+                  términos y condiciones
+                </button>
+              </span>
+            </label>
+
+            <label className="terms-label">
+              <input
+                type="checkbox"
+                checked={privacyAccepted}
+                onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                className="terms-checkbox"
+              />
+              <span>
+                Acepto la{" "}
+                <button
+                  type="button"
+                  onClick={() => navigate("/privacy")}
+                  className="terms-link"
+                >
+                  política de privacidad
+                </button>
+              </span>
+            </label>
+          </div>
+
+          <button 
+            type="submit" 
+            className="register-button"
+            disabled={!termsAccepted || !privacyAccepted}
+          >
             Registrarse
           </button>
 

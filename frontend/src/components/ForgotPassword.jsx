@@ -35,7 +35,7 @@ const ForgotPassword = () => {
 
       showAlert(
         "success",
-        "¡Correo Enviado! ✅",
+        "¡Correo Enviado!",
         "Revisa tu bandeja de entrada. Te hemos enviado un enlace para restablecer tu contraseña.",
         {
             onConfirm: () => {

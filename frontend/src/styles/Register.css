@@ -115,6 +115,55 @@ select option {
   accent-color: #0A84FF;
 }
 
+/* SECCIÓN DE TÉRMINOS Y CONDICIONES */
+.terms-section {
+  background-color: #2C2C2E;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #3A3A3C;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.terms-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-weight: 400;
+  color: #E5E5EA;
+  text-align: left;
+  margin: 0;
+}
+
+.terms-checkbox {
+  width: 20px !important;
+  height: 20px;
+  min-width: 20px;
+  cursor: pointer;
+  accent-color: #0A84FF;
+  margin-top: 2px;
+}
+
+.terms-link {
+  background: none;
+  border: none;
+  color: #0A84FF;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  font-weight: 600;
+}
+
+.terms-link:hover {
+  color: #0077ED;
+  opacity: 0.9;
+}
+
 /* BOTÓN VOLVER */
 .back-row {
   text-align: left;
@@ -152,20 +201,21 @@ select option {
   transition: all 0.2s ease;
 }
 
-.register-button:hover {
+.register-button:hover:not(:disabled) {
   background-color: #0077ED;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(10, 132, 255, 0.4);
 }
 
-.register-button:active {
+.register-button:active:not(:disabled) {
   transform: translateY(0);
 }
 
 .register-button:disabled {
-  opacity: 0.6;
+  opacity: 0.4;
   cursor: not-allowed;
   transform: none;
+  background-color: #3A3A3C;
 }
 
 /* LAYOUT DE DOS COLUMNAS (Desktop) */
@@ -240,6 +290,14 @@ select option {
     flex-direction: column;
     gap: 0.5rem;
   }
+
+  .terms-section {
+    padding: 1rem;
+  }
+
+  .terms-label {
+    font-size: 0.9rem;
+  }
 }
 
 /* MÓVILES */
@@ -270,5 +328,19 @@ select option {
   .register-button {
     padding: 12px;
     font-size: 0.95rem;
+  }
+
+  .terms-section {
+    padding: 0.75rem;
+  }
+
+  .terms-label {
+    font-size: 0.85rem;
+  }
+
+  .terms-checkbox {
+    width: 18px !important;
+    height: 18px;
+    min-width: 18px;
   }
 }
