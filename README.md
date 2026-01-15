@@ -427,7 +427,7 @@ Si encuentras algún bug, por favor:
 
 ## 📄 Licencia
 
-Este proyecto está bajo la **Licencia ISC**. Ver el archivo [LICENSE.txt](LICENSE.txt) para más detalles.
+Este proyecto está bajo la **Licencia MIT**. Ver el archivo [LICENSE.txt](LICENSE.txt) para más detalles.
 
 ---
 
@@ -435,8 +435,8 @@ Este proyecto está bajo la **Licencia ISC**. Ver el archivo [LICENSE.txt](LICEN
 
 **Tu Nombre**
 
-- GitHub: [@tu-usuario](https://github.com/germinacher)
-- LinkedIn: [Tu Perfil](https://linkedin.com/in/german-nacher-medaura)
+- GitHub: [@germinacher](https://github.com/germinacher)
+- LinkedIn: [Germán Nacher Medaura](https://linkedin.com/in/german-nacher-medaura)
 - Email: germinacher@gmail.com
 
 
@@ -459,7 +459,7 @@ Este proyecto está bajo la **Licencia ISC**. Ver el archivo [LICENSE.txt](LICEN
 
 - 📧 Email: germinacher@gmail.com
 - 💬 Abre un [Issue](https://github.com/germinacher/fitness-app/issues)
-- 📱 LinkedIn: [Tu Perfil](https://linkedin.com/in/german-nacher-medaura)
+- 📱 LinkedIn: [Germán Nacher Medaura](https://linkedin.com/in/german-nacher-medaura)
 
 ---
 
