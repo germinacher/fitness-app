@@ -99,10 +99,10 @@ Una aplicación completa de fitness que incluye una interfaz web (React), una ap
 - **JWT** - Tokens de autenticación
 
 ### Algoritmos y Lógica
-- **Sistema de Matching** - Selección inteligente de ejercicios
+- **Sistema de Matching** - Selección inteligente de ejercicios y alimentos
 - **Generador de Rutinas** - Algoritmo de progresión adaptativa
 - **Generador de Dietas** - Cálculo de requerimientos nutricionales
-- **Base de Datos Estructurada** - Ejercicios categorizados y alimentos
+- **Base de Datos Estructurada** - Ejercicios y alimentos categorizados
 
 ---
 
@@ -302,7 +302,7 @@ fitnessapp/
 - **Timing de Nutrientes**: Distribución óptima durante el día
 
 ### Base de Datos Estructurada
-- **Ejercicios**: Categorizados por grupo muscular, dificultad y equipo
+- **Ejercicios**: Categorizados por grupo muscular y dificultad
 - **Alimentos**: Con información nutricional completa
 - **Sistema de Tags**: Para filtrado y búsqueda avanzada
 - **Escalabilidad**: Fácil adición de nuevos datos
@@ -319,31 +319,51 @@ fitnessapp/
 ## 🎨 Capturas de Pantalla
 
 ### Aplicación Web desde ordenador
-![Register Screen](frontend/docs/screenshots/web-register.png)
-![Login Screen](frontend/docs/screenshots/web-login.png)
-![Main Menu](frontend/docs/screenshots/web-menu.png)
-![Chatbot](frontend/docs/screenshots/web-chatbot.png)
-![Rutina](frontend/docs/screenshots/web-rutina.png)
-![Dieta](frontend/docs/screenshots/web-dieta.png)
-![Profile Edit](frontend/docs/screenshots/web-edit.png)
+<p align="center"> 
+    <img src="frontend/docs/screenshots/web-register.png" width="45%" /> 
+    <img src="frontend/docs/screenshots/web-login.png" width="45%" /> 
+</p> 
+<p align="center"> 
+    <img src="frontend/docs/screenshots/web-menu.png" width="45%" />
+    <img src="frontend/docs/screenshots/web-chatbot.png" width="45%" /> 
+</p> 
+<p align="center"> 
+    <img src="frontend/docs/screenshots/web-rutina.png" width="45%" /> 
+    <img src="frontend/docs/screenshots/web-dieta.png" width="45%" /> 
+</p> 
+<p align="center"> 
+    <img src="frontend/docs/screenshots/web-edit.png" width="45%" /> 
+</p>
 
 ### Aplicación Web desde móvil
-![Register Screen](frontend/docs/screenshots/mobile-web-register.jpeg)
-![Login Screen](frontend/docs/screenshots/mobile-web-login.jpeg)
-![Main Menu](frontend/docs/screenshots/mobile-web-menu.jpeg)
-![Chatbot](frontend/docs/screenshots/mobile-web-chatbot.jpeg)
-![Rutina](frontend/docs/screenshots/mobile-web-rutina.jpeg)
-![Dieta](frontend/docs/screenshots/mobile-web-dieta.jpeg)
-![Profile Edit](frontend/docs/screenshots/mobile-web-edit.jpeg)
+<p align="center"> 
+    <img src="frontend/docs/screenshots/mobile-web-register.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-login.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-menu.jpeg" width="25%" /> 
+</p> 
+<p align="center"> 
+    <img src="frontend/docs/screenshots/mobile-web-chatbot.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-rutina.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-dieta.jpeg" width="25%" /> 
+</p> 
+<p align="center"> 
+    <img src="frontend/docs/screenshots/mobile-web-edit.jpeg" width="25%" /> 
+</p>
 
 ### Aplicación Móvil
-![Register Screen](frontend/docs/screenshots/mobile-register.jpeg)
-![Login Screen](frontend/docs/screenshots/mobile-login.jpeg)
-![Main Menu](frontend/docs/screenshots/mobile-menu.jpeg)
-![Chatbot](frontend/docs/screenshots/mobile-chatbot.jpeg)
-![Rutina](frontend/docs/screenshots/mobile-rutina.jpeg)
-![Dieta](frontend/docs/screenshots/mobile-dieta.jpeg)
-![Profile Edit](frontend/docs/screenshots/mobile-edit.jpeg)
+<p align="center"> 
+    <img src="frontend/docs/screenshots/mobile-register.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-login.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-menu.jpeg" width="25%" /> 
+</p> 
+<p align="center"> 
+    <img src="frontend/docs/screenshots/mobile-chatbot.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-rutina.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-dieta.jpeg" width="25%" /> 
+</p> 
+<p align="center"> 
+    <img src="frontend/docs/screenshots/mobile-edit.jpeg" width="25%" /> 
+</p>
 ---
 
 ## 🤝 Contribución
