@@ -318,16 +318,32 @@ fitnessapp/
 
 ## 🎨 Capturas de Pantalla
 
-### Aplicación Web
-![Login Screen](screenshots/web-login.png)
-![Chatbot](screenshots/web-chatbot.png)
-![Rutina](screenshots/web-rutina.png)
-![Dieta](screenshots/web-dieta.png)
+### Aplicación Web desde ordenador
+![Register Screen](frontend/docs/screenshots/web-register.png)
+![Login Screen](frontend/docs/screenshots/web-login.png)
+![Main Menu](frontend/docs/screenshots/web-menu.png)
+![Chatbot](frontend/docs/screenshots/web-chatbot.png)
+![Rutina](frontend/docs/screenshots/web-rutina.png)
+![Dieta](frontend/docs/screenshots/web-dieta.png)
+![Profile Edit](frontend/docs/screenshots/web-edit.png)
+
+### Aplicación Web desde móvil
+![Register Screen](frontend/docs/screenshots/mobile-web-register.jpeg)
+![Login Screen](frontend/docs/screenshots/mobile-web-login.jpeg)
+![Main Menu](frontend/docs/screenshots/mobile-web-menu.jpeg)
+![Chatbot](frontend/docs/screenshots/mobile-web-chatbot.jpeg)
+![Rutina](frontend/docs/screenshots/mobile-web-rutina.jpeg)
+![Dieta](frontend/docs/screenshots/mobile-web-dieta.jpeg)
+![Profile Edit](frontend/docs/screenshots/mobile-web-edit.jpeg)
 
 ### Aplicación Móvil
-![Mobile Home](screenshots/mobile-home.png)
-![Mobile Workout](screenshots/mobile-workout.png)
-
+![Register Screen](frontend/docs/screenshots/mobile-register.jpeg)
+![Login Screen](frontend/docs/screenshots/mobile-login.jpeg)
+![Main Menu](frontend/docs/screenshots/mobile-menu.jpeg)
+![Chatbot](frontend/docs/screenshots/mobile-chatbot.jpeg)
+![Rutina](frontend/docs/screenshots/mobile-rutina.jpeg)
+![Dieta](frontend/docs/screenshots/mobile-dieta.jpeg)
+![Profile Edit](frontend/docs/screenshots/mobile-edit.jpeg)
 ---
 
 ## 🤝 Contribución

@@ -33,7 +33,6 @@ body {
   gap: 1rem;
   background-color: #000000;
   border-radius: 20px 20px 0 0;
-  margin-top: 50px;
 }
 
 .chatbot-header h2 {
@@ -199,7 +198,7 @@ body {
   background-color: #1C1C1E;
   border-radius: 15px;
   margin: 1rem;
-  max-height: 60vh;
+  max-height: 80vh;
   overflow-y: auto;
 }
 
@@ -379,6 +378,7 @@ body {
   .chatbot-header {
     border-radius: 0;
     padding: 1rem;
+    margin-top: 50px;
   }
 
   .chatbot-header h2 {
@@ -474,6 +474,7 @@ body {
 @media (max-width: 480px) {
   .chatbot-header {
     padding: 0.75rem;
+    margin-top: 50px;
   }
 
   .chatbot-header h2 {
@@ -608,6 +609,7 @@ body {
 @media (max-width: 360px) {
   .chatbot-header {
     padding: 0.5rem;
+    margin-top: 50px;
   }
 
   .chatbot-header h2 {
