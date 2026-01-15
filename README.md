@@ -70,7 +70,6 @@ Una aplicación completa de fitness que incluye una interfaz web (React), una ap
 ### Frontend Web
 - **React 19** - Librería de interfaz de usuario
 - **React Router DOM** - Navegación SPA
-- **Tailwind CSS** - Framework de estilos utility-first
 - **Testing Library** - Testing de componentes
 - **React Scripts** - Configuración de desarrollo
 - **Web Vitals** - Métricas de rendimiento
