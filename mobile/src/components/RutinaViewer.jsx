@@ -57,12 +57,12 @@ const RutinaViewer = () => {
 
     showAlert(
       "confirm",
-      "Confirmar semana",
+      "¿Semana completada?",
       semanaActual === 4
         ? "🎉 ¿Completaste la semana 4? Se iniciará un nuevo ciclo desde la semana 1."
         : `¿Completaste la semana ${semanaActual}? Se generará la rutina de la semana ${semanaActual + 1}.`,
       {
-        confirmText: "Sí, completar",
+        confirmText: "Confirmar",
         cancelText: "Cancelar",
         onConfirm: confirmarCompletarSemana,
       }

@@ -92,6 +92,7 @@ const MainMenu = () => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 80,
     flex: 1,
     backgroundColor: "#000000",
   },
@@ -115,24 +116,30 @@ const styles = StyleSheet.create({
   },
   menuContainer: {
     width: "100%",
+    alignItems: "center",
   },
   menuButtonLarge: {
     backgroundColor: "#1C1C1E",
     borderRadius: 16,
-    padding: 24,
+    paddingVertical: 36,
+    paddingHorizontal: 32,
     marginBottom: 16,
     alignItems: "center",
+    justifyContent: "center",
     borderWidth: 1,
     borderColor: "#3A3A3C",
+    width: "90%",
+    minHeight: 78,
   },
   menuButtonSquare: {
     backgroundColor: "#1C1C1E",
     borderRadius: 16,
-    padding: 24,
+    paddingVertical: 32,
+    paddingHorizontal: 20,
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    minHeight: 120,
+    minHeight: 150,
     borderWidth: 1,
     borderColor: "#3A3A3C",
   },
@@ -142,13 +149,19 @@ const styles = StyleSheet.create({
   menuGrid: {
     flexDirection: "row",
     marginBottom: 16,
+    width: "90%",
+    justifyContent: "center",
   },
   menuButtonSmall: {
     backgroundColor: "#3A3A3C",
     borderRadius: 12,
-    padding: 16,
+    paddingVertical: 22,
+    paddingHorizontal: 24,
     alignItems: "center",
+    justifyContent: "center",
     marginTop: 8,
+    width: "90%",
+    minHeight: 60,
   },
   menuButtonText: {
     color: "#FFFFFF",

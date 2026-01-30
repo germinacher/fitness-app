@@ -60,10 +60,10 @@ const CustomAlert = ({
               </View>
             ) : (
               <TouchableOpacity 
-                style={[styles.button, styles.confirmButton]}
+                style={[styles.button, styles.buttonSingle, styles.confirmButton]}
                 onPress={onConfirm}
               >
-                <Text style={styles.confirmButtonText}>{confirmText}</Text>
+                <Text style={styles.confirmButtonText}>{confirmText || 'Aceptar'}</Text>
               </TouchableOpacity>
             )}
           </View>
@@ -120,6 +120,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderRadius: 8,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonSingle: {
+    flex: 0,
+    width: '100%',
   },
   confirmButton: {
     backgroundColor: '#0A84FF',

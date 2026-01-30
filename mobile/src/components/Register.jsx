@@ -400,6 +400,7 @@ const Register = () => {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: 60,
     flex: 1,
     backgroundColor: "#000000",
   },
