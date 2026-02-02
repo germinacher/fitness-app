@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Dumbbell, FileText, Apple, User, LogOut } from 'lucide-react';
 import { API_BASE } from "../config";
 import "../styles/MainMenu.css";
 
@@ -57,7 +58,8 @@ const MainMenu = () => {
           className="menu-button-large"
           onClick={() => navigate("/chatbot")}
         >
-          <span>💪 Mi entrenador personal</span>
+          <Dumbbell size={28} strokeWidth={2} />
+          <span>Mi entrenador personal</span>
         </button>
 
         {/* Dos botones cuadrados - Rutina y Dieta */}
@@ -66,13 +68,15 @@ const MainMenu = () => {
             className="menu-button-square"
             onClick={() => navigate("/rutinaviewer")}
           >
-            <span>📋 Mi Rutina</span>
+            <FileText size={28} strokeWidth={2} />
+            <span>Mi Rutina</span>
           </button>
           <button 
             className="menu-button-square"
             onClick={() => navigate("/dietaviewer")}
           >
-            <span>🍎 Mi Dieta</span>
+            <Apple size={28} strokeWidth={2} />
+            <span>Mi Dieta</span>
           </button>
         </div>
 
@@ -81,7 +85,8 @@ const MainMenu = () => {
           className="menu-button-large"
           onClick={() => navigate("/profile")}
         >
-          <span>👤 Mi Perfil</span>
+          <User size={28} strokeWidth={2} />
+          <span>Mi Perfil</span>
         </button>
 
         {/* Botón pequeño - Cerrar Sesión */}
@@ -89,7 +94,8 @@ const MainMenu = () => {
           className="menu-button-small"
           onClick={handleLogout}
         >
-          <span>🚪 Cerrar Sesión</span>
+          <LogOut size={22} strokeWidth={2} />
+          <span>Cerrar Sesión</span>
         </button>
       </div>
     </div>

@@ -55,7 +55,7 @@ const RutinaViewer = () => {
       "confirm",
       "¿Semana completada?",
       semanaActual === 4
-        ? "🎉 ¿Completaste la semana 4? Se iniciará un nuevo ciclo desde la semana 1."
+        ? "¿Completaste la semana 4? Se iniciará un nuevo ciclo desde la semana 1."
         : `¿Completaste la semana ${semanaActual}? Se generará la rutina de la semana ${
             semanaActual + 1
           }.`,
@@ -95,7 +95,7 @@ const RutinaViewer = () => {
         "success",
         "¡Semana completada!",
         semanaActual === 4
-          ? "🎉 Ciclo completo. Comenzamos nuevamente desde la semana 1."
+          ? "Ciclo completo. Comenzamos nuevamente desde la semana 1."
           : `Nueva rutina generada para la semana ${data.semanaActual}.`
       );
     } catch (err) {
@@ -158,7 +158,7 @@ const RutinaViewer = () => {
           <button onClick={() => navigate("/main-menu")} className="back-button">
             ← Volver
           </button>
-          <h2>📋 Mi Rutina</h2>
+          <h2>Mi Rutina</h2>
         </div>
         <div className="chatbot-content">
           <div className="chat-messages">
@@ -183,7 +183,7 @@ const RutinaViewer = () => {
         <button onClick={() => navigate("/main-menu")} className="back-button">
           ← Volver
         </button>
-        <h2>📋 Mi Rutina</h2>
+        <h2>Mi Rutina</h2>
       </div>
 
       <div className="plan-results" ref={rutinaRef} style={{ paddingBottom: 80 }}>
@@ -205,7 +205,7 @@ const RutinaViewer = () => {
           {completandoSemana
             ? "Generando nueva rutina..."
             : semanaActual === 4
-            ? "🎉 Completar Ciclo y Reiniciar"
+            ? "Completar Ciclo y Reiniciar"
             : `✅ Semana ${semanaActual} Completada`}
         </button>
       </div>

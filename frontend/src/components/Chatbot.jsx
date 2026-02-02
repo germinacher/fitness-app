@@ -189,7 +189,7 @@ const Chatbot = () => {
         >
           ← Volver
         </button>
-        <h2>💪 Mi Entrenador Personal</h2>
+        <h2>Mi Entrenador Personal</h2>
       </div>
 
       <div className="chatbot-content">

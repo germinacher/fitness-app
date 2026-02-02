@@ -159,7 +159,7 @@ const DietaViewer = () => {
           >
             ← Volver
           </button>
-          <h2>🍎 Mi Dieta</h2>
+          <h2>Mi Dieta</h2>
         </div>
         <div className="chatbot-content">
           <div className="chat-messages">
@@ -184,7 +184,7 @@ const DietaViewer = () => {
         >
           ← Volver
         </button>
-        <h2>🍎 Mi Dieta</h2>
+        <h2>Mi Dieta</h2>
       </div>
       <div className="plan-results">
         <div className="plan-section">
