@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft, Dumbbell } from 'lucide-react';
 import { API_BASE } from "../config";
 import "../styles/Chatbot.css";
 
@@ -187,9 +188,13 @@ const Chatbot = () => {
           onClick={() => navigate("/main-menu")}
           className="back-button"
         >
-          ← Volver
+          <ArrowLeft size={20} strokeWidth={2} />
+          <span>Volver</span>
         </button>
-        <h2>Mi Entrenador Personal</h2>
+        <h2>
+          <Dumbbell size={24} strokeWidth={2} style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }} />
+          Mi Entrenador Personal
+        </h2>
       </div>
 
       <div className="chatbot-content">

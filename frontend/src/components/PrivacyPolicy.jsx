@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from 'lucide-react';
 import "../styles/Register.css";
 
 const PrivacyPolicy = () => {
@@ -17,7 +18,8 @@ const PrivacyPolicy = () => {
           onClick={() => navigate(-1)}
           className="back-button"
         >
-          ← Volver
+          <ArrowLeft size={20} strokeWidth={2} />
+          <span>Volver</span>
         </button>
       </div>
 

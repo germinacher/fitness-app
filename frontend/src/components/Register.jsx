@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from 'lucide-react';
 import { API_BASE } from "../config";
 import "../styles/Register.css";
 
@@ -127,7 +128,8 @@ const Register = () => {
           onClick={() => navigate("/login")}
           className="back-button"
         >
-          ← Volver
+          <ArrowLeft size={20} strokeWidth={2} />
+          <span>Volver</span>
         </button>
       </div>
       <h2>Registro de Usuario</h2>

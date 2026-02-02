@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import "../styles/ProfileEdit.css";
@@ -149,7 +150,8 @@ const ProfileEdit = () => {
           onClick={() => navigate("/main-menu")}
           className="back-button"
         >
-          ← Volver
+          <ArrowLeft size={20} strokeWidth={2} />
+          <span>Volver</span>
         </button>
         <h2>Editar Perfil</h2>
       </div>

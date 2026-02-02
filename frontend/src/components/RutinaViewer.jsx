@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft, CheckCircle, RefreshCw, FileText } from 'lucide-react';
 import { API_BASE } from "../config";
 import "../styles/Chatbot.css";
 import useAlert from "../hooks/useAlert";
@@ -156,15 +157,19 @@ const RutinaViewer = () => {
         <CustomAlert {...alertConfig} />
         <div className="chatbot-header">
           <button onClick={() => navigate("/main-menu")} className="back-button">
-            ← Volver
+            <ArrowLeft size={20} strokeWidth={2} />
+            <span>Volver</span>
           </button>
-          <h2>Mi Rutina</h2>
+          <h2>
+            <FileText size={24} strokeWidth={2} style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }} />
+            Mi Rutina
+          </h2>
         </div>
         <div className="chatbot-content">
           <div className="chat-messages">
             <div className="message bot">
               <div className="message-content">
-                  No hay rutina disponible todavía. Ve a "Mi entrenador personal" para generar tu plan.
+                No hay rutina disponible todavía. Ve a "Mi entrenador personal" para generar tu plan.
               </div>
             </div>
           </div>
@@ -181,14 +186,20 @@ const RutinaViewer = () => {
     <div className="chatbot-container">
       <div className="chatbot-header">
         <button onClick={() => navigate("/main-menu")} className="back-button">
-          ← Volver
+          <ArrowLeft size={20} strokeWidth={2} />
+          <span>Volver</span>
         </button>
-        <h2>Mi Rutina</h2>
+        <h2>
+          <FileText size={24} strokeWidth={2} style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }} />
+          Mi Rutina
+        </h2>
       </div>
 
-      <div className="plan-results" ref={rutinaRef} style={{ paddingBottom: 80 }}>
-        <div className="plan-section">
-          {rutina.map((linea, idx) => renderLine(linea, idx))}
+      <div className="chatbot-content">
+        <div className="plan-results with-footer-button" ref={rutinaRef}>
+          <div className="plan-section">
+            {rutina.map((linea, idx) => renderLine(linea, idx))}
+          </div>
         </div>
       </div>
 
@@ -198,15 +209,29 @@ const RutinaViewer = () => {
           disabled={completandoSemana}
           className="restart-button"
           style={{
-            width: "100%",
             backgroundColor: semanaActual === 4 ? "#34C759" : "#0A84FF",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px'
           }}
         >
-          {completandoSemana
-            ? "Generando nueva rutina..."
-            : semanaActual === 4
-            ? "Completar Ciclo y Reiniciar"
-            : `✅ Semana ${semanaActual} Completada`}
+          {completandoSemana ? (
+            <>
+              <RefreshCw size={20} strokeWidth={2} className="spin-icon" />
+              <span>Generando nueva rutina...</span>
+            </>
+          ) : semanaActual === 4 ? (
+            <>
+              <RefreshCw size={20} strokeWidth={2} />
+              <span>Completar Ciclo y Reiniciar</span>
+            </>
+          ) : (
+            <>
+              <CheckCircle size={20} strokeWidth={2} />
+              <span>Semana {semanaActual} Completada</span>
+            </>
+          )}
         </button>
       </div>
 

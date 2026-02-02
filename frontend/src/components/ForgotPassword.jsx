@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from 'lucide-react';
 import { API_BASE } from "../config";
 import CustomAlert from "./CustomAlert";
 import useAlert from "../hooks/useAlert";
@@ -61,7 +62,8 @@ const ForgotPassword = () => {
           onClick={() => navigate("/login")}
           className="back-button"
         >
-          ← Volver
+          <ArrowLeft size={20} strokeWidth={2} />
+          <span>Volver</span>
         </button>
       </div>
 

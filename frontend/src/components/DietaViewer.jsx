@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { ArrowLeft, Apple } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { API_BASE } from "../config";
 import "../styles/Chatbot.css";
@@ -157,9 +158,13 @@ const DietaViewer = () => {
             onClick={() => navigate("/main-menu")}
             className="back-button"
           >
-            ← Volver
+            <ArrowLeft size={20} strokeWidth={2} />
+            <span>Volver</span>
           </button>
-          <h2>Mi Dieta</h2>
+          <h2>
+          <Apple size={24} strokeWidth={2} style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }} />
+            Mi Dieta
+          </h2>
         </div>
         <div className="chatbot-content">
           <div className="chat-messages">
@@ -182,9 +187,13 @@ const DietaViewer = () => {
           onClick={() => navigate("/main-menu")}
           className="back-button"
         >
-          ← Volver
+          <ArrowLeft size={20} strokeWidth={2} />
+          <span>Volver</span>
         </button>
-        <h2>Mi Dieta</h2>
+        <h2>
+          <Apple size={24} strokeWidth={2} style={{ display: 'inline-block', marginRight: '8px', verticalAlign: 'middle' }} />
+          Mi Dieta
+        </h2>
       </div>
       <div className="plan-results">
         <div className="plan-section">
