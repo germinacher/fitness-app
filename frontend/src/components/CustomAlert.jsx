@@ -1,4 +1,5 @@
 import React from 'react';
+import { CheckCircle, XCircle, AlertCircle, HelpCircle } from 'lucide-react';
 import '../styles/CustomAlert.css';
 
 const CustomAlert = ({ 
@@ -14,15 +15,20 @@ const CustomAlert = ({
   if (!show) return null;
 
   const getIcon = () => {
+    const iconProps = {
+      size: 48,
+      strokeWidth: 2
+    };
+
     switch (type) {
       case 'success':
-        return '✅';
+        return <CheckCircle {...iconProps} className="alert-icon-success" />;
       case 'error':
-        return '❌';
+        return <XCircle {...iconProps} className="alert-icon-error" />;
       case 'confirm':
-        return '❓';
+        return <HelpCircle {...iconProps} className="alert-icon-confirm" />;
       default:
-        return 'ℹ️';
+        return <AlertCircle {...iconProps} className="alert-icon-info" />;
     }
   };
 
