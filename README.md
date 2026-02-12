@@ -336,17 +336,17 @@ fitnessapp/
 
 ### Aplicación Web desde móvil
 <p align="center"> 
-    <img src="frontend/docs/screenshots/mobile-web-register.jpeg" width="25%" /> 
-    <img src="frontend/docs/screenshots/mobile-web-login.jpeg" width="25%" /> 
-    <img src="frontend/docs/screenshots/mobile-web-menu.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-register.png" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-login.png" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-menu.png" width="25%" /> 
 </p> 
 <p align="center"> 
-    <img src="frontend/docs/screenshots/mobile-web-chatbot.jpeg" width="25%" /> 
-    <img src="frontend/docs/screenshots/mobile-web-rutina.jpeg" width="25%" /> 
-    <img src="frontend/docs/screenshots/mobile-web-dieta.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-chatbot.png" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-rutina.png" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-dieta.png" width="25%" /> 
 </p> 
 <p align="center"> 
-    <img src="frontend/docs/screenshots/mobile-web-edit.jpeg" width="25%" /> 
+    <img src="frontend/docs/screenshots/mobile-web-edit.png" width="25%" /> 
 </p>
 
 ### Aplicación Móvil
