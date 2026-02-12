@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ArrowLeft } from 'lucide-react-native';
 
 const PrivacyPolicy = () => {
   const navigation = useNavigation();
@@ -12,7 +13,8 @@ const PrivacyPolicy = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backButtonText}>← Volver</Text>
+          <ArrowLeft size={20} strokeWidth={2} color="#0A84FF" />
+          <Text style={styles.backButtonText}>Volver</Text>
         </TouchableOpacity>
         <Text style={styles.title}>Política de Privacidad</Text>
         <Text style={styles.date}>
@@ -142,6 +144,9 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   backButtonText: {
     color: "#0A84FF",

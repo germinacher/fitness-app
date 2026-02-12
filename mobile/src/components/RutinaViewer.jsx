@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo, useRef } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ArrowLeft, FileText, CheckCircle, RefreshCw } from 'lucide-react-native';
 import { API_BASE } from "../config";
 import { storage } from "../utils/storage";
 import useAlert from "../hooks/useAlert";
@@ -59,7 +60,7 @@ const RutinaViewer = () => {
       "confirm",
       "¿Semana completada?",
       semanaActual === 4
-        ? "🎉 ¿Completaste la semana 4? Se iniciará un nuevo ciclo desde la semana 1."
+        ? "¿Completaste la semana 4? Se iniciará un nuevo ciclo desde la semana 1."
         : `¿Completaste la semana ${semanaActual}? Se generará la rutina de la semana ${semanaActual + 1}.`,
       {
         confirmText: "Confirmar",
@@ -97,7 +98,7 @@ const RutinaViewer = () => {
         "success",
         "¡Semana completada!",
         semanaActual === 4
-          ? "🎉 Ciclo completo. Comenzamos nuevamente desde la semana 1."
+          ? "Ciclo completo. Comenzamos nuevamente desde la semana 1."
           : `Nueva rutina generada para la semana ${data.semanaActual}.`
       );
     } catch (err) {
@@ -163,9 +164,13 @@ const RutinaViewer = () => {
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <Text style={styles.backButtonText}>← Volver</Text>
+            <ArrowLeft size={20} strokeWidth={2} color="#0A84FF" />
+            <Text style={styles.backButtonText}>Volver</Text>
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>📋 Mi Rutina</Text>
+          <View style={styles.headerTitleContainer}>
+            <FileText size={24} strokeWidth={2} color="#FFFFFF" />
+            <Text style={styles.headerTitle}>Mi Rutina</Text>
+          </View>
         </View>
         <View style={styles.emptyContainer}>
           <Text style={styles.emptyText}>
@@ -184,9 +189,13 @@ const RutinaViewer = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backButtonText}>← Volver</Text>
+          <ArrowLeft size={20} strokeWidth={2} color="#0A84FF" />
+          <Text style={styles.backButtonText}>Volver</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>📋 Mi Rutina</Text>
+        <View style={styles.headerTitleContainer}>
+          <FileText size={24} strokeWidth={2} color="#FFFFFF" />
+          <Text style={styles.headerTitle}>Mi Rutina</Text>
+        </View>
       </View>
 
       <ScrollView 
@@ -209,13 +218,22 @@ const RutinaViewer = () => {
             completandoSemana && styles.buttonDisabled
           ]}
         >
-          <Text style={styles.completeButtonText}>
-            {completandoSemana
-              ? "Generando nueva rutina..."
-              : semanaActual === 4
-              ? "🎉 Completar Ciclo y Reiniciar"
-              : `✅ Semana ${semanaActual} Completada`}
-          </Text>
+          {completandoSemana ? (
+            <>
+              <RefreshCw size={20} strokeWidth={2} color="#FFFFFF" />
+              <Text style={styles.completeButtonText}>Generando nueva rutina...</Text>
+            </>
+          ) : semanaActual === 4 ? (
+            <>
+              <CheckCircle size={20} strokeWidth={2} color="#FFFFFF" />
+              <Text style={styles.completeButtonText}>Completar Ciclo y Reiniciar</Text>
+            </>
+          ) : (
+            <>
+              <CheckCircle size={20} strokeWidth={2} color="#FFFFFF" />
+              <Text style={styles.completeButtonText}>Semana {semanaActual} Completada</Text>
+            </>
+          )}
         </TouchableOpacity>
       </View>
 
@@ -237,10 +255,18 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   backButtonText: {
     color: "#0A84FF",
     fontSize: 16,
+  },
+  headerTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   headerTitle: {
     fontSize: 24,
@@ -331,6 +357,9 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    gap: 8,
   },
   completeButtonCycle: {
     backgroundColor: "#34C759",

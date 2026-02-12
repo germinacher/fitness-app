@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator, KeyboardAvoidingView, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ArrowLeft } from 'lucide-react-native';
 import { API_BASE } from "../config";
 import { storage } from "../utils/storage";
 import CustomAlert from "./CustomAlert";
@@ -186,7 +187,8 @@ const ProfileEdit = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backButtonText}>← Volver</Text>
+          <ArrowLeft size={20} strokeWidth={2} color="#0A84FF" />
+          <Text style={styles.backButtonText}>Volver</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Editar Perfil</Text>
       </View>
@@ -392,6 +394,9 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   backButtonText: {
     color: "#0A84FF",

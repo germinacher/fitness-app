@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ArrowLeft } from 'lucide-react-native';
 import { API_BASE } from "../config";
 import CustomAlert from "./CustomAlert";
 import useAlert from "../hooks/useAlert";
@@ -142,7 +143,8 @@ const Register = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backButtonText}>← Volver</Text>
+          <ArrowLeft size={20} strokeWidth={2} color="#0A84FF" />
+          <Text style={styles.backButtonText}>Volver</Text>
         </TouchableOpacity>
 
         <Text style={styles.title}>Registro de Usuario</Text>
@@ -410,6 +412,9 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginBottom: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   backButtonText: {
     color: "#0A84FF",

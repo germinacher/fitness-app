@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
+import { CheckCircle, XCircle, AlertCircle, HelpCircle } from 'lucide-react-native';
 
 const CustomAlert = ({ 
   show, 
@@ -14,15 +15,21 @@ const CustomAlert = ({
   if (!show) return null;
 
   const getIcon = () => {
+    const iconProps = {
+      size: 48,
+      strokeWidth: 2,
+      color: '#FFFFFF'
+    };
+
     switch (type) {
       case 'success':
-        return '✅';
+        return <CheckCircle {...iconProps} color="#34C759" />;
       case 'error':
-        return '❌';
+        return <XCircle {...iconProps} color="#FF3B30" />;
       case 'confirm':
-        return '❓';
+        return <HelpCircle {...iconProps} color="#FF9500" />;
       default:
-        return 'ℹ️';
+        return <AlertCircle {...iconProps} color="#0A84FF" />;
     }
   };
 
@@ -35,7 +42,7 @@ const CustomAlert = ({
     >
       <View style={styles.overlay}>
         <View style={styles.box}>
-          <Text style={styles.icon}>{getIcon()}</Text>
+          <View style={styles.iconContainer}>{getIcon()}</View>
           
           {title && <Text style={styles.title}>{title}</Text>}
           
@@ -89,9 +96,10 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     alignItems: 'center',
   },
-  icon: {
-    fontSize: 48,
+  iconContainer: {
     marginBottom: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     fontSize: 20,

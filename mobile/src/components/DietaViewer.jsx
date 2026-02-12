@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ArrowLeft, Apple } from 'lucide-react-native';
 import { API_BASE } from "../config";
 import { storage } from "../utils/storage";
 import CustomAlert from "./CustomAlert";
@@ -116,9 +117,13 @@ const DietaViewer = () => {
             style={styles.backButton}
             onPress={() => navigation.goBack()}
           >
-            <Text style={styles.backButtonText}>← Volver</Text>
+            <ArrowLeft size={20} strokeWidth={2} color="#0A84FF" />
+            <Text style={styles.backButtonText}>Volver</Text>
           </TouchableOpacity>
-          <Text style={styles.headerTitle}>🍎 Mi Dieta</Text>
+          <View style={styles.headerTitleContainer}>
+            <Apple size={24} strokeWidth={2} color="#FFFFFF" />
+            <Text style={styles.headerTitle}>Mi Dieta</Text>
+          </View>
         </View>
         <View style={styles.emptyContainer}>
           <Text style={styles.emptyText}>
@@ -137,9 +142,13 @@ const DietaViewer = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backButtonText}>← Volver</Text>
+          <ArrowLeft size={20} strokeWidth={2} color="#0A84FF" />
+          <Text style={styles.backButtonText}>Volver</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>🍎 Mi Dieta</Text>
+        <View style={styles.headerTitleContainer}>
+          <Apple size={24} strokeWidth={2} color="#FFFFFF" />
+          <Text style={styles.headerTitle}>Mi Dieta</Text>
+        </View>
       </View>
       <ScrollView 
         style={styles.scrollView}
@@ -167,10 +176,18 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   backButtonText: {
     color: "#0A84FF",
     fontSize: 16,
+  },
+  headerTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   headerTitle: {
     fontSize: 24,

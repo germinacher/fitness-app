@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Dumbbell, FileText, Apple, User, LogOut } from 'lucide-react-native';
 import { API_BASE } from "../config";
 import { storage } from "../utils/storage";
 
@@ -54,7 +55,8 @@ const MainMenu = () => {
           style={styles.menuButtonLarge}
           onPress={() => navigation.navigate("Chatbot")}
         >
-          <Text style={styles.menuButtonText}>💪 Mi entrenador personal</Text>
+          <Dumbbell size={28} strokeWidth={2} color="#FFFFFF" />
+          <Text style={styles.menuButtonText}>Mi entrenador personal</Text>
         </TouchableOpacity>
 
         <View style={styles.menuGrid}>
@@ -62,13 +64,15 @@ const MainMenu = () => {
             style={[styles.menuButtonSquare, styles.menuButtonSquareLeft]}
             onPress={() => navigation.navigate("RutinaViewer")}
           >
-            <Text style={styles.menuButtonText}>📋 Mi Rutina</Text>
+            <FileText size={28} strokeWidth={2} color="#FFFFFF" />
+            <Text style={styles.menuButtonText}>Mi Rutina</Text>
           </TouchableOpacity>
           <TouchableOpacity 
             style={styles.menuButtonSquare}
             onPress={() => navigation.navigate("DietaViewer")}
           >
-            <Text style={styles.menuButtonText}>🍎 Mi Dieta</Text>
+            <Apple size={28} strokeWidth={2} color="#FFFFFF" />
+            <Text style={styles.menuButtonText}>Mi Dieta</Text>
           </TouchableOpacity>
         </View>
 
@@ -76,14 +80,16 @@ const MainMenu = () => {
           style={styles.menuButtonLarge}
           onPress={() => navigation.navigate("Profile")}
         >
-          <Text style={styles.menuButtonText}>👤 Mi Perfil</Text>
+          <User size={28} strokeWidth={2} color="#FFFFFF" />
+          <Text style={styles.menuButtonText}>Mi Perfil</Text>
         </TouchableOpacity>
 
         <TouchableOpacity 
           style={styles.menuButtonSmall}
           onPress={handleLogout}
         >
-          <Text style={styles.menuButtonText}>🚪 Cerrar Sesión</Text>
+          <LogOut size={22} strokeWidth={2} color="#FFFFFF" />
+          <Text style={styles.menuButtonText}>Cerrar Sesión</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -130,6 +136,8 @@ const styles = StyleSheet.create({
     borderColor: "#3A3A3C",
     width: "90%",
     minHeight: 78,
+    flexDirection: "row",
+    gap: 12,
   },
   menuButtonSquare: {
     backgroundColor: "#1C1C1E",
@@ -142,6 +150,7 @@ const styles = StyleSheet.create({
     minHeight: 150,
     borderWidth: 1,
     borderColor: "#3A3A3C",
+    gap: 8,
   },
   menuButtonSquareLeft: {
     marginRight: 16,
@@ -162,6 +171,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
     width: "90%",
     minHeight: 60,
+    flexDirection: "row",
+    gap: 8,
   },
   menuButtonText: {
     color: "#FFFFFF",

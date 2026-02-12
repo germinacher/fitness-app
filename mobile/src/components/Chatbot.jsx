@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, useCallback, useMemo } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput, ActivityIndicator, KeyboardAvoidingView, Platform } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { ArrowLeft, Dumbbell } from 'lucide-react-native';
 import { API_BASE } from "../config";
 import { storage } from "../utils/storage";
 import CustomAlert from "./CustomAlert";
@@ -265,9 +266,13 @@ const Chatbot = () => {
           style={styles.backButton}
           onPress={() => navigation.goBack()}
         >
-          <Text style={styles.backButtonText}>← Volver</Text>
+          <ArrowLeft size={20} strokeWidth={2} color="#0A84FF" />
+          <Text style={styles.backButtonText}>Volver</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>💪 Mi Entrenador Personal</Text>
+        <View style={styles.headerTitleContainer}>
+          <Dumbbell size={24} strokeWidth={2} color="#FFFFFF" />
+          <Text style={styles.headerTitle}>Mi Entrenador Personal</Text>
+        </View>
       </View>
 
       <ScrollView 
@@ -339,10 +344,18 @@ const styles = StyleSheet.create({
   },
   backButton: {
     marginBottom: 12,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   backButtonText: {
     color: "#0A84FF",
     fontSize: 16,
+  },
+  headerTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
   },
   headerTitle: {
     fontSize: 24,
