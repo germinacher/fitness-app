@@ -1,0 +1,66 @@
+on: [ push, pull_request, workflow_dispatch ]
+
+name: Tests
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
+    - run: npm install # install eslint
+    - run: npm run lint
+
+  test-node:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version:
+          # The oldest Node.js version that we can still test.
+          # Node v20.11.0+ required for --test-reporter=lcov (test-coverage)
+          # Node v20.19.0 required for require(esm) require("proxy-from-env")
+          - 20
+          # Other Node.js versions that have not reached End-of-life status per
+          # https://nodejs.org/en/about/previous-releases
+          - 24
+          - 22
+          - 25
+          # ^ latest version may be an unstable (odd) version when the latest
+          # (even) version is not yet available.
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v6
+      with:
+        node-version: ${{ matrix.node_version }}
+
+    # Note: no npm ci / npm install:
+    # The package has no non-dev dependencies.
+    # We rely on Node.js's built-in test module and reporter,
+    # and do not require any dev dependencies either.
+
+    # test-coverage will also run the tests, but does not print helpful output upon test failure.
+    # So we also run the tests separately.
+    - run: npm test
+
+    # note: --experimental-test-coverage requires Node v18.15.0+
+    # note: --test-reporter=lcov requires Node v20.11.0+ (https://github.com/nodejs/node/pull/50018)
+    - run: npm run test-coverage
+
+    - name: Send coverage for Node ${{ matrix.node_version }} to Coveralls
+      uses: coverallsapp/github-action@v2
+      with:
+        parallel: true
+        file: lcov.info
+        flag-name: coverage-node-${{ matrix.node_version }}
+
+  coveralls:
+    name: Report to Coveralls
+    needs: [ test-node ]
+    if: ${{ github.repository == 'Rob--W/proxy-from-env' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: coverallsapp/github-action@v2
+      with:
+        parallel-finished: true

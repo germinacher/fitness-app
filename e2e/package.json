@@ -1,0 +1,20 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:login": "node selenium/login.test.js",
+    "test:full": "node selenium/full.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "selenium-webdriver": "^4.41.0"
+  },
+  "dependencies": {
+    "chromedriver": "^145.0.6"
+  }
+}

@@ -164,6 +164,17 @@ select option {
   opacity: 0.9;
 }
 
+.link-button {
+  background: none;
+  border: none;
+  color: #0A84FF;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+}
+
 /* BOTÓN VOLVER */
 .back-row {
   text-align: left;

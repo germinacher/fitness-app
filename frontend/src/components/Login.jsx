@@ -95,16 +95,7 @@ const Login = () => {
           <button
             type="button"
             onClick={() => navigate("/forgot-password")}
-            style={{
-              background: "none",
-              border: "none",
-              color: "#0A84FF",
-              textDecoration: "underline",
-              cursor: "pointer",
-              fontSize: "0.9rem",
-              padding: 0,
-              fontFamily: "inherit"
-            }}
+            className="link-button"
           >
             ¿Olvidaste tu contraseña?
           </button>
@@ -124,16 +115,7 @@ const Login = () => {
             <button
               type="button"
               onClick={() => navigate("/register")}
-              style={{
-                background: "none",
-                border: "none",
-                color: "#0A84FF",
-                textDecoration: "underline",
-                fontWeight: "600",
-                cursor: "pointer",
-                fontSize: "inherit",
-                fontFamily: "inherit"
-              }}
+              className="link-button"
             >
               Regístrate aquí
             </button>

@@ -407,15 +407,7 @@ const Register = () => {
               <button 
                 type="button"
                 onClick={() => navigate("/login")}
-                style={{ 
-                  color: "#009BD8", 
-                  textDecoration: "underline",
-                  fontWeight: "600",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  fontSize: "inherit"
-                }}
+                className="link-button"
               >
                 Inicia sesión aquí
               </button>
