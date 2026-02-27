@@ -1,0 +1,94 @@
+{
+    "info": {
+      "name": "fitnessapp",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "1. Login",
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "exec": [
+                "const data = pm.response.json();",
+                "pm.environment.set('token', data.token);",
+                "pm.environment.set('userId', data.userId);",
+                "pm.test('Login exitoso', () => {",
+                "  pm.response.to.have.status(200);",
+                "  pm.expect(data.token).to.exist;",
+                "  pm.expect(data.userId).to.exist;",
+                "});"
+              ]
+            }
+          }
+        ],
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"email\": \"germinacher@gmail.com\",\n  \"password\": \"123456\"\n}"
+          },
+          "url": "{{base_url}}/api/login"
+        }
+      },
+      {
+        "name": "2. Obtener info del usuario",
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "exec": [
+                "const data = pm.response.json();",
+                "pm.environment.set('userInfo', JSON.stringify(data));",
+                "pm.test('Usuario obtenido', () => {",
+                "  pm.response.to.have.status(200);",
+                "  pm.expect(data.infoPersonal).to.exist;",
+                "});"
+              ]
+            }
+          }
+        ],
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Authorization", "value": "Bearer {{token}}" }
+          ],
+          "url": "{{base_url}}/api/users/{{userId}}"
+        }
+      },
+      {
+        "name": "3. Generar plan (chatbot)",
+        "event": [
+          {
+            "listen": "test",
+            "script": {
+              "exec": [
+                "pm.test('Plan generado', () => {",
+                "  pm.response.to.have.status(200);",
+                "  const data = pm.response.json();",
+                "  pm.expect(data.rutina).to.exist;",
+                "  pm.expect(data.dieta).to.exist;",
+                "});"
+              ]
+            }
+          }
+        ],
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "Authorization", "value": "Bearer {{token}}" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"userInfo\": {{userInfo}},\n  \"answers\": {\n    \"dias_entrenamiento\": \"4 días\",\n    \"duracion_entrenamiento\": \"60 minutos\",\n    \"experiencia\": \"Intermedio\",\n    \"enfoque\": \"Balanceada\",\n    \"peso_objetivo\": 75,\n    \"horario_preferido\": \"Mañana\"\n  }\n}"
+          },
+          "url": "{{base_url}}/api/users/{{userId}}/generate-plan"
+        }
+      }
+    ]
+  }
