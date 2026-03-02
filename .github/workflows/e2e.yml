@@ -1,0 +1,68 @@
+name: E2E Selenium Test
+
+on:
+  push:
+    branches: [master, feature/testing-infrastructure]
+  pull_request:
+    branches: [master, feature/testing-infrastructure]
+
+jobs:
+  e2e-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Instalar dependencias del backend
+        working-directory: ./server
+        run: npm install
+
+      - name: Iniciar backend
+        working-directory: ./server
+        run: node index.js &
+        env:
+          PORT: 5000
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          EMAIL_USER: ${{ secrets.EMAIL_USER }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+          FRONTEND_URL: http://localhost:4000
+
+      - name: Instalar dependencias del frontend
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Buildear el frontend
+        working-directory: ./frontend
+        run: npm run build
+        env:
+          REACT_APP_API_BASE: http://localhost:5000
+
+      - name: Levantar frontend en puerto 4000
+        run: |
+          npm install -g serve
+          serve -s frontend/build -l 4000 &
+
+      - name: Esperar a que los servidores estén listos
+        run: |
+          npx wait-on http://localhost:4000
+          npx wait-on http://localhost:5000
+
+      - name: Instalar Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Instalar dependencias e2e
+        working-directory: ./e2e
+        run: npm install
+
+      - name: Correr test Selenium
+        working-directory: ./e2e
+        run: node selenium/full.test.js
+        env:
+          APP_URL: http://localhost:4000
