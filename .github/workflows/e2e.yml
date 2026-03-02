@@ -2,9 +2,9 @@ name: E2E Selenium Test
 
 on:
   push:
-    branches: [main]
+    branches: [master, feature/testing-infrastructure]
   pull_request:
-    branches: [main]
+    branches: [master, feature/testing-infrastructure]
 
 jobs:
   e2e-test:
