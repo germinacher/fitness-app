@@ -1,11 +1,22 @@
 const { Builder, By, until } = require('selenium-webdriver');
-require('chromedriver');
+const chrome = require('selenium-webdriver/chrome');
+
+const APP_URL = process.env.APP_URL || 'http://localhost:3000';
 
 (async function loginTest() {
-  let driver = await new Builder().forBrowser('chrome').build();
+  const options = new chrome.Options();
+  options.addArguments('--headless');
+  options.addArguments('--no-sandbox');
+  options.addArguments('--disable-dev-shm-usage');
+  options.addArguments('--disable-gpu');
+
+  let driver = await new Builder()
+    .forBrowser('chrome')
+    .setChromeOptions(options)
+    .build();
 
   try {
-    await driver.get('http://localhost:3000');
+    await driver.get(APP_URL);
 
     const emailInput = await driver.findElement(By.name('email'));
     await emailInput.clear();
@@ -24,6 +35,7 @@ require('chromedriver');
     console.log("Login test passed");
   } catch (error) {
     console.error("Test failed:", error);
+    process.exit(1);
   } finally {
     await driver.quit();
   }

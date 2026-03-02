@@ -1,12 +1,24 @@
 const { Builder, By, until } = require('selenium-webdriver');
-require('chromedriver');
+const chrome = require('selenium-webdriver/chrome');
+
+const APP_URL = process.env.APP_URL || 'http://localhost:3000';
 
 (async function fullTest() {
-  let driver = await new Builder().forBrowser('chrome').build();
+  // Opciones necesarias para correr en GitHub Actions
+  const options = new chrome.Options();
+  options.addArguments('--headless');
+  options.addArguments('--no-sandbox');
+  options.addArguments('--disable-dev-shm-usage');
+  options.addArguments('--disable-gpu');
+
+  let driver = await new Builder()
+    .forBrowser('chrome')
+    .setChromeOptions(options)
+    .build();
 
   try {
     // LOGIN
-    await driver.get('http://localhost:3000');
+    await driver.get(APP_URL);
 
     const emailInput = await driver.findElement(By.name('email'));
     await emailInput.clear();
@@ -35,27 +47,21 @@ require('chromedriver');
     await driver.wait(until.urlContains('/chatbot'), 5000);
     console.log("Navegó al chatbot");
 
-    // Esperar a que cargue el chatbot y aparezcan las opciones
     await driver.wait(until.elementLocated(By.css('.option-button')), 8000);
     console.log("Chatbot cargado");
 
-    // PREGUNTA 1: días de entrenamiento 
     await clickOptionButton(driver, '4 días');
     console.log("Pregunta 1 respondida");
 
-    // PREGUNTA 2: duración
     await clickOptionButton(driver, '60 minutos');
     console.log("Pregunta 2 respondida");
 
-    // PREGUNTA 3: experiencia
     await clickOptionButton(driver, 'Intermedio');
     console.log("Pregunta 3 respondida");
 
-    // PREGUNTA 4: enfoque 
     await clickOptionButton(driver, 'Balanceada');
     console.log("Pregunta 4 respondida");
 
-    // PREGUNTA 5: peso objetivo 
     await driver.wait(until.elementLocated(By.css('.option-input')), 5000);
     const pesoInput = await driver.findElement(By.css('.option-input'));
     await pesoInput.clear();
@@ -63,11 +69,9 @@ require('chromedriver');
     await driver.findElement(By.css('.confirm-button')).click();
     console.log("Pregunta 5 respondida");
 
-    // PREGUNTA 6: horario
     await clickOptionButton(driver, 'Mañana');
     console.log("Pregunta 6 respondida");
 
-    // ESPERAR A QUE SE GENERE EL PLAN (puede tardar)
     await driver.wait(until.elementLocated(By.css('.plan-results')), 30000);
     console.log("Plan generado correctamente");
 
@@ -75,16 +79,15 @@ require('chromedriver');
 
   } catch (error) {
     console.error("Test failed:", error);
+    process.exit(1); // Importante: hace fallar el workflow si el test falla
   } finally {
     await driver.quit();
   }
 })();
 
-// Helper: espera a que aparezca un botón con ese texto y lo clickea
 async function clickOptionButton(driver, text) {
-  // Esperar a que desaparezcan los botones viejos y aparezcan los nuevos
   await driver.sleep(800);
-    
+
   const buttons = await driver.wait(
     until.elementsLocated(By.css('.option-button')),
     5000
