@@ -61,7 +61,13 @@ jobs:
         working-directory: ./e2e
         run: npm install
 
-      - name: Correr test Selenium
+      - name: Correr test Register
+      working-directory: ./e2e
+      run: node selenium/register.test.js
+      env:
+        APP_URL: http://localhost:4000
+
+      - name: Correr test Login y Chatbot
         working-directory: ./e2e
         run: node selenium/full.test.js
         env:
